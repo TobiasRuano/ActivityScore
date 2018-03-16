@@ -24,11 +24,42 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     var indiceExe = 0
     var indiceDis = 0
     
-    var arrayScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    var arraySteps = [0, 0, 0, 0, 0, 0, 0]
-    var arrayDistance = [0, 0, 0, 0, 0, 0, 0]
-    var arrayCalories = [0, 0, 0, 0, 0, 0, 0]
-    var arrayExercise = [0, 0, 0, 0, 0, 0, 0]
+    var arrayScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] {
+        didSet {
+            for i in 0..<arrayScore.count {
+                UserDefaults.standard.set(Int(arrayScore[i]), forKey: "arrayScore\(i)")
+            }
+            LineGraphView.setNeedsDisplay()
+        }
+    }
+    var arraySteps = [0, 0, 0, 0, 0, 0, 0] /*{
+        didSet{
+            DispatchQueue.main.async {
+                self.obtainScoreNumber()
+            }
+        }
+    }*/
+    var arrayDistance = [0, 0, 0, 0, 0, 0, 0] {
+        didSet{
+            DispatchQueue.main.async {
+                self.obtainScoreNumber()
+            }
+        }
+    }
+    var arrayCalories = [0, 0, 0, 0, 0, 0, 0] /*{
+        didSet{
+            DispatchQueue.main.async {
+                self.obtainScoreNumber()
+            }
+        }
+    }*/
+    var arrayExercise = [0, 0, 0, 0, 0, 0, 0] /*{
+        didSet{
+            DispatchQueue.main.async {
+                self.obtainScoreNumber()
+            }
+        }
+    }*/
     
     //TODO: change to false
     var inAppPurchase = true
@@ -40,6 +71,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         obtainScoreNumber()
     }
     
+    @IBOutlet weak var boton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var CheeringLable: UILabel!
     
@@ -52,6 +84,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         if inAppPurchase == false {
             addAd()
         }
+        boton.isHidden = true
     }
     
     func labelStyle() {
@@ -101,7 +134,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         
     }
     
-    // Gets las 7 days of steps
+    // Gets last 7 days of steps
     func getLast7daysSteps() {
         let calendar = NSCalendar.current
         let interval = NSDateComponents()
@@ -141,7 +174,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         healthKitStore.execute(stepsQuery)
     }
     
-    // Gets las 7 days of Calories Burned
+    // Gets last 7 days of Calories Burned
     func getLast7daysCalories() {
         let calendar = NSCalendar.current
         let interval = NSDateComponents()
@@ -181,7 +214,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         healthKitStore.execute(stepsQuery)
     }
     
-    // Gets las 7 days of Exercise Time
+    // Gets last 7 days of Exercise Time
     func getLast7daysExercise() {
         let calendar = NSCalendar.current
         let interval = NSDateComponents()
@@ -221,7 +254,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         healthKitStore.execute(stepsQuery)
     }
     
-    // Gets las 7 days of Distance Burned
+    // Gets last 7 days of Distance
     func getLast7daysDistance() {
         let calendar = NSCalendar.current
         let interval = NSDateComponents()
@@ -285,7 +318,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
     
     
-    //TODO: re hacer con arrays
     func obtainScoreNumber() {
         
         for index in (0..<arraySteps.count) {
@@ -327,9 +359,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         }else if arrayScore[6] > 99{
             CheeringLable.text = "WOW!! 🏆"
         }
-        
-        LineGraphView.setNeedsDisplay()
-        
     }
     
     func addAd() {

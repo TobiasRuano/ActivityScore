@@ -14,19 +14,25 @@ class LineView: UIView {
     let VC = ScoreViewController()
     
     var arrayLocal = [100, 40, 259, 186, 300, 162, 72]
-    
-    func setArrayScore( arraynum: Array<Any>) {
+    func setArrayScore() {
         var position = 0
         
-        while position < 7 {
-            arrayLocal[position] = Int(VC.arrayScore[position])
+//        while position < 7 {
+//            arrayLocal[position] = Int(VC.arrayScore[position])
+//            print("estoy haciendo algo")
+//            print(VC.arrayScore[position])
+//            position += 1
+//        }
+        while UserDefaults.standard.value(forKey: "arrayScore\(position)") != nil {
+            let num = UserDefaults.standard.integer(forKey: "arrayScore\(position)")
+            arrayLocal[position] = num
             position += 1
         }
     }
     
     
     override func draw(_ rect: CGRect) {
-        setArrayScore(arraynum: arrayLocal)
+        setArrayScore()
         Graphs .draw_7PointLine(
             point0Value: CGFloat(arrayLocal[0]),
             point1Value: CGFloat(arrayLocal[1]),
