@@ -29,14 +29,13 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             for i in 0..<arrayScore.count {
                 UserDefaults.standard.set(Int(arrayScore[i]), forKey: "arrayScore\(i)")
             }
-            LineGraphView.setNeedsDisplay()
+            DispatchQueue.main.async {
+                self.LineGraphView.setNeedsDisplay()
+            }
         }
     }
-    var arraySteps = [0, 0, 0, 0, 0, 0, 0] /*{
-        didSet{
-            DispatchQueue.main.async {
-                self.obtainScoreNumber()
-            }
+    var arraySteps = [0, 0, 0, 0, 0, 0, 0]/* {
+        didSet {
         }
     }*/
     var arrayDistance = [0, 0, 0, 0, 0, 0, 0] {
@@ -48,43 +47,36 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
     var arrayCalories = [0, 0, 0, 0, 0, 0, 0] /*{
         didSet{
-            DispatchQueue.main.async {
-                self.obtainScoreNumber()
-            }
+            self.obtainScoreNumber()
         }
     }*/
     var arrayExercise = [0, 0, 0, 0, 0, 0, 0] /*{
         didSet{
-            DispatchQueue.main.async {
-                self.obtainScoreNumber()
-            }
+            self.obtainScoreNumber()
         }
     }*/
     
     //TODO: change to false
-    var inAppPurchase = true
+    var inAppPurchase = false
     
     @IBOutlet weak var adBanner: GADBannerView!
     
-    //TODO: put this in a function
-    @IBAction func buttoooon(_ sender: UIButton) {
-        obtainScoreNumber()
-    }
     
-    @IBOutlet weak var boton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var CheeringLable: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Your Daily Score"
+        
+        self.navigationItem.title = "Your Daily Score"
+        self.tabBarItem.title = "Score"
+        
         authorizeHealthKit()
         
         if inAppPurchase == false {
             addAd()
         }
-        boton.isHidden = true
     }
     
     func labelStyle() {
@@ -349,9 +341,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         }
         
         scoreLabel.text = String(Int(arrayScore[6]))
+        LineGraphView.setNeedsDisplay()
         
         if arrayScore[6] < 40 {
-                
+                CheeringLable.text = "SO LAZY 😡"
         }else if arrayScore[6] > 39 && arrayScore[6] < 70 {
             CheeringLable.text = "Not bad, but you could do better. 🤷‍♂️"
         }else if arrayScore[6] > 69 && arrayScore[6] < 100 {

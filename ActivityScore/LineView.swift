@@ -13,16 +13,10 @@ class LineView: UIView {
     
     let VC = ScoreViewController()
     
-    var arrayLocal = [100, 40, 259, 186, 300, 162, 72]
+    var arrayLocal = [0, 0, 0, 0, 0, 0, 0]
     func setArrayScore() {
         var position = 0
         
-//        while position < 7 {
-//            arrayLocal[position] = Int(VC.arrayScore[position])
-//            print("estoy haciendo algo")
-//            print(VC.arrayScore[position])
-//            position += 1
-//        }
         while UserDefaults.standard.value(forKey: "arrayScore\(position)") != nil {
             let num = UserDefaults.standard.integer(forKey: "arrayScore\(position)")
             arrayLocal[position] = num
