@@ -71,8 +71,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         }
     }
     
-    //TODO: Not being executed
-    private func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError) {
+    func mailComposeController(_ controller:MFMailComposeViewController, didFinishWith result:MFMailComposeResult, error:Error?) {
         switch result {
         case .cancelled:
             print("Mail cancelled")
@@ -81,11 +80,9 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         case .sent:
             print("Mail sent")
         case .failed:
-            print("Mail sent failure: \(error.localizedDescription)")
-        default:
-            break
+            print("Mail sent failure: \(error?.localizedDescription)")
         }
-        self.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     
 }

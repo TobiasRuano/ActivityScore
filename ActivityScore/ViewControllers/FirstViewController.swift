@@ -34,10 +34,13 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             }
         }
     }
-    var arraySteps = [0, 0, 0, 0, 0, 0, 0]/* {
+    var arraySteps = [0, 0, 0, 0, 0, 0, 0] {
         didSet {
+            DispatchQueue.main.async {
+                self.obtainScoreNumber()
+            }
         }
-    }*/
+    }
     var arrayDistance = [0, 0, 0, 0, 0, 0, 0] {
         didSet{
             DispatchQueue.main.async {
@@ -45,19 +48,19 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             }
         }
     }
-    var arrayCalories = [0, 0, 0, 0, 0, 0, 0] /*{
+    var arrayCalories = [0, 0, 0, 0, 0, 0, 0] {
         didSet{
             self.obtainScoreNumber()
         }
-    }*/
-    var arrayExercise = [0, 0, 0, 0, 0, 0, 0] /*{
+    }
+    var arrayExercise = [0, 0, 0, 0, 0, 0, 0] {
         didSet{
             self.obtainScoreNumber()
         }
-    }*/
+    }
     
     //TODO: change to false
-    var inAppPurchase = false
+    var inAppPurchase = true
     
     @IBOutlet weak var adBanner: GADBannerView!
     
@@ -312,6 +315,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
     func obtainScoreNumber() {
         
+        //TODO: crear una variable para guardar y operar en vez de la propia array
         for index in (0..<arraySteps.count) {
             while arraySteps[index] > 100 {
                 arraySteps[index] = arraySteps[index] - 100
@@ -340,17 +344,19 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         
-        scoreLabel.text = String(Int(arrayScore[6]))
-        LineGraphView.setNeedsDisplay()
-        
-        if arrayScore[6] < 40 {
-                CheeringLable.text = "SO LAZY 😡"
-        }else if arrayScore[6] > 39 && arrayScore[6] < 70 {
-            CheeringLable.text = "Not bad, but you could do better. 🤷‍♂️"
-        }else if arrayScore[6] > 69 && arrayScore[6] < 100 {
-            CheeringLable.text = "Great Job! 💪"
-        }else if arrayScore[6] > 99{
-            CheeringLable.text = "WOW!! 🏆"
+        DispatchQueue.main.async {
+            self.scoreLabel.text = String(Int(self.arrayScore[6]))
+            self.LineGraphView.setNeedsDisplay()
+            
+            if self.arrayScore[6] < 40 {
+                self.CheeringLable.text = "SO LAZY 😡"
+            }else if self.arrayScore[6] > 39 && self.arrayScore[6] < 70 {
+                self.CheeringLable.text = "Not bad, but you could do better. 🤷‍♂️"
+            }else if self.arrayScore[6] > 69 && self.arrayScore[6] < 100 {
+                self.CheeringLable.text = "Great Job! 💪"
+            }else if self.arrayScore[6] > 99{
+                self.CheeringLable.text = "WOW!! 🏆"
+            }
         }
     }
     
