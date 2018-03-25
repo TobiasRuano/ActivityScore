@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  SettingsViewController.swift
 //  ActivityScore
 //
 //  Created by Tobias Ruano on 13/3/18.
@@ -34,18 +34,31 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        print(indexPath.section)
+        //print(indexPath.row)
+        //print(indexPath.section)
         
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.section == 1 && indexPath.row == 4 {
             share()
         }else if indexPath.section == 1 && indexPath.row == 3 {
-            let appDelegate = AppDelegate()
-            appDelegate.requestReview()
+            //let appDelegate = AppDelegate()
+            //appDelegate.requestReview()
+            rate()
         }else if indexPath.section == 1 && indexPath.row == 2 {
             support()
+        }
+    }
+    
+    func rate() {
+        guard let url = URL(string: "itms-apps://itunes.apple.com/app/idYOUR_APP_ID") else {
+            return
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
         }
     }
     
@@ -67,7 +80,10 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
             
             self.present(mc, animated: true, completion: nil)
         } else {
-            // show failure alert
+            let alert = UIAlertController(title: "Couldn't Access Mail App", message: "Please report this error", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -80,7 +96,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         case .sent:
             print("Mail sent")
         case .failed:
-            print("Mail sent failure: \(error?.localizedDescription)")
+            print("Mail sent failure: \(String(describing: error?.localizedDescription))")
         }
         controller.dismiss(animated: true, completion: nil)
     }

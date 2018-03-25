@@ -10,8 +10,8 @@
 		8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FAF49205D881800A12D89 /* CardView.swift */; };
 		8B3FAF4C205D882200A12D89 /* Graphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FAF4B205D882200A12D89 /* Graphs.swift */; };
 		8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1620584C8600C37639 /* AppDelegate.swift */; };
-		8B943B1920584C8600C37639 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1820584C8600C37639 /* FirstViewController.swift */; };
-		8B943B1B20584C8600C37639 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1A20584C8600C37639 /* SecondViewController.swift */; };
+		8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1820584C8600C37639 /* ScoreViewController.swift */; };
+		8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1A20584C8600C37639 /* SettingsViewController.swift */; };
 		8B943B1E20584C8600C37639 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B1C20584C8600C37639 /* Main.storyboard */; };
 		8B943B2020584C8600C37639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B1F20584C8600C37639 /* Assets.xcassets */; };
 		8B943B2320584C8600C37639 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B2120584C8600C37639 /* LaunchScreen.storyboard */; };
@@ -27,8 +27,8 @@
 		8B3FAF4B205D882200A12D89 /* Graphs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphs.swift; sourceTree = "<group>"; };
 		8B943B1320584C8600C37639 /* ActivityScore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivityScore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B943B1620584C8600C37639 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8B943B1820584C8600C37639 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		8B943B1A20584C8600C37639 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		8B943B1820584C8600C37639 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		8B943B1A20584C8600C37639 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8B943B1D20584C8600C37639 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B943B1F20584C8600C37639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B943B2220584C8600C37639 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,8 +57,8 @@
 		8B3F67E3205AD7B6007B77B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8B943B1820584C8600C37639 /* FirstViewController.swift */,
-				8B943B1A20584C8600C37639 /* SecondViewController.swift */,
+				8B943B1820584C8600C37639 /* ScoreViewController.swift */,
+				8B943B1A20584C8600C37639 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -189,9 +189,9 @@
 				8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */,
 				8B3FAF4C205D882200A12D89 /* Graphs.swift in Sources */,
 				8B943B2B20584CF100C37639 /* LineView.swift in Sources */,
-				8B943B1B20584C8600C37639 /* SecondViewController.swift in Sources */,
+				8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */,
 				8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */,
-				8B943B1920584C8600C37639 /* FirstViewController.swift in Sources */,
+				8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */,
 				8B943B2D20584CFC00C37639 /* HealthKitSetupAssistant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

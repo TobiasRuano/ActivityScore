@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  ScoreViewController.swift
 //  ActivityScore
 //
 //  Created by Tobias Ruano on 13/3/18.
@@ -13,12 +13,14 @@ import GoogleMobileAds
 let healthKitStore: HKHealthStore = HKHealthStore()
 
 class ScoreViewController: UIViewController, GADBannerViewDelegate {
+    
+    let hour = Calendar.current.component(.hour, from: Date())
 
     var succesFlag = true
     
     @IBOutlet weak var LineGraphView: LineView!
     
-    //indice para acceder a las arrays
+    //Indexes for array access
     var indiceSteps = 0
     var indiceCal = 0
     var indiceExe = 0
@@ -95,9 +97,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         labelStyle()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        obtainScoreNumber()
-    }
     
     private func authorizeHealthKit() {
         
@@ -348,14 +347,41 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             self.scoreLabel.text = String(Int(self.arrayScore[6]))
             self.LineGraphView.setNeedsDisplay()
             
+            
             if self.arrayScore[6] < 40 {
-                self.CheeringLable.text = "SO LAZY 😡"
+                if self.hour < 10 {
+                    self.CheeringLable.text = "Let's own the DAY! 💪"
+                }else if self.hour < 17 {
+                    self.CheeringLable.text = "Let's go for a walk! 🚶‍♂️"
+                }else {
+                    self.CheeringLable.text = "SO LAZY! 😡"
+                }
             }else if self.arrayScore[6] > 39 && self.arrayScore[6] < 70 {
-                self.CheeringLable.text = "Not bad, but you could do better. 🤷‍♂️"
+                if self.hour < 10 {
+                    self.CheeringLable.text = "Let's own the DAY! 💪"
+                }else if self.hour < 17 {
+                    self.CheeringLable.text = "Not bad, but you could do better. 🤷‍♂️"
+                }else if self.hour < 19 {
+                    self.CheeringLable.text = "Let's get out there and work out! 😃"
+                }else {
+                    self.CheeringLable.text = "You'll do better tomorrow! 😔"
+                }
             }else if self.arrayScore[6] > 69 && self.arrayScore[6] < 100 {
-                self.CheeringLable.text = "Great Job! 💪"
+                if self.hour < 10 {
+                    self.CheeringLable.text = "What a way to start the day. 👏"
+                }else if self.hour < 17 {
+                    self.CheeringLable.text = "Great Job! 💪"
+                }else {
+                    self.CheeringLable.text = "Great Job! 💪"
+                }
             }else if self.arrayScore[6] > 99{
-                self.CheeringLable.text = "WOW!! 🏆"
+                if self.hour < 10 {
+                    self.CheeringLable.text = "Excelent way to start the Day! 👍"
+                }else if self.hour < 17 {
+                    self.CheeringLable.text = "KEEP IT UP! 🏆"
+                }else {
+                    self.CheeringLable.text = "WOW, WHAT A DAY!! 👏"
+                }
             }
         }
     }
