@@ -39,13 +39,13 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 1 && indexPath.row == 4 {
+        if indexPath.section == 2 && indexPath.row == 2 {
             share()
-        }else if indexPath.section == 1 && indexPath.row == 3 {
+        }else if indexPath.section == 2 && indexPath.row == 1 {
             //let appDelegate = AppDelegate()
             //appDelegate.requestReview()
             rate()
-        }else if indexPath.section == 1 && indexPath.row == 2 {
+        }else if indexPath.section == 2 && indexPath.row == 0 {
             support()
         }
     }
@@ -71,7 +71,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     
     func support() {
         if MFMailComposeViewController.canSendMail() {
-            let emailTitle = "Feedback"
+            let emailTitle = "[ACTIVITY SCORE] Feedback"
             let toRecipents = ["ruano.t10@gmail.com"]
             let mc: MFMailComposeViewController = MFMailComposeViewController()
             mc.mailComposeDelegate = self

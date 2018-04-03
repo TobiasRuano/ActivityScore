@@ -39,8 +39,7 @@ class HealthKitSetupAssistant {
         let healthKitTypesToRead: Set<HKObjectType> = [stepCount,
                                                        minutesOfExercise,
                                                        distanceWalkingRunning,
-                                                       activeEnergy,
-                                                       HKObjectType.workoutType()]
+                                                       activeEnergy]
         
         //4. Request Authorization
         HKHealthStore().requestAuthorization(toShare: healthKitTypesToWrite,

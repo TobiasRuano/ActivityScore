@@ -15,10 +15,23 @@ let healthKitStore: HKHealthStore = HKHealthStore()
 class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
     let hour = Calendar.current.component(.hour, from: Date())
+    let weekDay = Calendar.current.component(.day, from: Date())
 
     var succesFlag = true
     
     @IBOutlet weak var LineGraphView: LineView!
+    
+    //Card View Items
+    @IBOutlet weak var cardViewStepsLabel: UILabel!
+    @IBOutlet weak var cardViewCaloriesLabel: UILabel!
+    @IBOutlet weak var cardViewExerciseLabel: UILabel!
+    @IBOutlet weak var cardViewWalkrunLabel: UILabel!
+    
+    // Variables para obtener los datos de cardView
+    var cardSteps = 0
+    var cardCal = 0
+    var cardExe = 0
+    var cardKm = 0.0
     
     //Indexes for array access
     var indiceSteps = 0
@@ -26,6 +39,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     var indiceExe = 0
     var indiceDis = 0
     
+    var weeklyScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     var arrayScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] {
         didSet {
             for i in 0..<arrayScore.count {
@@ -77,12 +91,18 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         self.navigationItem.title = "Your Daily Score"
         self.tabBarItem.title = "Score"
         
+        //TODO: borrar
+        print("Hoy es el dia: \(weekDay)")
+        
+        //TODO: put it in the onboarding screen
         authorizeHealthKit()
+
         
         if inAppPurchase == false {
             addAd()
         }
     }
+    
     
     func labelStyle() {
         let shadowColor = UIColor.white
@@ -95,7 +115,14 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         labelStyle()
+        
+        /*
+        getLast7daysExercise()
+        getLast7daysDistance()
+        getLast7daysCalories()
+        getLast7daysSteps()*/
     }
+    
     
     
     private func authorizeHealthKit() {
@@ -288,22 +315,35 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         healthKitStore.execute(stepsQuery)
     }
     
+    //TODO: index out of range
     func addToArray(item: Double, indicator: Int) {
         switch indicator {
         case 0:
             arraySteps[indiceSteps] = Int(item)
+            if indiceSteps == 6 {
+                cardSteps = Int(item)
+            }
             indiceSteps += 1
             print("Added to the Step Array")
         case 1:
             arrayCalories[indiceCal] = Int(item)
+            if indiceCal == 6 {
+                cardCal = Int(item)
+            }
             indiceCal += 1
             print("Added to the Calories Array")
         case 2:
             arrayExercise[indiceExe] = Int(item)
+            if indiceExe == 6 {
+                cardExe = Int(item)
+            }
             indiceExe += 1
             print("Added to the Exercise Array")
         case 3:
             arrayDistance[indiceDis] = Int(item)
+            if indiceDis == 6 {
+                cardKm = item
+            }
             indiceDis += 1
             print("Added to the Distance Array")
         default:
@@ -343,6 +383,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         
+        
         DispatchQueue.main.async {
             self.scoreLabel.text = String(Int(self.arrayScore[6]))
             self.LineGraphView.setNeedsDisplay()
@@ -350,15 +391,15 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             
             if self.arrayScore[6] < 40 {
                 if self.hour < 10 {
-                    self.CheeringLable.text = "Let's own the DAY! 💪"
+                    self.CheeringLable.text = "Let's own the day! 💪"
                 }else if self.hour < 17 {
                     self.CheeringLable.text = "Let's go for a walk! 🚶‍♂️"
                 }else {
                     self.CheeringLable.text = "SO LAZY! 😡"
                 }
-            }else if self.arrayScore[6] > 39 && self.arrayScore[6] < 70 {
+            }else if self.arrayScore[6] > 39 && self.arrayScore[6] < 90 {
                 if self.hour < 10 {
-                    self.CheeringLable.text = "Let's own the DAY! 💪"
+                    self.CheeringLable.text = "Let's own the day! 💪"
                 }else if self.hour < 17 {
                     self.CheeringLable.text = "Not bad, but you could do better. 🤷‍♂️"
                 }else if self.hour < 19 {
@@ -366,7 +407,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                 }else {
                     self.CheeringLable.text = "You'll do better tomorrow! 😔"
                 }
-            }else if self.arrayScore[6] > 69 && self.arrayScore[6] < 100 {
+            }else if self.arrayScore[6] > 89 && self.arrayScore[6] < 150 {
                 if self.hour < 10 {
                     self.CheeringLable.text = "What a way to start the day. 👏"
                 }else if self.hour < 17 {
@@ -374,7 +415,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                 }else {
                     self.CheeringLable.text = "Great Job! 💪"
                 }
-            }else if self.arrayScore[6] > 99{
+            }else if self.arrayScore[6] > 149{
                 if self.hour < 10 {
                     self.CheeringLable.text = "Excelent way to start the Day! 👍"
                 }else if self.hour < 17 {
@@ -383,6 +424,13 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                     self.CheeringLable.text = "WOW, WHAT A DAY!! 👏"
                 }
             }
+            
+            //Display CardView Data
+            self.cardViewStepsLabel.text = "\(self.cardSteps) Steps"
+            self.cardViewCaloriesLabel.text = "\(self.cardCal) Calories"
+            self.cardViewExerciseLabel.text = "\(self.cardExe) Minutes of Exercise"
+            self.cardViewWalkrunLabel.text = "\(String(format:"%.01f", self.cardKm / 1000)) Km Walk/Run"
+            
         }
     }
     
