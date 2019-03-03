@@ -96,11 +96,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         
         //TODO: put it in the onboarding screen
         authorizeHealthKit()
-
-        
-        if inAppPurchase == false {
-            addAd()
-        }
     }
     
     
@@ -121,6 +116,18 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         getLast7daysDistance()
         getLast7daysCalories()
         getLast7daysSteps()*/
+        
+        if let inAppKeyValue = UserDefaults.standard.value(forKey: "purchase") as? Bool {
+            inAppPurchase = inAppKeyValue
+        }
+        
+        if inAppPurchase == false {
+            addAd()
+            adBanner.isHidden = false
+        }else {
+            adBanner.rootViewController = nil
+            adBanner.isHidden = true
+        }
     }
     
     
@@ -189,8 +196,8 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         }
                         
                     }
-                } //end block
-            } //end if let
+                }
+            }
         }
         healthKitStore.execute(stepsQuery)
     }

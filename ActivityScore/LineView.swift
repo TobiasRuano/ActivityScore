@@ -27,6 +27,14 @@ class LineView: UIView {
     
     override func draw(_ rect: CGRect) {
         setArrayScore()
+        
+        for element in 0 ..< arrayLocal.count {
+            if arrayLocal[element] > 250 {
+                let value = 250
+                arrayLocal[element] = value
+            }
+        }
+        
         Graphs .draw_7PointLine(
             point0Value: CGFloat(arrayLocal[0]),
             point1Value: CGFloat(arrayLocal[1]),
