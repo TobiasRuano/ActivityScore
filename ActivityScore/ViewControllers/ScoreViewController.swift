@@ -76,7 +76,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
     
     //TODO: change to false
-    var inAppPurchase = true
+    var inAppPurchase = false
     
     @IBOutlet weak var adBanner: GADBannerView!
     

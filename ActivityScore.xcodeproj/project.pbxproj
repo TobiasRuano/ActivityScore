@@ -20,6 +20,7 @@
 		8B943B3120584D3F00C37639 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B943B3020584D3F00C37639 /* HealthKit.framework */; };
 		8B943B3320587C8000C37639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B3220587C8000C37639 /* GoogleService-Info.plist */; };
 		8B943B3520587D0E00C37639 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B943B3420587D0D00C37639 /* GoogleMobileAds.framework */; };
+		8BA3922C222C18C500BA560A /* InAppPurchaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		8B943B3020584D3F00C37639 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		8B943B3220587C8000C37639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B943B3420587D0D00C37639 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			children = (
 				8B943B1820584C8600C37639 /* ScoreViewController.swift */,
 				8B943B1A20584C8600C37639 /* SettingsViewController.swift */,
+				8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			files = (
 				8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */,
 				8B3FAF4C205D882200A12D89 /* Graphs.swift in Sources */,
+				8BA3922C222C18C500BA560A /* InAppPurchaseTableViewController.swift in Sources */,
 				8B943B2B20584CF100C37639 /* LineView.swift in Sources */,
 				8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */,
 				8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */,
