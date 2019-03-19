@@ -12,7 +12,7 @@ import MessageUI
 
 
 class SettingsViewController: UITableViewController, MFMailComposeViewControllerDelegate {
-    var flag = UserDefaults.standard.bool(forKey: "Flag")
+    var flag: Bool = false
     
     @IBOutlet weak var healthLabel: UILabel!
     
@@ -28,14 +28,12 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         
         if flag == true {
             healthLabel.text = "Enabled"
-        }else if flag == false {
+        }else {
             healthLabel.text = "Disabled"
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print(indexPath.row)
-        //print(indexPath.section)
         
         tableView.deselectRow(at: indexPath, animated: true)
         

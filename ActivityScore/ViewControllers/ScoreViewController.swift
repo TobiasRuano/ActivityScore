@@ -95,7 +95,11 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         print("Hoy es el dia: \(weekDay)")
         
         //TODO: put it in the onboarding screen
-        authorizeHealthKit()
+        //authorizeHealthKit()
+        self.getLast7daysSteps()
+        self.getLast7daysCalories()
+        self.getLast7daysExercise()
+        self.getLast7daysDistance()
     }
     
     
@@ -117,6 +121,11 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         getLast7daysCalories()
         getLast7daysSteps()*/
         
+        //Check Purchase Status
+        checkPurchaseStatus()
+    }
+    
+    func checkPurchaseStatus() {
         if let inAppKeyValue = UserDefaults.standard.value(forKey: "purchase") as? Bool {
             inAppPurchase = inAppKeyValue
         }
@@ -445,10 +454,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         //Request
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID]
-        request.testDevices = [ "21df7f3d09709224a09480ff10d324aa" ]
+        request.testDevices = [ "Your ID" ]
         
         //Set up ad
-        adBanner.adUnitID = "ca-app-pub-6561467960639972/8227758207"
+        adBanner.adUnitID = "Your AdUnitID"
         
         adBanner.rootViewController = self
         adBanner.delegate = self
