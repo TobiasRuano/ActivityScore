@@ -6,7 +6,7 @@ This app uses your health data stored on tour device to generate a number betwee
 ![](header.png)
 
 ## Setup Google Ads
-To correctly set up google ads you need to have an account on Admob.com. Then find this function and replace the placeholders with your ID's
+To correctly set up google ads you need to have an account on Admob.com. Then find this function in ```ScoreViewController.swift``` and replace the placeholders with your ID's
 ```sh
     func addAd() {
         //Request
