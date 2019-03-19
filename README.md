@@ -48,16 +48,8 @@ Distributed under the Apache License. See ``LICENSE`` for more information.
 
 ## Contributing
 
-1. Fork it (<https://github.com/tobiasruano/AcivityScore/fork>)
+1. Fork it (<https://github.com/tobiasruano/ActivityScore/fork>)
 2. Create your Feature Branch (```git checkout -b feature/AmazingFeature```)
 3. Commit your Changes (```git commit -m 'Add some AmazingFeature```)
 4. Push to the Branch (```git push origin feature/AmazingFeature```)
 5. Create a new Pull Request
-
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
