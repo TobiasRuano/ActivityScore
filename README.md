@@ -44,7 +44,7 @@ Tobias Ruano – [@tobiasruano](https://twitter.com/tobiasruano) – truano@uade
 
 Distributed under the Apache License. See ``LICENSE`` for more information.
 
-[https://github.com/tobiasruano](https://github.com/tobiasruano/)
+[https://github.com/tobiasruano/ActivityScore](https://github.com/tobiasruano/ActivityScore)
 
 ## Contributing
 
