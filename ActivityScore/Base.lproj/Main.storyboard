@@ -84,7 +84,7 @@ to Get Started!</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h46-04-ZlW">
                                 <rect key="frame" x="52" y="76" width="271" height="84"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="To continue, Please give us permision to acces your health data. ">
+                                    <fragment content="To continue, Please give me permision to access your health data. ">
                                         <attributes>
                                             <color key="NSColor" red="0.92094665765762329" green="0.26015102863311768" blue="0.41567623615264893" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" metaFont="system" size="24"/>
@@ -111,7 +111,7 @@ to Get Started!</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JD-ad-YuF">
                                 <rect key="frame" x="52" y="180" width="271" height="40"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="(We promise it will not leave your device!) ">
+                                    <fragment content="(I promise it will not leave your device!) ">
                                         <attributes>
                                             <color key="NSColor" red="0.92094665765762329" green="0.26015102863311768" blue="0.41567623615264893" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="17" name=".SFNSDisplay"/>
@@ -180,7 +180,7 @@ to Get Started!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOX-Eq-IeR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2090" y="-1775"/>
+            <point key="canvasLocation" x="1994" y="-1774"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="WYp-sO-vda">
