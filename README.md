@@ -24,7 +24,7 @@ To correctly set up google ads you need to have an account on Admob.com. Then fi
     }
 ```
 
-## Release History
+## Version History
 
 * 0.2.0
     * ADD: Onboarding Screen
