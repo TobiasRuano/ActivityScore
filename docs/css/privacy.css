@@ -1,0 +1,28 @@
+html {
+    color: #282a35;
+    font: 18px 'Source Sans Pro', sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+}
+
+body {
+    /* padding: 2em 2em; */
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+
+h1, h2 {
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.description {
+    margin-left: 20px;
+    margin-right: 20px;
+}
