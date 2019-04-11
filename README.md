@@ -3,7 +3,7 @@
 
 This app uses your health data stored on tour device to generate a number between 0 and 100. The more active you are, the higher it will be. Also the app has a basic in app purchase implemented (Not a real purchase) wich allows you to remove ads.
 
-![](header.png)
+![](docs/header.png)
 
 ## Setup Google Ads
 To correctly set up google ads you need to have an account on Admob.com. Then find this function in ```ScoreViewController.swift``` and replace the placeholders with your ID's
