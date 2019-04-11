@@ -1,4 +1,7 @@
 PODS:
+  - Charts (3.2.2):
+    - Charts/Core (= 3.2.2)
+  - Charts/Core (3.2.2)
   - Google-Mobile-Ads-SDK (7.42.0):
     - GoogleAppMeasurement (~> 5.7)
   - GoogleAppMeasurement (5.8.0):
@@ -30,21 +33,24 @@ PODS:
   - nanopb/encode (0.3.901)
 
 DEPENDENCIES:
+  - Charts
   - Google-Mobile-Ads-SDK
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Charts
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
     - nanopb
 
 SPEC CHECKSUMS:
+  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
   Google-Mobile-Ads-SDK: c7bec408202526ec4e9ccd025c00f9f30e9f8807
   GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 5013fcdc8b741679e78299019a649f31f5652ccf
+PODFILE CHECKSUM: fbafb24a135681d4fefe0f84ee361e4eef4e30bd
 
 COCOAPODS: 1.6.1

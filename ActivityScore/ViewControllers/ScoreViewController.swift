@@ -9,6 +9,13 @@
 import UIKit
 import HealthKit
 import GoogleMobileAds
+import Charts
+
+private class CubicLineSampleFillFormatter: IFillFormatter {
+    func getFillLinePosition(dataSet: ILineChartDataSet, dataProvider: LineChartDataProvider) -> CGFloat {
+        return -10
+    }
+}
 
 let healthKitStore: HKHealthStore = HKHealthStore()
 
@@ -19,7 +26,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
 
     var succesFlag = true
     
-    @IBOutlet weak var LineGraphView: LineView!
+    @IBOutlet weak var LineGraphView: LineChartView!
     
     //Card View Items
     @IBOutlet weak var cardViewStepsLabel: UILabel!
@@ -46,7 +53,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                 UserDefaults.standard.set(Int(arrayScore[i]), forKey: "arrayScore\(i)")
             }
             DispatchQueue.main.async {
-                self.LineGraphView.setNeedsDisplay()
+                self.lineChartUpdate()
             }
         }
     }
@@ -94,12 +101,12 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         //TODO: borrar
         print("Hoy es el dia: \(weekDay)")
         
-        //TODO: put it in the onboarding screen
         //authorizeHealthKit()
         self.getLast7daysSteps()
         self.getLast7daysCalories()
         self.getLast7daysExercise()
         self.getLast7daysDistance()
+        styleChart()
     }
     
     
@@ -139,8 +146,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         }
     }
     
-    
-    
     private func authorizeHealthKit() {
         
         HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
@@ -168,7 +173,78 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             self.getLast7daysExercise()
             self.getLast7daysDistance()
         }
+    }
+    
+    func styleChart() {
+        LineGraphView.setViewPortOffsets(left: 0, top: 0, right: 0, bottom: 0)
         
+        LineGraphView.pinchZoomEnabled = false
+        LineGraphView.drawBordersEnabled = false
+        LineGraphView.chartDescription?.enabled = false
+        LineGraphView.dragEnabled = false
+        //LineGraphView.setScaleEnabled(false)
+        LineGraphView.legend.enabled = false
+        
+        LineGraphView.xAxis.enabled = false
+        LineGraphView.leftAxis.enabled = false
+        LineGraphView.rightAxis.enabled = false
+        
+        LineGraphView.leftAxis.axisMaximum = 100
+        LineGraphView.leftAxis.axisMinimum = 0
+        
+        LineGraphView.backgroundColor = .white
+        LineGraphView.gridBackgroundColor = .white
+        LineGraphView.drawGridBackgroundEnabled = false
+        
+        LineGraphView.layer.cornerRadius = 15
+        LineGraphView.clipsToBounds = true
+        
+    }
+    
+    func lineChartUpdate () {
+        let entry1 = ChartDataEntry(x: 1.0, y: Double(arrayScore[0]))
+        let entry2 = ChartDataEntry(x: 2.0, y: Double(arrayScore[1]))
+        let entry3 = ChartDataEntry(x: 3.0, y: Double(arrayScore[2]))
+        let entry4 = ChartDataEntry(x: 4.0, y: Double(arrayScore[3]))
+        let entry5 = ChartDataEntry(x: 5.0, y: Double(arrayScore[4]))
+        let entry6 = ChartDataEntry(x: 6.0, y: Double(arrayScore[5]))
+        let entry7 = ChartDataEntry(x: 7.0, y: Double(arrayScore[6]))
+        let dataSet = LineChartDataSet(values: [entry1, entry2, entry3, entry4, entry5, entry6, entry7], label: "Widgets Type")
+        
+        dataSet.valueTextColor = .clear
+        
+        dataSet.mode = .cubicBezier
+        
+        dataSet.setColor(.clear)
+        dataSet.drawCirclesEnabled = false
+        dataSet.lineWidth = 2
+        dataSet.circleRadius = 3
+        dataSet.drawFilledEnabled = true
+        dataSet.highlightColor = UIColor(named: "pink")!
+        dataSet.drawCircleHoleEnabled = false
+        dataSet.drawHorizontalHighlightIndicatorEnabled = false
+        
+        let gradientColors = [UIColor.white.cgColor,
+                              UIColor(named: "pink")!.cgColor]
+        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
+        
+        dataSet.fillAlpha = 1
+        dataSet.fill = Fill(linearGradient: gradient, angle: 90) //.linearGradient(gradient, angle: 90)
+        
+        dataSet.fillFormatter = CubicLineSampleFillFormatter()
+        
+        dataSet.fillFormatter = DefaultFillFormatter { _,_  -> CGFloat in
+            return CGFloat(self.LineGraphView.leftAxis.axisMinimum)
+        }
+        
+        let data = LineChartData(dataSets: [dataSet])
+        data.setDrawValues(false)
+        LineGraphView.data = data
+        
+        //All other additions to this function will go here
+        
+        //This must stay at end of function
+        LineGraphView.notifyDataSetChanged()
     }
     
     // Gets last 7 days of steps
@@ -199,10 +275,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         print("\(date): steps = \(steps)")
                         self.addToArray(item: steps, indicator: indicator)
                         
-                        //NOTE: If you are going to update the UI do it in the main thread
-                        DispatchQueue.main.async {
-                            //update UI components
-                        }
+//                        //NOTE: If you are going to update the UI do it in the main thread
+//                        DispatchQueue.main.async {
+//                            //update UI components
+//                        }
                         
                     }
                 }
@@ -239,10 +315,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         print("\(date): Calories = \(calories)")
                         self.addToArray(item: calories, indicator: indicator)
                         
-                        //NOTE: If you are going to update the UI do it in the main thread
-                        DispatchQueue.main.async {
-                            //update UI components
-                        }
+//                        //NOTE: If you are going to update the UI do it in the main thread
+//                        DispatchQueue.main.async {
+//                            //update UI components
+//                        }
                         
                     }
                 } //end block
@@ -279,10 +355,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         print("\(date): Exercise = \(exercise)")
                         self.addToArray(item: exercise, indicator: indicator)
                         
-                        //NOTE: If you are going to update the UI do it in the main thread
-                        DispatchQueue.main.async {
-                            //update UI components
-                        }
+//                        //NOTE: If you are going to update the UI do it in the main thread
+//                        DispatchQueue.main.async {
+//                            //update UI components
+//                        }
                         
                     }
                 } //end block
@@ -319,10 +395,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         print("\(date): Distance = \(distance)")
                         self.addToArray(item: distance, indicator: indicator)
                         
-                        //NOTE: If you are going to update the UI do it in the main thread
-                        DispatchQueue.main.async {
-                            //update UI components
-                        }
+//                        //NOTE: If you are going to update the UI do it in the main thread
+//                        DispatchQueue.main.async {
+//                            //update UI components
+//                        }
                         
                     }
                 } //end block
@@ -369,25 +445,24 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
     
     func obtainScoreNumber() {
-        
         //TODO: crear una variable para guardar y operar en vez de la propia array
         for index in (0..<arraySteps.count) {
-            while arraySteps[index] > 100 {
-                arraySteps[index] = arraySteps[index] - 100
+            while arraySteps[index] > 300 {
+                arraySteps[index] = arraySteps[index] - 300
                 arrayScore[index] += 0.5
             }
         }
         
         for index in (0..<arrayCalories.count) {
-            while arrayCalories[index] > 10 {
-                arrayCalories[index] = arrayCalories[index] - 10
+            while arrayCalories[index] > 40 {
+                arrayCalories[index] = arrayCalories[index] - 40
                 arrayScore[index] += 1
             }
         }
         
         for index in (0..<arrayDistance.count) {
-            while arrayDistance[index] > 200 {
-                arrayDistance[index] = arrayDistance[index] - 200
+            while arrayDistance[index] > 400 {
+                arrayDistance[index] = arrayDistance[index] - 400
                 arrayScore[index] += 1
             }
         }
@@ -395,17 +470,17 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         for index in (0..<arrayExercise.count) {
             while arrayExercise[index] > 10 {
                 arrayExercise[index] = arrayExercise[index] - 10
-                arrayScore[index] += 10
+                arrayScore[index] += 5
             }
         }
         
         
         DispatchQueue.main.async {
             self.scoreLabel.text = String(Int(self.arrayScore[6]))
-            self.LineGraphView.setNeedsDisplay()
+            self.lineChartUpdate()
             
             
-            if self.arrayScore[6] < 40 {
+            if self.arrayScore[6] < 20 {
                 if self.hour < 10 {
                     self.CheeringLable.text = "Let's own the day! 💪"
                 }else if self.hour < 17 {
@@ -413,7 +488,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                 }else {
                     self.CheeringLable.text = "SO LAZY! 😡"
                 }
-            }else if self.arrayScore[6] > 39 && self.arrayScore[6] < 90 {
+            }else if self.arrayScore[6] > 19 && self.arrayScore[6] < 40 {
                 if self.hour < 10 {
                     self.CheeringLable.text = "Let's own the day! 💪"
                 }else if self.hour < 17 {
@@ -423,7 +498,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                 }else {
                     self.CheeringLable.text = "You'll do better tomorrow! 😔"
                 }
-            }else if self.arrayScore[6] > 89 && self.arrayScore[6] < 150 {
+            }else if self.arrayScore[6] > 39 && self.arrayScore[6] < 70 {
                 if self.hour < 10 {
                     self.CheeringLable.text = "What a way to start the day. 👏"
                 }else if self.hour < 17 {
@@ -431,7 +506,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                 }else {
                     self.CheeringLable.text = "Great Job! 💪"
                 }
-            }else if self.arrayScore[6] > 149{
+            }else if self.arrayScore[6] > 69 {
                 if self.hour < 10 {
                     self.CheeringLable.text = "Excelent way to start the Day! 👍"
                 }else if self.hour < 17 {
@@ -454,10 +529,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         //Request
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID]
-        request.testDevices = [ "Your ID" ]
+        request.testDevices = [ "21df7f3d09709224a09480ff10d324aa" ]
         
         //Set up ad
-        adBanner.adUnitID = "Your AdUnitID"
+        adBanner.adUnitID = "ca-app-pub-6561467960639972/8227758207"
         
         adBanner.rootViewController = self
         adBanner.delegate = self

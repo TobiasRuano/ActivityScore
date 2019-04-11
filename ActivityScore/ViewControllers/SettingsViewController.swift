@@ -54,7 +54,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         }
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         } else {
             UIApplication.shared.openURL(url)
         }
@@ -78,9 +78,9 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
             
             self.present(mc, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Couldn't Access Mail App", message: "Please report this error", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Couldn't Access Mail App", message: "Please report this error", preferredStyle: UIAlertController.Style.alert)
             
-            alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Done", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -95,9 +95,16 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
             print("Mail sent")
         case .failed:
             print("Mail sent failure: \(String(describing: error?.localizedDescription))")
+        @unknown default:
+            fatalError()
         }
         controller.dismiss(animated: true, completion: nil)
     }
     
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}
