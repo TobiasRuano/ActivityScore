@@ -229,7 +229,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         
         dataSet.fillAlpha = 1
-        dataSet.fill = Fill(linearGradient: gradient, angle: 90) //.linearGradient(gradient, angle: 90)
+        dataSet.fill = Fill(linearGradient: gradient, angle: 90)
         
         dataSet.fillFormatter = CubicLineSampleFillFormatter()
         
@@ -240,8 +240,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         let data = LineChartData(dataSets: [dataSet])
         data.setDrawValues(false)
         LineGraphView.data = data
-        
-        //All other additions to this function will go here
         
         //This must stay at end of function
         LineGraphView.notifyDataSetChanged()

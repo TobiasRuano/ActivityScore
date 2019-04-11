@@ -194,7 +194,7 @@ to Get Started!</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TXp-ex-yP5" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="909"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="925"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLi-PR-dDU">
                                                 <rect key="frame" x="0.0" y="38" width="375" height="155"/>
@@ -223,7 +223,7 @@ to Get Started!</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7OA-7u-3w8" customClass="CardView" customModule="ActivityScore" customModuleProvider="target">
-                                                <rect key="frame" x="11" y="589" width="353" height="310"/>
+                                                <rect key="frame" x="11" y="605" width="353" height="310"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAB-J5-YHR">
                                                         <rect key="frame" x="14" y="14" width="209.66666666666666" height="37"/>
@@ -294,11 +294,11 @@ to Get Started!</string>
                                                     <constraint firstAttribute="trailing" secondItem="Pto-4q-P7n" secondAttribute="trailing" id="x0k-b2-qhx"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="day-cG-wQi" customClass="CardView" customModule="ActivityScore" customModuleProvider="target">
-                                                <rect key="frame" x="11" y="274" width="353" height="258"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="day-cG-wQi">
+                                                <rect key="frame" x="0.0" y="274" width="375" height="274"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOF-PU-5vW" customClass="LineChartView" customModule="Charts">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="258"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="274"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="XOF-PU-5vW" secondAttribute="height" multiplier="375:274" id="gAh-FJ-vYq"/>
@@ -320,13 +320,13 @@ to Get Started!</string>
                                             <constraint firstItem="7OA-7u-3w8" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" constant="11" id="DxS-im-gDa"/>
                                             <constraint firstItem="qtU-GM-a4n" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" id="JFb-vx-N8B"/>
                                             <constraint firstItem="qtU-GM-a4n" firstAttribute="top" secondItem="cLi-PR-dDU" secondAttribute="bottom" id="PSk-u6-w01"/>
-                                            <constraint firstItem="day-cG-wQi" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" constant="11" id="QVC-pV-4Pa"/>
+                                            <constraint firstItem="day-cG-wQi" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" id="QVC-pV-4Pa"/>
                                             <constraint firstAttribute="trailing" secondItem="7OA-7u-3w8" secondAttribute="trailing" constant="11" id="XWy-u8-zSQ"/>
                                             <constraint firstItem="day-cG-wQi" firstAttribute="top" secondItem="qtU-GM-a4n" secondAttribute="bottom" constant="57" id="ZY1-x6-wns"/>
                                             <constraint firstAttribute="trailing" secondItem="cLi-PR-dDU" secondAttribute="trailing" id="ZZ0-vP-4DB"/>
                                             <constraint firstItem="7OA-7u-3w8" firstAttribute="top" secondItem="day-cG-wQi" secondAttribute="bottom" constant="57" id="dMY-m2-sbf"/>
                                             <constraint firstAttribute="bottom" secondItem="7OA-7u-3w8" secondAttribute="bottom" constant="10" id="iVl-cU-qn6"/>
-                                            <constraint firstAttribute="trailing" secondItem="day-cG-wQi" secondAttribute="trailing" constant="11" id="sxH-nt-ZrE"/>
+                                            <constraint firstAttribute="trailing" secondItem="day-cG-wQi" secondAttribute="trailing" id="sxH-nt-ZrE"/>
                                             <constraint firstItem="cLi-PR-dDU" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" id="tbg-wi-SeE"/>
                                             <constraint firstAttribute="trailing" secondItem="qtU-GM-a4n" secondAttribute="trailing" id="w9U-WW-0MU"/>
                                         </constraints>
@@ -511,10 +511,10 @@ Buenos Aires, Argentina</string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O0-Xb-e8B">
-                                                    <rect key="frame" x="16" y="11" width="47" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O0-Xb-e8B">
+                                                    <rect key="frame" x="16" y="11" width="132" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="7O0-Xb-e8B" secondAttribute="height" multiplier="15:7" id="Wa2-XT-8iR"/>
+                                                        <constraint firstAttribute="width" secondItem="7O0-Xb-e8B" secondAttribute="height" multiplier="6:1" id="ucv-Of-eSR"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -526,6 +526,31 @@ Buenos Aires, Argentina</string>
                                                 <constraint firstItem="7O0-Xb-e8B" firstAttribute="top" secondItem="rNF-Gr-h5q" secondAttribute="topMargin" id="7kx-dv-iFU"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="7O0-Xb-e8B" secondAttribute="bottom" id="jPC-0a-3GV"/>
                                                 <constraint firstItem="7O0-Xb-e8B" firstAttribute="leading" secondItem="rNF-Gr-h5q" secondAttribute="leadingMargin" id="rsb-1k-ZI1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="Oep-gn-VDU">
+                                        <rect key="frame" x="0.0" y="395.33333333333337" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oep-gn-VDU" id="6oK-0b-EfK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Icm-St-djt">
+                                                    <rect key="frame" x="16" y="11" width="47" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Icm-St-djt" secondAttribute="height" multiplier="15:7" id="nOA-F0-Vf7"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Icm-St-djt" secondAttribute="trailingMargin" id="7bV-Sf-xfT"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Icm-St-djt" secondAttribute="bottom" id="CpH-O2-th6"/>
+                                                <constraint firstItem="Icm-St-djt" firstAttribute="top" secondItem="6oK-0b-EfK" secondAttribute="topMargin" id="JLW-Qq-dsf"/>
+                                                <constraint firstItem="Icm-St-djt" firstAttribute="leading" secondItem="6oK-0b-EfK" secondAttribute="leadingMargin" id="bD2-Jz-k1b"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -544,7 +569,7 @@ Buenos Aires, Argentina</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryl-L2-2ts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1062" y="328"/>
+            <point key="canvasLocation" x="1061.5999999999999" y="327.33990147783254"/>
         </scene>
         <!--In App Purchase-->
         <scene sceneID="1Tu-d0-aNE">
@@ -623,7 +648,7 @@ Buenos Aires, Argentina</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O6v-q3-7Ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1892" y="328"/>
+            <point key="canvasLocation" x="1881" y="-33"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ml2-9o-Ynd">

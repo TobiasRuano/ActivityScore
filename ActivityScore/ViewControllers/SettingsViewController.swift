@@ -9,9 +9,10 @@
 import UIKit
 import StoreKit
 import MessageUI
+import SafariServices
 
 
-class SettingsViewController: UITableViewController, MFMailComposeViewControllerDelegate {
+class SettingsViewController: UITableViewController, MFMailComposeViewControllerDelegate, SFSafariViewControllerDelegate {
     var flag: Bool = false
     
     @IBOutlet weak var healthLabel: UILabel!
@@ -37,7 +38,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 2 && indexPath.row == 2 {
+        if indexPath.section == 2 && indexPath.row == 3 {
             share()
         }else if indexPath.section == 2 && indexPath.row == 1 {
             //let appDelegate = AppDelegate()
@@ -45,6 +46,8 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
             rate()
         }else if indexPath.section == 2 && indexPath.row == 0 {
             support()
+        }else if indexPath.section == 2 && indexPath.row == 2 {
+            openSafariVC(self)
         }
     }
     
@@ -99,6 +102,18 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
             fatalError()
         }
         controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func openSafariVC(_ sender: Any) {
+        let url = URL(string: "https://tobiasruano.com/ActivityScore/privacyPolicy")
+        let safari = SFSafariViewController(url: url!)
+        
+        self.present(safari, animated: true)
+        safari.delegate = self
+    }
+    
+    func safariVCDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true)
     }
     
 }
