@@ -20,6 +20,7 @@ class OnboardingRootPageViewController: UIPageViewController, UIPageViewControll
         return [vc1, vc2, vc3]
     }()
     
+    var pageControllerView = UIView()
     var pageControl = UIPageControl()
     
     override func viewDidLoad() {
@@ -34,19 +35,42 @@ class OnboardingRootPageViewController: UIPageViewController, UIPageViewControll
             self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
         
+        configureView()
         configurePageControl()
     }
     
+    func configureView() {
+        pageControllerView.backgroundColor = UIColor(named: "pink")!
+        //pageControllerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 67)
+        
+        self.view.addSubview(pageControllerView)
+        
+        pageControllerView.translatesAutoresizingMaskIntoConstraints = false
+        // Pin the leading edge of myView to the margin's leading edge
+//        pageControllerView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+        // Pin the trailing edge of myView to the margin's trailing edge
+        //pageControllerView.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        pageControllerView.heightAnchor.constraint(equalToConstant: 67).isActive = true
+//        pageControllerView.bottomAnchor.constraint(equalToConstant: UIScreen.main.bounds.height).isActive = true
+        pageControllerView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
+        pageControllerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+    }
+    
     func configurePageControl() {
-        pageControl = UIPageControl(frame: CGRect(x: 0,y: UIScreen.main.bounds.maxY - 100,width: UIScreen.main.bounds.width,height: 50))
+        self.view.addSubview(pageControl)
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.centerXAnchor.constraint(equalTo: pageControllerView.centerXAnchor).isActive = true
+        pageControl.centerYAnchor.constraint(equalTo: pageControllerView.centerYAnchor).isActive = true
+        pageControl.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        pageControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         self.pageControl.numberOfPages = viewControllerList.count
         self.pageControl.currentPage = 0
         let pinkColor = UIColor(displayP3Red: 236/255, green: 67/255, blue: 100/255, alpha: 1)
         self.pageControl.tintColor = pinkColor
-        self.pageControl.pageIndicatorTintColor = UIColor.black
-        self.pageControl.currentPageIndicatorTintColor = pinkColor
+        self.pageControl.pageIndicatorTintColor = .white
+        self.pageControl.currentPageIndicatorTintColor = .black
         self.pageControl.transform = CGAffineTransform(scaleX: 2, y: 2)
-        self.view.addSubview(pageControl)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

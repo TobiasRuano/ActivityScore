@@ -17,6 +17,11 @@ private class CubicLineSampleFillFormatter: IFillFormatter {
     }
 }
 
+struct Objectives: Codable {
+    var calories    = Int()
+    //var minutesEx   = Int()
+}
+
 let healthKitStore: HKHealthStore = HKHealthStore()
 
 class ScoreViewController: UIViewController, GADBannerViewDelegate {
@@ -33,6 +38,9 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var cardViewCaloriesLabel: UILabel!
     @IBOutlet weak var cardViewExerciseLabel: UILabel!
     @IBOutlet weak var cardViewWalkrunLabel: UILabel!
+    
+    //User objetives variable
+    var userData = Objectives()
     
     // Variables para obtener los datos de cardView
     var cardSteps = 0
@@ -96,7 +104,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         self.navigationItem.title = "Your Daily Score"
-        self.tabBarItem.title = "Score"
+        //self.tabBarItem.title = "Score"
         
         //TODO: borrar
         print("Hoy es el dia: \(weekDay)")
@@ -128,8 +136,21 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         getLast7daysCalories()
         getLast7daysSteps()*/
         
-        //Check Purchase Status
         checkPurchaseStatus()
+        checkObjectives()
+        obtainScoreNumber()
+    }
+    
+    //MARK: - Check initial status
+    func checkObjectives() {
+        if let data = UserDefaults.standard.value(forKey: "objectives") as? Data {
+            let copy = try? PropertyListDecoder().decode(Objectives.self, from: data)
+            userData = copy!
+        } else {
+            //Default numbers
+            userData.calories = 400
+            //userData.minutesEx = 30
+        }
     }
     
     func checkPurchaseStatus() {
@@ -146,6 +167,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         }
     }
     
+    //MARK: - Authorize healthKit
     private func authorizeHealthKit() {
         
         HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
@@ -182,14 +204,13 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         LineGraphView.drawBordersEnabled = false
         LineGraphView.chartDescription?.enabled = false
         LineGraphView.dragEnabled = false
-        //LineGraphView.setScaleEnabled(false)
         LineGraphView.legend.enabled = false
         
         LineGraphView.xAxis.enabled = false
         LineGraphView.leftAxis.enabled = false
         LineGraphView.rightAxis.enabled = false
         
-        LineGraphView.leftAxis.axisMaximum = 100
+        LineGraphView.leftAxis.axisMaximum = 110
         LineGraphView.leftAxis.axisMinimum = 0
         
         LineGraphView.backgroundColor = .white
@@ -209,6 +230,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         let entry5 = ChartDataEntry(x: 5.0, y: Double(arrayScore[4]))
         let entry6 = ChartDataEntry(x: 6.0, y: Double(arrayScore[5]))
         let entry7 = ChartDataEntry(x: 7.0, y: Double(arrayScore[6]))
+        print(arrayScore[6])
         let dataSet = LineChartDataSet(values: [entry1, entry2, entry3, entry4, entry5, entry6, entry7], label: "Widgets Type")
         
         dataSet.valueTextColor = .clear
@@ -222,7 +244,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         dataSet.drawFilledEnabled = true
         dataSet.highlightColor = UIColor(named: "pink")!
         dataSet.drawCircleHoleEnabled = false
-        dataSet.drawHorizontalHighlightIndicatorEnabled = false
+        dataSet.drawHorizontalHighlightIndicatorEnabled = true // cahnge to false
         
         let gradientColors = [UIColor.white.cgColor,
                               UIColor(named: "pink")!.cgColor]
@@ -443,32 +465,50 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
     
     func obtainScoreNumber() {
-        //TODO: crear una variable para guardar y operar en vez de la propia array
-        for index in (0..<arraySteps.count) {
-            while arraySteps[index] > 300 {
-                arraySteps[index] = arraySteps[index] - 300
-                arrayScore[index] += 0.5
-            }
-        }
+//        for index in (0..<arraySteps.count) {
+//            while arraySteps[index] > 300 {
+//                arraySteps[index] = arraySteps[index] - 300
+//                arrayScore[index] += 0.5
+//            }
+//        }
+//
+//        for index in (0..<arrayCalories.count) {
+//            while arrayCalories[index] > 40 {
+//                arrayCalories[index] = arrayCalories[index] - 40
+//                arrayScore[index] += 1
+//            }
+//        }
+//
+//        for index in (0..<arrayDistance.count) {
+//            while arrayDistance[index] > 400 {
+//                arrayDistance[index] = arrayDistance[index] - 400
+//                arrayScore[index] += 1
+//            }
+//        }
+//
+//        for index in (0..<arrayExercise.count) {
+//            while arrayExercise[index] > 10 {
+//                arrayExercise[index] = arrayExercise[index] - 10
+//                arrayScore[index] += 5
+//            }
+//        }
+        
+        print(arrayCalories)
         
         for index in (0..<arrayCalories.count) {
-            while arrayCalories[index] > 40 {
-                arrayCalories[index] = arrayCalories[index] - 40
-                arrayScore[index] += 1
+            print(arrayCalories[index])
+            if arrayCalories[index] == userData.calories {
+                arrayScore[index] = 70
+            } else if arrayCalories[index] < userData.calories {
+                let valueCopy: Double = Double(arrayCalories[index]) / Double(userData.calories)
+                arrayScore[index] = valueCopy * 70.0
+            } else {
+                let valueCopy = Double(arrayCalories[index] - userData.calories)
+                arrayScore[index] = 70.0 + (0.10 * valueCopy)
             }
-        }
-        
-        for index in (0..<arrayDistance.count) {
-            while arrayDistance[index] > 400 {
-                arrayDistance[index] = arrayDistance[index] - 400
-                arrayScore[index] += 1
-            }
-        }
-        
-        for index in (0..<arrayExercise.count) {
-            while arrayExercise[index] > 10 {
-                arrayExercise[index] = arrayExercise[index] - 10
-                arrayScore[index] += 5
+            
+            if arrayScore[index] > 100 {
+                arrayScore[index] = 100
             }
         }
         

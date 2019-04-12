@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */; };
+		8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */; };
+		8B16CD6A2261343E00D8D625 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B16CD692261343E00D8D625 /* StoreKit.framework */; };
 		8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FAF49205D881800A12D89 /* CardView.swift */; };
+		8B8CC5BA2260F63D00AFB974 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */; };
+		8B8CC5BC2261089400AFB974 /* DailyCalorieTargetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5BB2261089400AFB974 /* DailyCalorieTargetTableViewController.swift */; };
 		8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1620584C8600C37639 /* AppDelegate.swift */; };
 		8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1820584C8600C37639 /* ScoreViewController.swift */; };
 		8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1A20584C8600C37639 /* SettingsViewController.swift */; };
@@ -28,7 +32,11 @@
 /* Begin PBXFileReference section */
 		6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActivityScore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C1B7FCF3BE4E918943DD543 /* Pods-ActivityScore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.release.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.release.xcconfig"; sourceTree = "<group>"; };
+		8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicationManager.swift; sourceTree = "<group>"; };
+		8B16CD692261343E00D8D625 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8B3FAF49205D881800A12D89 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		8B8CC5BB2261089400AFB974 /* DailyCalorieTargetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCalorieTargetTableViewController.swift; sourceTree = "<group>"; };
 		8B943B1320584C8600C37639 /* ActivityScore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivityScore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B943B1620584C8600C37639 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B943B1820584C8600C37639 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +65,7 @@
 				8B943B3520587D0E00C37639 /* GoogleMobileAds.framework in Frameworks */,
 				8B943B3120584D3F00C37639 /* HealthKit.framework in Frameworks */,
 				70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */,
+				8B16CD6A2261343E00D8D625 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				8B943B1820584C8600C37639 /* ScoreViewController.swift */,
+				8B8CC5BB2261089400AFB974 /* DailyCalorieTargetTableViewController.swift */,
 				8B943B1A20584C8600C37639 /* SettingsViewController.swift */,
 				8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */,
 				8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */,
@@ -102,6 +112,8 @@
 				8B943B2C20584CFC00C37639 /* HealthKitSetupAssistant.swift */,
 				8B3F67E3205AD7B6007B77B2 /* ViewControllers */,
 				8B3FAF49205D881800A12D89 /* CardView.swift */,
+				8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */,
+				8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */,
 				8B943B1C20584C8600C37639 /* Main.storyboard */,
 				8B943B1F20584C8600C37639 /* Assets.xcassets */,
 				8B943B2120584C8600C37639 /* LaunchScreen.storyboard */,
@@ -114,6 +126,7 @@
 		8B943B2F20584D3F00C37639 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B16CD692261343E00D8D625 /* StoreKit.framework */,
 				8B943B3420587D0D00C37639 /* GoogleMobileAds.framework */,
 				8B943B3020584D3F00C37639 /* HealthKit.framework */,
 				6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */,
@@ -170,6 +183,9 @@
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -218,6 +234,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ActivityScore/Pods-ActivityScore-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -226,6 +243,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,10 +285,13 @@
 				8BA3922C222C18C500BA560A /* InAppPurchaseTableViewController.swift in Sources */,
 				8BA39230222C5C2D00BA560A /* SecondOnboardingViewController.swift in Sources */,
 				8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */,
+				8B8CC5BA2260F63D00AFB974 /* UITextFieldExtension.swift in Sources */,
 				8BA3922E222C4F7A00BA560A /* OnboardingRootPageViewController.swift in Sources */,
 				8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */,
 				8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */,
+				8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */,
 				8B943B2D20584CFC00C37639 /* HealthKitSetupAssistant.swift in Sources */,
+				8B8CC5BC2261089400AFB974 /* DailyCalorieTargetTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +443,7 @@
 				INFOPLIST_FILE = ActivityScore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Trotos.ActivityScore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tobiasruano.ActivityScore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -444,7 +465,7 @@
 				INFOPLIST_FILE = ActivityScore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Trotos.ActivityScore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tobiasruano.ActivityScore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

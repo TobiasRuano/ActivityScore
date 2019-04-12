@@ -38,15 +38,15 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 2 && indexPath.row == 3 {
+        if indexPath.section == 3 && indexPath.row == 3 {
             share()
-        }else if indexPath.section == 2 && indexPath.row == 1 {
+        }else if indexPath.section == 3 && indexPath.row == 1 {
             //let appDelegate = AppDelegate()
             //appDelegate.requestReview()
             rate()
-        }else if indexPath.section == 2 && indexPath.row == 0 {
+        }else if indexPath.section == 3 && indexPath.row == 0 {
             support()
-        }else if indexPath.section == 2 && indexPath.row == 2 {
+        }else if indexPath.section == 3 && indexPath.row == 2 {
             openSafariVC(self)
         }
     }

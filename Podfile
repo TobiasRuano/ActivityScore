@@ -8,5 +8,6 @@ target 'ActivityScore' do
   # Pods for ActivityScore
   pod 'Google-Mobile-Ads-SDK'
   pod 'Charts'
+  pod 'SwiftyStoreKit'
 
 end
