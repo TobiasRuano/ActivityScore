@@ -10,7 +10,6 @@ import UIKit
 import SwiftyStoreKit
 import StoreKit
 
-var sharedSecret = "d83163c37d8648de8d98be311b928361"
 
 class InAppPurchaseTableViewController: UITableViewController {
     var buttonIsEnabled = true
@@ -19,6 +18,7 @@ class InAppPurchaseTableViewController: UITableViewController {
     let bundleID = "com.Tobiasruano.ActivityScore"
     
     let removeAdID = "RemoveAds"
+    var sharedSecret = "d83163c37d8648de8d98be311b928361"
     
     @IBOutlet weak var fullVersionButton: UITableViewCell!
     
@@ -59,15 +59,6 @@ class InAppPurchaseTableViewController: UITableViewController {
         fullVersionButton.isUserInteractionEnabled = false
         self.tableView.reloadData()
     }
-    
-//    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-//        if indexPath.section == 0 && indexPath.row == 0 {
-//            if buttonIsEnabled == false {
-//                return nil
-//            }
-//        }
-//        return indexPath
-//    }
     
     func alert (title: String, message: String, buttonText: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
