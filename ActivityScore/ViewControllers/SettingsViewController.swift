@@ -41,8 +41,6 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         if indexPath.section == 3 && indexPath.row == 3 {
             share()
         }else if indexPath.section == 3 && indexPath.row == 1 {
-            //let appDelegate = AppDelegate()
-            //appDelegate.requestReview()
             rate()
         }else if indexPath.section == 3 && indexPath.row == 0 {
             support()
@@ -52,19 +50,16 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     }
     
     func rate() {
-        guard let url = URL(string: "itms-apps://itunes.apple.com/app/idYOUR_APP_ID") else {
-            return
-        }
-        
+        guard let url = URL(string : "itms-apps://itunes.apple.com/app/id1459688285?mt=8&action=write-review") else { return }
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
             UIApplication.shared.openURL(url)
         }
     }
     
     func share() {
-        let activityVC = UIActivityViewController(activityItems: ["hola"], applicationActivities: nil)
+        let activityVC = UIActivityViewController(activityItems: ["https://itunes.apple.com/app/id1459688285"], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
         
         self.present(activityVC, animated: true, completion: nil)

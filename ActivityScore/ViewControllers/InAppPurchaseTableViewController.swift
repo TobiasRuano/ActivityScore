@@ -37,16 +37,11 @@ class InAppPurchaseTableViewController: UITableViewController {
         }
     }
     
-    
     // MARK: - table view Data Source
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
             purchase()
-            
-            //Taptic feedback
-            let generator = UINotificationFeedbackGenerator()
-            generator.notificationOccurred(.success)
             
             tableView.deselectRow(at: indexPath, animated: true)
         }else if indexPath.section == 1 && indexPath.row == 0 {
@@ -65,35 +60,16 @@ class InAppPurchaseTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            if buttonIsEnabled == false {
-                return nil
-            }
-        }
-        return indexPath
-    }
-    
-//    func restorePurchase() -> Bool {
-//
-//        if buttonIsEnabled == true {
-//            restoreAlert(title: "Purchase Restored!", message: "Your purchase has been restored", buttonText: "Great!")
-//            //Taptic feedback
-//            let generator = UINotificationFeedbackGenerator()
-//            generator.notificationOccurred(.success)
-//
-//            return true
-//        }else {
-//            restoreAlert(title: "Opps!", message: "It seems there's nothing to restore", buttonText: "Ok")
-//            //Taptic feedback
-//            let generator = UINotificationFeedbackGenerator()
-//            generator.notificationOccurred(.error)
-//
-//            return false
+//    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+//        if indexPath.section == 0 && indexPath.row == 0 {
+//            if buttonIsEnabled == false {
+//                return nil
+//            }
 //        }
+//        return indexPath
 //    }
     
-    func restoreAlert (title: String, message: String, buttonText: String) {
+    func alert (title: String, message: String, buttonText: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: buttonText, style: .default, handler: { alert -> Void in
         }))
@@ -134,17 +110,28 @@ class InAppPurchaseTableViewController: UITableViewController {
                             SwiftyStoreKit.finishTransaction(product.transaction)
                         }
                         self.lockCell()
+                        
+                        //Taptic feedback
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.notificationOccurred(.success)
+                        
                         print("Purchase Success: \(product.productId)")
                     case .error(let error):
                         switch error.code {
-                        case .unknown: print("Unknown error. Please contact support")
+                        case .unknown:
+                            print("Unknown error. Please contact support")
+                            self.alert(title: "Unknown error", message: "Please contact support", buttonText: "Ok")
                         case .clientInvalid: print("Not allowed to make the payment")
                         case .paymentCancelled: break
                         case .paymentInvalid: print("The purchase identifier was invalid")
                         case .paymentNotAllowed: print("The device is not allowed to make the payment")
-                        case .storeProductNotAvailable: print("The product is not available in the current storefront")
+                        case .storeProductNotAvailable:
+                            print("The product is not available in the current storefront")
+                            self.alert(title: "Product not available", message: "The product is not available in the current storefront", buttonText: "Ok")
                         case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
-                        case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
+                        case .cloudServiceNetworkConnectionFailed:
+                            print("Could not connect to the network")
+                            self.alert(title: "Could not connect to the network", message: "Please try again later", buttonText: "Ok")
                         case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
                         default: print((error as NSError).localizedDescription)
                         }
@@ -161,14 +148,14 @@ class InAppPurchaseTableViewController: UITableViewController {
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
-                self.restoreAlert(title: "Opps!", message: "It seems there's a problem restoring your purchase. Please contact the developer", buttonText: "Ok")
+                self.alert(title: "Opps!", message: "It seems there's a problem restoring your purchase. Please contact the developer", buttonText: "Ok")
                 //Taptic feedback
                 let generator = UINotificationFeedbackGenerator()
                 generator.notificationOccurred(.error)
             }
             else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
-                self.restoreAlert(title: "Purchase Restored!", message: "Your purchase has been restored", buttonText: "Great!")
+                self.alert(title: "Purchase Restored!", message: "Your purchase has been restored", buttonText: "Great!")
                 //Taptic feedback
                 let generator = UINotificationFeedbackGenerator()
                 generator.notificationOccurred(.success)
@@ -176,7 +163,7 @@ class InAppPurchaseTableViewController: UITableViewController {
             }
             else {
                 print("Nothing to Restore")
-                self.restoreAlert(title: "Opps!", message: "It seems there's nothing to restore", buttonText: "Ok")
+                self.alert(title: "Opps!", message: "It seems there's nothing to restore", buttonText: "Ok")
                 //Taptic feedback
                 let generator = UINotificationFeedbackGenerator()
                 generator.notificationOccurred(.error)
@@ -193,7 +180,6 @@ class InAppPurchaseTableViewController: UITableViewController {
             switch result {
             case .success(let receipt):
                 let productId = "\(self.bundleID).\(self.removeAdID)"
-                // Verify the purchase of Consumable or NonConsumable
                 let purchaseResult = SwiftyStoreKit.verifyPurchase(
                     productId: productId,
                     inReceipt: receipt)

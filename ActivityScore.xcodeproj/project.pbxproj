@@ -22,7 +22,6 @@
 		8B943B2D20584CFC00C37639 /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B2C20584CFC00C37639 /* HealthKitSetupAssistant.swift */; };
 		8B943B3120584D3F00C37639 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B943B3020584D3F00C37639 /* HealthKit.framework */; };
 		8B943B3320587C8000C37639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B3220587C8000C37639 /* GoogleService-Info.plist */; };
-		8B943B3520587D0E00C37639 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B943B3420587D0D00C37639 /* GoogleMobileAds.framework */; };
 		8BA3922C222C18C500BA560A /* InAppPurchaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */; };
 		8BA3922E222C4F7A00BA560A /* OnboardingRootPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */; };
 		8BA39230222C5C2D00BA560A /* SecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */; };
@@ -62,7 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B943B3520587D0E00C37639 /* GoogleMobileAds.framework in Frameworks */,
 				8B943B3120584D3F00C37639 /* HealthKit.framework in Frameworks */,
 				70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */,
 				8B16CD6A2261343E00D8D625 /* StoreKit.framework in Frameworks */,
