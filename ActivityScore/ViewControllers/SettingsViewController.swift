@@ -61,7 +61,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         let activityVC = UIActivityViewController(activityItems: ["https://itunes.apple.com/app/id1459688285"], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
         
-        self.present(activityVC, animated: true, completion: nil)
+        self.present(activityVC, animated: true)
     }
     
     func support() {

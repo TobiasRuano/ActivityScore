@@ -102,9 +102,7 @@ class InAppPurchaseTableViewController: UITableViewController {
                         }
                         self.lockCell()
                         
-                        //Taptic feedback
-                        let generator = UINotificationFeedbackGenerator()
-                        generator.notificationOccurred(.success)
+                        TapticEffectsService.performFeedbackNotification(type: .success)
                         
                         print("Purchase Success: \(product.productId)")
                     case .error(let error):
@@ -114,7 +112,9 @@ class InAppPurchaseTableViewController: UITableViewController {
                             self.alert(title: "Unknown error", message: "Please contact support", buttonText: "Ok")
                         case .clientInvalid: print("Not allowed to make the payment")
                         case .paymentCancelled: break
-                        case .paymentInvalid: print("The purchase identifier was invalid")
+                        case .paymentInvalid:
+                            print("The purchase identifier was invalid")
+                            self.alert(title: "The purchase identifier was invalid", message: "Please contact the developer", buttonText: "Ok")
                         case .paymentNotAllowed: print("The device is not allowed to make the payment")
                         case .storeProductNotAvailable:
                             print("The product is not available in the current storefront")
@@ -140,24 +140,18 @@ class InAppPurchaseTableViewController: UITableViewController {
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
                 self.alert(title: "Opps!", message: "It seems there's a problem restoring your purchase. Please contact the developer", buttonText: "Ok")
-                //Taptic feedback
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.error)
+                TapticEffectsService.performFeedbackNotification(type: .error)
             }
             else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
                 self.alert(title: "Purchase Restored!", message: "Your purchase has been restored", buttonText: "Great!")
-                //Taptic feedback
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.success)
+                TapticEffectsService.performFeedbackNotification(type: .success)
                 self.lockCell()
             }
             else {
                 print("Nothing to Restore")
                 self.alert(title: "Opps!", message: "It seems there's nothing to restore", buttonText: "Ok")
-                //Taptic feedback
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.error)
+                TapticEffectsService.performFeedbackNotification(type: .error)
             }
             NetworkActivityIndicationManager.networkOperationFinished()
         }
