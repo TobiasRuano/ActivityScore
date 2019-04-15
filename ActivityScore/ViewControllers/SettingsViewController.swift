@@ -35,7 +35,6 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.section == 3 && indexPath.row == 3 {
@@ -52,7 +51,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     func rate() {
         guard let url = URL(string : "itms-apps://itunes.apple.com/app/id1459688285?mt=8&action=write-review") else { return }
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:])
         } else {
             UIApplication.shared.openURL(url)
         }
@@ -74,12 +73,12 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
             mc.setSubject(emailTitle)
             mc.setToRecipients(toRecipents)
             
-            self.present(mc, animated: true, completion: nil)
+            self.present(mc, animated: true)
         } else {
             let alert = UIAlertController(title: "Couldn't Access Mail App", message: "Please report this error", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "Done", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true)
         }
     }
     
@@ -96,7 +95,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         @unknown default:
             fatalError()
         }
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true)
     }
     
     func openSafariVC(_ sender: Any) {

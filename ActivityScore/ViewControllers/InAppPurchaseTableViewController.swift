@@ -183,6 +183,7 @@ class InAppPurchaseTableViewController: UITableViewController {
                 }
             case .error(let error):
                 print("Receipt verification failed: \(error)")
+                self.alert(title: "There is a problem validating your inApp Purchase", message: "Please verify that you have an active internet connection. If the problem persist, contact the developer", buttonText: "Ok")
             }
         }
         NetworkActivityIndicationManager.networkOperationFinished()
