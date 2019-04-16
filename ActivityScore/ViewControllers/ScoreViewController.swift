@@ -200,25 +200,24 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     func styleChart() {
         LineGraphView.setViewPortOffsets(left: 0, top: 0, right: 0, bottom: 0)
         
-        LineGraphView.pinchZoomEnabled = false
+        LineGraphView.isUserInteractionEnabled = false
+        
         LineGraphView.drawBordersEnabled = false
         LineGraphView.chartDescription?.enabled = false
-        LineGraphView.dragEnabled = false
         LineGraphView.legend.enabled = false
         
         LineGraphView.xAxis.enabled = false
         LineGraphView.leftAxis.enabled = false
         LineGraphView.rightAxis.enabled = false
-        
         LineGraphView.leftAxis.axisMaximum = 110
-        LineGraphView.leftAxis.axisMinimum = 0
+        LineGraphView.leftAxis.axisMinimum = -10
         
         LineGraphView.backgroundColor = .white
-        LineGraphView.gridBackgroundColor = .white
+        //LineGraphView.gridBackgroundColor = .white
         LineGraphView.drawGridBackgroundEnabled = false
         
         LineGraphView.layer.cornerRadius = 15
-        LineGraphView.clipsToBounds = true
+        LineGraphView.clipsToBounds = false
         
     }
     

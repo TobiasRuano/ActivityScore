@@ -35,14 +35,11 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.section == 3 && indexPath.row == 3 {
             share()
         }else if indexPath.section == 3 && indexPath.row == 1 {
-            //let appDelegate = AppDelegate()
-            //appDelegate.requestReview()
             rate()
         }else if indexPath.section == 3 && indexPath.row == 0 {
             support()
@@ -52,22 +49,19 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     }
     
     func rate() {
-        guard let url = URL(string: "itms-apps://itunes.apple.com/app/idYOUR_APP_ID") else {
-            return
-        }
-        
+        guard let url = URL(string : "itms-apps://itunes.apple.com/app/id1459688285?mt=8&action=write-review") else { return }
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+            UIApplication.shared.open(url, options: [:])
         } else {
             UIApplication.shared.openURL(url)
         }
     }
     
     func share() {
-        let activityVC = UIActivityViewController(activityItems: ["hola"], applicationActivities: nil)
+        let activityVC = UIActivityViewController(activityItems: ["https://itunes.apple.com/app/id1459688285"], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
         
-        self.present(activityVC, animated: true, completion: nil)
+        self.present(activityVC, animated: true)
     }
     
     func support() {
@@ -79,12 +73,12 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
             mc.setSubject(emailTitle)
             mc.setToRecipients(toRecipents)
             
-            self.present(mc, animated: true, completion: nil)
+            self.present(mc, animated: true)
         } else {
             let alert = UIAlertController(title: "Couldn't Access Mail App", message: "Please report this error", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "Done", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true)
         }
     }
     
@@ -101,7 +95,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         @unknown default:
             fatalError()
         }
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true)
     }
     
     func openSafariVC(_ sender: Any) {
