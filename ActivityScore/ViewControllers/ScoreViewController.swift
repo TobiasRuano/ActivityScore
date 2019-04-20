@@ -154,17 +154,18 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func checkPurchaseStatus() {
-        if let inAppKeyValue = UserDefaults.standard.value(forKey: "purchase") as? Bool {
-            inAppPurchase = inAppKeyValue
-        }
-        
-        if inAppPurchase == false {
-            addAd()
-            adBanner.isHidden = false
-        }else {
-            adBanner.rootViewController = nil
-            adBanner.isHidden = true
-        }
+//        if let inAppKeyValue = UserDefaults.standard.value(forKey: "purchase") as? Bool {
+//            inAppPurchase = inAppKeyValue
+//        }
+//
+//        if inAppPurchase == false {
+//            addAd()
+//            adBanner.isHidden = false
+//        }else {
+//            adBanner.rootViewController = nil
+//            adBanner.isHidden = true
+//        }
+        adBanner.isHidden = true
     }
     
     //MARK: - Authorize healthKit
@@ -210,7 +211,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         LineGraphView.leftAxis.enabled = false
         LineGraphView.rightAxis.enabled = false
         LineGraphView.leftAxis.axisMaximum = 110
-        LineGraphView.leftAxis.axisMinimum = -10
+        LineGraphView.leftAxis.axisMinimum = 0
         
         LineGraphView.backgroundColor = .white
         //LineGraphView.gridBackgroundColor = .white

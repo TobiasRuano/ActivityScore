@@ -86,6 +86,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		8B562EE9226694AF00548EF3 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8B3FAF49205D881800A12D89 /* CardView.swift */,
+			);
+			path = "Custom Classes";
+			sourceTree = "<group>";
+		};
 		8B943B0A20584C8600C37639 = {
 			isa = PBXGroup;
 			children = (
@@ -109,11 +117,11 @@
 			children = (
 				8B943B2E20584D3F00C37639 /* ActivityScore.entitlements */,
 				8B943B1620584C8600C37639 /* AppDelegate.swift */,
+				8B3F67E3205AD7B6007B77B2 /* ViewControllers */,
+				8B562EE9226694AF00548EF3 /* Custom Classes */,
+				8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */,
 				8B943B2C20584CFC00C37639 /* HealthKitSetupAssistant.swift */,
 				8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */,
-				8B3F67E3205AD7B6007B77B2 /* ViewControllers */,
-				8B3FAF49205D881800A12D89 /* CardView.swift */,
-				8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */,
 				8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */,
 				8B943B1C20584C8600C37639 /* Main.storyboard */,
 				8B943B1F20584C8600C37639 /* Assets.xcassets */,
