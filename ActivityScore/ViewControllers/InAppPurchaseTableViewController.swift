@@ -59,14 +59,6 @@ class InAppPurchaseTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func alert (title: String, message: String, buttonText: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: buttonText, style: .default, handler: { alert -> Void in
-        }))
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     func getInfo() {
         NetworkActivityIndicationManager.networkOperationStarted()
         
@@ -95,7 +87,6 @@ class InAppPurchaseTableViewController: UITableViewController {
                 SwiftyStoreKit.purchaseProduct(product, quantity: 1, atomically: true) { result in
                     switch result {
                     case .success(let product):
-                        // fetch content from your server, then:
                         if product.needsFinishTransaction {
                             SwiftyStoreKit.finishTransaction(product.transaction)
                         }
@@ -179,5 +170,13 @@ class InAppPurchaseTableViewController: UITableViewController {
             }
         }
         NetworkActivityIndicationManager.networkOperationFinished()
+    }
+    
+    func alert (title: String, message: String, buttonText: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: buttonText, style: .default, handler: { alert -> Void in
+        }))
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }

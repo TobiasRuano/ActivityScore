@@ -334,15 +334,9 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         let calories = quantity.doubleValue(for: HKUnit.kilocalorie())
                         print("\(date): Calories = \(calories)")
                         self.addToArray(item: calories, indicator: indicator)
-                        
-//                        //NOTE: If you are going to update the UI do it in the main thread
-//                        DispatchQueue.main.async {
-//                            //update UI components
-//                        }
-                        
                     }
                 } //end block
-            } //end if let
+            }
         }
         healthKitStore.execute(stepsQuery)
     }
@@ -382,7 +376,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         
                     }
                 } //end block
-            } //end if let
+            }
         }
         healthKitStore.execute(stepsQuery)
     }
@@ -422,7 +416,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         
                     }
                 } //end block
-            } //end if let
+            }
         }
         healthKitStore.execute(stepsQuery)
     }
