@@ -294,12 +294,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         let steps = quantity.doubleValue(for: HKUnit.count())
                         print("\(date): steps = \(steps)")
                         self.addToArray(item: steps, indicator: indicator)
-                        
-//                        //NOTE: If you are going to update the UI do it in the main thread
-//                        DispatchQueue.main.async {
-//                            //update UI components
-//                        }
-                        
                     }
                 }
             }
@@ -368,12 +362,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         let exercise = quantity.doubleValue(for: HKUnit.minute())
                         print("\(date): Exercise = \(exercise)")
                         self.addToArray(item: exercise, indicator: indicator)
-                        
-//                        //NOTE: If you are going to update the UI do it in the main thread
-//                        DispatchQueue.main.async {
-//                            //update UI components
-//                        }
-                        
                     }
                 } //end block
             }
@@ -408,12 +396,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                         let distance = quantity.doubleValue(for: HKUnit.meter())
                         print("\(date): Distance = \(distance)")
                         self.addToArray(item: distance, indicator: indicator)
-                        
-//                        //NOTE: If you are going to update the UI do it in the main thread
-//                        DispatchQueue.main.async {
-//                            //update UI components
-//                        }
-                        
                     }
                 } //end block
             }
