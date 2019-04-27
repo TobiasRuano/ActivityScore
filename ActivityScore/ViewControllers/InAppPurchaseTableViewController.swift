@@ -100,19 +100,24 @@ class InAppPurchaseTableViewController: UITableViewController {
                         case .unknown:
                             print("Unknown error. Please contact support")
                             self.alert(title: "Unknown error", message: "Please contact support", buttonText: "Ok")
+                            TapticEffectsService.performTapticFeedback(from: .cancelled)
                         case .clientInvalid: print("Not allowed to make the payment")
-                        case .paymentCancelled: break
+                        case .paymentCancelled:
+                            TapticEffectsService.performTapticFeedback(from: .cancelled)
                         case .paymentInvalid:
                             print("The purchase identifier was invalid")
                             self.alert(title: "The purchase identifier was invalid", message: "Please contact the developer", buttonText: "Ok")
+                            TapticEffectsService.performTapticFeedback(from: .cancelled)
                         case .paymentNotAllowed: print("The device is not allowed to make the payment")
                         case .storeProductNotAvailable:
                             print("The product is not available in the current storefront")
                             self.alert(title: "Product not available", message: "The product is not available in the current storefront", buttonText: "Ok")
+                            TapticEffectsService.performTapticFeedback(from: .cancelled)
                         case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
                         case .cloudServiceNetworkConnectionFailed:
                             print("Could not connect to the network")
                             self.alert(title: "Could not connect to the network", message: "Please try again later", buttonText: "Ok")
+                            TapticEffectsService.performTapticFeedback(from: .cancelled)
                         case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
                         default: print((error as NSError).localizedDescription)
                         }
