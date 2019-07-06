@@ -9,4 +9,4 @@ This app uses your health data stored on tour device to generate a number betwee
 
 Tobias Ruano – [@tobiasruano](https://twitter.com/tobiasruano) – truano@uade.edu.ar
 
-Soon on the Appstore!
+[AppStore](https://itunes.apple.com/app/ActivityScore/id1459688285?l=es&ls=1&mt=8)
