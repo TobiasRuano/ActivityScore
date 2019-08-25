@@ -24,7 +24,7 @@ class HealthKitSetupAssistant {
         }
         
         //2. Prepare the data types that will interact with HealthKit
-        guard   let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount),
+        guard let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount),
             let minutesOfExercise = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
             let distanceWalkingRunning = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning),
             let activeEnergy = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned) else {

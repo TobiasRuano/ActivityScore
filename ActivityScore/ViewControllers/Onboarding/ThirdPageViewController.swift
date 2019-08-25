@@ -21,8 +21,6 @@ class ThirdPageViewController: UIViewController {
         styleButton()
         styleView()
     }
-    @IBAction func didEndEditingTextField(_ sender: Any) {
-    }
     
     @IBAction func ExitToRootViewController(_ sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "OnboardingScreen")
@@ -33,9 +31,7 @@ class ThirdPageViewController: UIViewController {
         }
         userData.calories = value!
         print(userData.calories)
-        
         UserDefaults.standard.set(try? PropertyListEncoder().encode(userData.self), forKey: "objectives")
-        
         performSegue(withIdentifier: "ExitOnboarding", sender: self)
     }
     
@@ -55,6 +51,4 @@ class ThirdPageViewController: UIViewController {
         textLabelView.layer.masksToBounds = false
         textLabelView.layer.shadowOpacity = 0.5
     }
-    
-
 }

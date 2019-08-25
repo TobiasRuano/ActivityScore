@@ -1,0 +1,9 @@
+
+/* Class = "UITabBarItem"; title = "Score"; ObjectID = "QEX-W3-glx"; */
+"QEX-W3-glx.title" = "Score";
+
+/* Class = "UINavigationItem"; title = "Your Daily Score"; ObjectID = "sbb-1r-qq0"; */
+"sbb-1r-qq0.title" = "Your Daily Score";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "tRm-Mz-9LZ"; */
+"tRm-Mz-9LZ.title" = "Settings";

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */; };
+		8B037E8522DCC83F0098565F /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B037E8422DCC83F0098565F /* DataModel.swift */; };
+		8B037E8822DCCEC80098565F /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B037E8722DCCEC80098565F /* HealthKitManager.swift */; };
 		8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */; };
 		8B16CD6A2261343E00D8D625 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B16CD692261343E00D8D625 /* StoreKit.framework */; };
 		8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FAF49205D881800A12D89 /* CardView.swift */; };
@@ -20,18 +22,21 @@
 		8B943B1E20584C8600C37639 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B1C20584C8600C37639 /* Main.storyboard */; };
 		8B943B2020584C8600C37639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B1F20584C8600C37639 /* Assets.xcassets */; };
 		8B943B2320584C8600C37639 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B2120584C8600C37639 /* LaunchScreen.storyboard */; };
-		8B943B2D20584CFC00C37639 /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B2C20584CFC00C37639 /* HealthKitSetupAssistant.swift */; };
 		8B943B3120584D3F00C37639 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B943B3020584D3F00C37639 /* HealthKit.framework */; };
 		8B943B3320587C8000C37639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B3220587C8000C37639 /* GoogleService-Info.plist */; };
 		8BA3922C222C18C500BA560A /* InAppPurchaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */; };
 		8BA3922E222C4F7A00BA560A /* OnboardingRootPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */; };
 		8BA39230222C5C2D00BA560A /* SecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */; };
 		8BA39232222CC33B00BA560A /* ThirdPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA39231222CC33B00BA560A /* ThirdPageViewController.swift */; };
+		8BF43D2F22EDDF04000DE5E4 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF43D2E22EDDF04000DE5E4 /* Score.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActivityScore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C1B7FCF3BE4E918943DD543 /* Pods-ActivityScore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.release.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.release.xcconfig"; sourceTree = "<group>"; };
+		8B037E8422DCC83F0098565F /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		8B037E8722DCCEC80098565F /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		8B0B9F6A22DAAC8A00D8C4D7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicationManager.swift; sourceTree = "<group>"; };
 		8B16CD692261343E00D8D625 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8B3FAF49205D881800A12D89 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -46,7 +51,6 @@
 		8B943B1F20584C8600C37639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B943B2220584C8600C37639 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B943B2420584C8600C37639 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B943B2C20584CFC00C37639 /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
 		8B943B2E20584D3F00C37639 /* ActivityScore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ActivityScore.entitlements; sourceTree = "<group>"; };
 		8B943B3020584D3F00C37639 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		8B943B3220587C8000C37639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -55,6 +59,7 @@
 		8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootPageViewController.swift; sourceTree = "<group>"; };
 		8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewController.swift; sourceTree = "<group>"; };
 		8BA39231222CC33B00BA560A /* ThirdPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageViewController.swift; sourceTree = "<group>"; };
+		8BF43D2E22EDDF04000DE5E4 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		EFA031F1425B247741A186A6 /* Pods-ActivityScore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.debug.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,16 +77,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B037E8622DCCAF40098565F /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */,
+				8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */,
+				8BA39231222CC33B00BA560A /* ThirdPageViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		8B3F67E3205AD7B6007B77B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				8B943B1820584C8600C37639 /* ScoreViewController.swift */,
-				8B8CC5BB2261089400AFB974 /* DailyCalorieTargetTableViewController.swift */,
 				8B943B1A20584C8600C37639 /* SettingsViewController.swift */,
+				8B8CC5BB2261089400AFB974 /* DailyCalorieTargetTableViewController.swift */,
 				8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */,
-				8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */,
-				8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */,
-				8BA39231222CC33B00BA560A /* ThirdPageViewController.swift */,
+				8B037E8622DCCAF40098565F /* Onboarding */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -117,10 +130,12 @@
 			children = (
 				8B943B2E20584D3F00C37639 /* ActivityScore.entitlements */,
 				8B943B1620584C8600C37639 /* AppDelegate.swift */,
+				8B037E8422DCC83F0098565F /* DataModel.swift */,
+				8B037E8722DCCEC80098565F /* HealthKitManager.swift */,
+				8BF43D2E22EDDF04000DE5E4 /* Score.swift */,
 				8B3F67E3205AD7B6007B77B2 /* ViewControllers */,
 				8B562EE9226694AF00548EF3 /* Custom Classes */,
 				8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */,
-				8B943B2C20584CFC00C37639 /* HealthKitSetupAssistant.swift */,
 				8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */,
 				8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */,
 				8B943B1C20584C8600C37639 /* Main.storyboard */,
@@ -206,6 +221,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 8B943B0A20584C8600C37639;
 			productRefGroup = 8B943B1420584C8600C37639 /* Products */;
@@ -293,14 +309,16 @@
 				8BA39232222CC33B00BA560A /* ThirdPageViewController.swift in Sources */,
 				8BA3922C222C18C500BA560A /* InAppPurchaseTableViewController.swift in Sources */,
 				8BA39230222C5C2D00BA560A /* SecondOnboardingViewController.swift in Sources */,
+				8BF43D2F22EDDF04000DE5E4 /* Score.swift in Sources */,
 				8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */,
 				8B8CC5BA2260F63D00AFB974 /* UITextFieldExtension.swift in Sources */,
 				8BA3922E222C4F7A00BA560A /* OnboardingRootPageViewController.swift in Sources */,
+				8B037E8522DCC83F0098565F /* DataModel.swift in Sources */,
+				8B037E8822DCCEC80098565F /* HealthKitManager.swift in Sources */,
 				8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */,
 				8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */,
 				8B849FE72264BAD000B1A3D0 /* TapticEffectsService.swift in Sources */,
 				8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */,
-				8B943B2D20584CFC00C37639 /* HealthKitSetupAssistant.swift in Sources */,
 				8B8CC5BC2261089400AFB974 /* DailyCalorieTargetTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +338,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8B943B2220584C8600C37639 /* Base */,
+				8B0B9F6A22DAAC8A00D8C4D7 /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -331,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -390,6 +410,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -445,6 +466,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ActivityScore/ActivityScore.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7344G4M3BL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -453,10 +475,11 @@
 				INFOPLIST_FILE = ActivityScore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tobiasruano.ActivityScore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -467,6 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ActivityScore/ActivityScore.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7344G4M3BL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -475,10 +499,11 @@
 				INFOPLIST_FILE = ActivityScore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tobiasruano.ActivityScore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
@@ -27,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         SwiftyStoreKit.finishTransaction(purchase.transaction)
                     }
                 // Unlock content
+                //TODO: desbloquear app completa
                 case .failed, .purchasing, .deferred:
                     break // do nothing
                 }

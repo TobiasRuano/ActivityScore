@@ -12,6 +12,7 @@ class SecondOnboardingViewController: UIViewController {
     
     var succesFlag = true
     @IBOutlet weak var authorizeHealthButton: UIButton!
+    let HKManager = HealthKitManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,29 +33,22 @@ class SecondOnboardingViewController: UIViewController {
     }
     
     private func authorizeHealthKit() {
-        
-        HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
-            
+        HKManager.authorizeHealthKit { (authorized, error) in
             guard authorized else {
-                
                 let baseMessage = "HealthKit Authorization Failed"
                 self.succesFlag = false
                 UserDefaults.standard.set(self.succesFlag, forKey: "Flag")
-                
                 if let error = error {
                     print("\(baseMessage). Reason: \(error.localizedDescription)")
                 } else {
                     print(baseMessage)
                 }
-                
                 return
             }
-            
             print("HealthKit Successfully Authorized.")
             self.succesFlag = true
             UserDefaults.standard.set(self.succesFlag, forKey: "Flag")
         }
-        
     }
 
 }
