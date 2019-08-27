@@ -26,17 +26,14 @@ class ThirdPageViewController: UIViewController {
     
     @IBAction func ExitToRootViewController(_ sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "OnboardingScreen")
-        
         var value = Int(caloriesLabel.text!)
         if value == nil {
             value = 400
         }
         userData.calories = value!
         print(userData.calories)
-        
         UserDefaults.standard.set(try? PropertyListEncoder().encode(userData.self), forKey: "objectives")
-        
-        performSegue(withIdentifier: "ExitOnboarding", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func styleButton() {

@@ -34,18 +34,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        var vc: UIViewController
-        
-        if (UserDefaults.standard.value(forKey: "OnboardingScreen") as? Bool) == nil  {
-            vc = storyBoard.instantiateViewController(withIdentifier: "OnboardingRoot")
-        }else {
-            vc = storyBoard.instantiateInitialViewController()!
-        }
-        
-        self.window?.rootViewController = vc
-        self.window?.makeKeyAndVisible()
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        var vc: UIViewController
+//
+//        if (UserDefaults.standard.value(forKey: "OnboardingScreen") as? Bool) == nil  {
+//            vc = storyBoard.instantiateViewController(withIdentifier: "OnboardingRoot")
+//        }else {
+//            vc = storyBoard.instantiateInitialViewController()!
+//        }
+//
+//        self.window?.rootViewController = vc
+//        self.window?.makeKeyAndVisible()
         
         UITabBar.appearance().tintColor = UIColor(displayP3Red: 245/255, green: 81/255, blue: 95/255, alpha: 1.0)
         

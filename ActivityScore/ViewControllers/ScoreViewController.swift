@@ -94,8 +94,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     var inAppPurchase = false
     
     @IBOutlet weak var adBanner: GADBannerView!
-    
-    
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var CheeringLable: UILabel!
     
@@ -105,6 +103,8 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         
         self.navigationItem.title = "Your Daily Score"
         //self.tabBarItem.title = "Score"
+        
+        checkOnboardingStatus()
         
         //TODO: borrar
         print("Hoy es el dia: \(weekDay)")
@@ -117,6 +117,14 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         styleChart()
     }
     
+    func checkOnboardingStatus() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        var vc: UIViewController
+        if (UserDefaults.standard.value(forKey: "OnboardingScreen") as? Bool) == nil  {
+            vc = storyBoard.instantiateViewController(withIdentifier: "OnboardingRoot")
+            present(vc, animated: true, completion: nil)
+        }
+    }
     
     func labelStyle() {
         let shadowColor = UIColor.white
@@ -558,7 +566,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             self.cardViewCaloriesLabel.text = "\(self.cardCal) Calories"
             self.cardViewExerciseLabel.text = "\(self.cardExe) Minutes of Exercise"
             self.cardViewWalkrunLabel.text = "\(String(format:"%.01f", self.cardKm / 1000)) Km Walk/Run"
-            
+            //Check if theres data. If there is, health label should be ENABLED
+            if self.cardCal != 0 {
+                UserDefaults.standard.set(true, forKey: "Flag")
+            }
         }
     }
     
