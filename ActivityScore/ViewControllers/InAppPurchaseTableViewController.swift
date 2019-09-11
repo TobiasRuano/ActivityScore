@@ -14,6 +14,7 @@ import StoreKit
 class InAppPurchaseTableViewController: UITableViewController {
     var buttonIsEnabled = true
     let inAppPurchaseKey = "purchase"
+    @IBOutlet weak var priceLabel: UILabel!
     
     let bundleID = "com.Tobiasruano.ActivityScore"
     
@@ -24,17 +25,25 @@ class InAppPurchaseTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getInfo()
-        verifyRecipt()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if !checkPurchaseStatus() {
+            getInfo()
+            verifyRecipt()
+        }
+    }
+    
+    func checkPurchaseStatus() -> Bool {
+        var status = false
         if let value = UserDefaults.standard.value(forKey: inAppPurchaseKey) as? Bool {
             if value == true {
                 buttonIsEnabled = value
+                status = value
                 lockCell()
             }
         }
+        return status
     }
     
     // MARK: - table view Data Source
@@ -44,7 +53,7 @@ class InAppPurchaseTableViewController: UITableViewController {
             purchase()
             
             tableView.deselectRow(at: indexPath, animated: true)
-        }else if indexPath.section == 1 && indexPath.row == 0 {
+        } else if indexPath.section == 1 && indexPath.row == 0 {
             restorePurchase()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -78,6 +87,7 @@ class InAppPurchaseTableViewController: UITableViewController {
             if let product = result.retrievedProducts.first {
                 let priceString = product.localizedPrice!
                 print("Product: \(product.localizedDescription), price: \(priceString)")
+                self.priceLabel.text = priceString
             }
             else if let invalidProductId = result.invalidProductIDs.first {
                 print("Invalid product identifier: \(invalidProductId)")

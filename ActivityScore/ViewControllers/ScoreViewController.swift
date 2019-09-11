@@ -169,7 +169,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         if inAppPurchase == false {
             addAd()
             adBanner.isHidden = false
-        }else {
+        } else {
             adBanner.rootViewController = nil
             adBanner.isHidden = true
         }
