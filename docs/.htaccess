@@ -5,4 +5,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
-RewriteRule ^index\.html$ / [R=301,L]
+RewriteRule ^privacy\.html$ / [R=301,L]
