@@ -7,6 +7,8 @@ This app uses your health data stored on tour device to generate a number betwee
 
 ## Meta
 
-Tobias Ruano – [@tobiasruano](https://twitter.com/tobiasruano) – truano@uade.edu.ar
+[![](appstore.png)](https://itunes.apple.com/app/ActivityScore/id1459688285?l=es&ls=1&mt=8)
 
-[AppStore](https://itunes.apple.com/app/ActivityScore/id1459688285?l=es&ls=1&mt=8)
+[Privacy Policy](https://caffeinetracker.tobiasruano.com/privacy)
+
+Tobias Ruano – [@tobiasruano](https://twitter.com/tobiasruano) – truano@uade.edu.ar
