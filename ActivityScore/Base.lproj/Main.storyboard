@@ -417,11 +417,14 @@ Slide to Get Started!</string>
                         <outlet property="CheeringLable" destination="qtU-GM-a4n" id="WK1-1D-55b"/>
                         <outlet property="LineGraphView" destination="XOF-PU-5vW" id="oza-4s-naC"/>
                         <outlet property="adBanner" destination="afF-gl-cvP" id="TCY-pN-MO9"/>
+                        <outlet property="cardView" destination="7OA-7u-3w8" id="e8J-fW-YmT"/>
                         <outlet property="cardViewCaloriesLabel" destination="Pto-4q-P7n" id="O9A-J1-FqH"/>
                         <outlet property="cardViewExerciseLabel" destination="uXM-0Q-c7L" id="CKd-L3-iec"/>
                         <outlet property="cardViewStepsLabel" destination="s0Y-KF-RIl" id="W48-9w-URB"/>
                         <outlet property="cardViewWalkrunLabel" destination="wO7-3M-2fx" id="O20-zM-0Y0"/>
+                        <outlet property="contentView" destination="TXp-ex-yP5" id="0fh-vf-Ldu"/>
                         <outlet property="scoreLabel" destination="cLi-PR-dDU" id="fru-os-RiB"/>
+                        <outlet property="scrollView" destination="HPK-ti-XXM" id="UJB-rN-jTr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rr8-7x-PzK" userLabel="First Responder" sceneMemberID="firstResponder"/>

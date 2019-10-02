@@ -99,7 +99,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     }
     
     func openSafariVC(_ sender: Any) {
-        let url = URL(string: "https://tobiasruano.com/ActivityScore/privacyPolicy")
+        let url = URL(string: "https://activityscore.tobiasruano.com/privacy")
         let safari = SFSafariViewController(url: url!)
         
         self.present(safari, animated: true)

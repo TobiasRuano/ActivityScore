@@ -96,6 +96,9 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var adBanner: GADBannerView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var CheeringLable: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var cardView: CardView!
+    @IBOutlet weak var contentView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,6 +140,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         labelStyle()
+        colorStyle()
         
         /*
         getLast7daysExercise()
@@ -147,6 +151,14 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         checkPurchaseStatus()
         checkObjectives()
         obtainScoreNumber()
+    }
+    
+    func colorStyle() {
+        view.backgroundColor = UIColor(named: "BackgroundGeneral")
+        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "BackgroundGeneral")
+        cardView.backgroundColor = UIColor(named: "BackgroundGeneral")
+        scrollView.backgroundColor = UIColor(named: "BackgroundGeneral")
+        contentView.backgroundColor = UIColor(named: "BackgroundGeneral")
     }
     
     //MARK: - Check initial status
