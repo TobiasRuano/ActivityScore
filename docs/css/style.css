@@ -41,6 +41,12 @@ a:link, a:hover, a:visited, a:active {
     padding:0
 }
 
+.description {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 30px;
+}
+
 .imageWrapper {
     height: 714px;
     background: linear-gradient(#ea445a, #ea445a), url("assets/headerimage.png");
