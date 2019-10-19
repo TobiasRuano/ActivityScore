@@ -29,7 +29,7 @@ body {
 }
 
 a:link, a:hover, a:visited, a:active {
-    color: #666;
+    color: #ea445a;
     text-decoration:none
 }
 
@@ -50,10 +50,10 @@ a:link, a:hover, a:visited, a:active {
     border-radius:0px 0px 0px 0px
 }
 
-.headerBackground {
+/* .headerBackground {
     height: 70px;
     background-color:rgba(0, 0, 0, 0.1)
-}
+} */
 
 .container {
     display: grid;
@@ -438,7 +438,7 @@ footer {
     align-content:center
 }
 
-.footerText {
+/* .footerText {
     color: #666;
     display: block;
     line-height: 1.5;
@@ -451,7 +451,7 @@ footer {
 .footerIcons {
     padding-bottom: 10px;
     display:flex
-}
+} */
 
 .footerText {
     color: #666;
