@@ -238,8 +238,7 @@ open class Legend: ComponentBase
                 let e = entries[i]
                 let drawingForm = e.form != .none
                 let formSize = e.formSize.isNaN ? defaultFormSize : e.formSize
-                let label = e.label
-                
+
                 if !wasStacked
                 {
                     width = 0.0
@@ -254,10 +253,10 @@ open class Legend: ComponentBase
                     width += formSize
                 }
                 
-                if label != nil
+                if let label = e.label
                 {
-                    let size = (label! as NSString).size(withAttributes: [.font: labelFont])
-                    
+                    let size = (label as NSString).size(withAttributes: [.font: labelFont])
+
                     if drawingForm && !wasStacked
                     {
                         width += formToTextSpace
@@ -315,7 +314,6 @@ open class Legend: ComponentBase
             
             // Start calculating layout
             
-            let labelAttrs = [NSAttributedString.Key.font: labelFont]
             var maxLineWidth: CGFloat = 0.0
             var currentLineWidth: CGFloat = 0.0
             var requiredWidth: CGFloat = 0.0
@@ -341,9 +339,9 @@ open class Legend: ComponentBase
                 }
                 
                 // grouped forms have null labels
-                if label != nil
+                if let label = label
                 {
-                    calculatedLabelSizes[i] = (label! as NSString).size(withAttributes: labelAttrs)
+                    calculatedLabelSizes[i] = (label as NSString).size(withAttributes: [.font: labelFont])
                     requiredWidth += drawingForm ? formToTextSpace + formSize : 0.0
                     requiredWidth += calculatedLabelSizes[i].width
                 }
@@ -420,7 +418,7 @@ open class Legend: ComponentBase
     }
     
     /// **default**: false (automatic legend)
-    /// `true` if a custom legend entries has been set
+    /// - returns: `true` if a custom legend entries has been set
     @objc open var isLegendCustom: Bool
     {
         return _isLegendCustom

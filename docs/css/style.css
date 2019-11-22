@@ -49,7 +49,7 @@ a:link, a:hover, a:visited, a:active {
 
 .imageWrapper {
     height: 714px;
-    background: linear-gradient(#ea445a, #ea445a);
+    background: linear-gradient(#ea445a, #ffffff);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;

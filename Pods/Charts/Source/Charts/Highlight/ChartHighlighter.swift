@@ -12,7 +12,7 @@
 import Foundation
 import CoreGraphics
 
-open class ChartHighlighter : NSObject, IHighlighter
+open class ChartHighlighter : NSObject, Highlighter
 {
     /// instance of the data-provider
     @objc open weak var chart: ChartDataProvider?
@@ -28,9 +28,9 @@ open class ChartHighlighter : NSObject, IHighlighter
         return getHighlight(xValue: xVal, x: x, y: y)
     }
     
-    /// - Parameters:
-    ///   - x:
-    /// - Returns: The corresponding x-pos for a given touch-position in pixels.
+    /// - returns: The corresponding x-pos for a given touch-position in pixels.
+    /// - parameter x:
+    /// - returns:
     @objc open func getValsForTouch(x: CGFloat, y: CGFloat) -> CGPoint
     {
         guard let chart = self.chart as? BarLineScatterCandleBubbleChartDataProvider else { return .zero }
@@ -39,11 +39,11 @@ open class ChartHighlighter : NSObject, IHighlighter
         return chart.getTransformer(forAxis: .left).valueForTouchPoint(x: x, y: y)
     }
     
-    /// - Parameters:
-    ///   - xValue:
-    ///   - x:
-    ///   - y:
-    /// - Returns: The corresponding ChartHighlight for a given x-value and xy-touch position in pixels.
+    /// - returns: The corresponding ChartHighlight for a given x-value and xy-touch position in pixels.
+    /// - parameter xValue:
+    /// - parameter x:
+    /// - parameter y:
+    /// - returns:
     @objc open func getHighlight(xValue xVal: Double, x: CGFloat, y: CGFloat) -> Highlight?
     {
         guard let chart = chart else { return nil }
@@ -61,37 +61,31 @@ open class ChartHighlighter : NSObject, IHighlighter
         return detail
     }
     
-    /// - Parameters:
-    ///   - xValue: the transformed x-value of the x-touch position
-    ///   - x: touch position
-    ///   - y: touch position
-    /// - Returns: A list of Highlight objects representing the entries closest to the given xVal.
+    /// - returns: A list of Highlight objects representing the entries closest to the given xVal.
     /// The returned list contains two objects per DataSet (closest rounding up, closest rounding down).
+    /// - parameter xValue: the transformed x-value of the x-touch position
+    /// - parameter x: touch position
+    /// - parameter y: touch position
+    /// - returns:
     @objc open func getHighlights(xValue: Double, x: CGFloat, y: CGFloat) -> [Highlight]
     {
         var vals = [Highlight]()
         
         guard let data = self.data else { return vals }
         
-        for i in 0 ..< data.dataSetCount
+        for (i, set) in zip(data.indices, data) where set.isHighlightEnabled
         {
-            guard
-                let dataSet = data.getDataSetByIndex(i),
-                dataSet.isHighlightEnabled      // don't include datasets that cannot be highlighted
-                else { continue }
-            
-
             // extract all y-values from all DataSets at the given x-value.
             // some datasets (i.e bubble charts) make sense to have multiple values for an x-value. We'll have to find a way to handle that later on. It's more complicated now when x-indices are floating point.
-            vals.append(contentsOf: buildHighlights(dataSet: dataSet, dataSetIndex: i, xValue: xValue, rounding: .closest))
+            vals.append(contentsOf: buildHighlights(dataSet: set, dataSetIndex: i, xValue: xValue, rounding: .closest))
         }
         
         return vals
     }
     
-    /// - Returns: An array of `Highlight` objects corresponding to the selected xValue and dataSetIndex.
+    /// - returns: An array of `Highlight` objects corresponding to the selected xValue and dataSetIndex.
     internal func buildHighlights(
-        dataSet set: IChartDataSet,
+        dataSet set: ChartDataSetProtocol,
         dataSetIndex: Int,
         xValue: Double,
         rounding: ChartDataSetRounding) -> [Highlight]
@@ -120,7 +114,7 @@ open class ChartHighlighter : NSObject, IHighlighter
 
     // - MARK: - Utilities
     
-    /// - Returns: The `ChartHighlight` of the closest value on the x-y cartesian axes
+    /// - returns: The `ChartHighlight` of the closest value on the x-y cartesian axes
     internal func closestSelectionDetailByPixel(
         closestValues: [Highlight],
         x: CGFloat,
@@ -148,7 +142,7 @@ open class ChartHighlighter : NSObject, IHighlighter
         return closest
     }
     
-    /// - Returns: The minimum distance from a touch-y-value (in pixels) to the closest y-value (in pixels) that is displayed in the chart.
+    /// - returns: The minimum distance from a touch-y-value (in pixels) to the closest y-value (in pixels) that is displayed in the chart.
     internal func getMinimumDistance(
         closestValues: [Highlight],
         y: CGFloat,

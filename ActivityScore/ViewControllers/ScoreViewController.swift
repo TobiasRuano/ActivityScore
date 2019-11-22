@@ -11,11 +11,11 @@ import HealthKit
 import GoogleMobileAds
 import Charts
 
-private class CubicLineSampleFillFormatter: IFillFormatter {
-    func getFillLinePosition(dataSet: ILineChartDataSet, dataProvider: LineChartDataProvider) -> CGFloat {
-        return -10
-    }
-}
+//private class CubicLineSampleFillFormatter: IFillFormatter {
+//    func getFillLinePosition(dataSet: ILineChartDataSet, dataProvider: LineChartDataProvider) -> CGFloat {
+//        return -10
+//    }
+//}
 
 struct Objectives: Codable {
     var calories    = Int()
@@ -218,12 +218,15 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func styleChart() {
+        LineGraphView.dragEnabled = true
+        LineGraphView.setScaleEnabled(false)
+        LineGraphView.pinchZoomEnabled = false
         LineGraphView.setViewPortOffsets(left: 0, top: 0, right: 0, bottom: 0)
         
         LineGraphView.isUserInteractionEnabled = false
         
         LineGraphView.drawBordersEnabled = false
-        LineGraphView.chartDescription?.enabled = false
+        LineGraphView.chartDescription.enabled = false
         LineGraphView.legend.enabled = false
         
         LineGraphView.xAxis.enabled = false
@@ -256,23 +259,29 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         
         dataSet.mode = .cubicBezier
         
-        dataSet.setColor(.clear)
+        dataSet.setColors(UIColor.init(red: 255/255, green: 192/255, blue: 203/255, alpha: 1), UIColor.init(red: 255/255, green: 45/255, blue: 85/255, alpha: 1))
+        dataSet.isDrawLineWithGradientEnabled = true
+        dataSet.gradientPositions = [0, 100]
+        
         dataSet.drawCirclesEnabled = false
-        dataSet.lineWidth = 2
+        dataSet.lineWidth = 4
         dataSet.circleRadius = 3
         dataSet.drawFilledEnabled = true
         dataSet.highlightColor = UIColor(named: "pink")!
+//        dataSet.highlightColor = UIColor.blue
         dataSet.drawCircleHoleEnabled = false
-        dataSet.drawHorizontalHighlightIndicatorEnabled = true // cahnge to false
+        dataSet.drawHorizontalHighlightIndicatorEnabled = false // change to false
+        
+        let firstPink = UIColor(red: 247/255, green: 191/255, blue: 190/255, alpha: 1)
         
         let gradientColors = [UIColor.white.cgColor,
-                              UIColor(named: "pink")!.cgColor]
+                              firstPink.cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         
         dataSet.fillAlpha = 1
         dataSet.fill = Fill(linearGradient: gradient, angle: 90)
         
-        dataSet.fillFormatter = CubicLineSampleFillFormatter()
+//        dataSet.fillFormatter = CubicLineSampleFillFormatter() as! FillFormatter
         
         dataSet.fillFormatter = DefaultFillFormatter { _,_  -> CGFloat in
             return CGFloat(self.LineGraphView.leftAxis.axisMinimum)
@@ -588,7 +597,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     func addAd() {
         //Request
         let request = GADRequest()
-        request.testDevices = [kGADSimulatorID]
+        request.testDevices = [(kGADSimulatorID as! String)]
         request.testDevices = [ "21df7f3d09709224a09480ff10d324aa" ]
         
         //Set up ad

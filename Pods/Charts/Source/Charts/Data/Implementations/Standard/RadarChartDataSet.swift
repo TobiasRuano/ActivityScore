@@ -13,7 +13,7 @@ import Foundation
 import CoreGraphics
 
 
-open class RadarChartDataSet: LineRadarChartDataSet, IRadarChartDataSet
+open class RadarChartDataSet: LineRadarChartDataSet, RadarChartDataSetProtocol
 {
     private func initialize()
     {
@@ -26,7 +26,7 @@ open class RadarChartDataSet: LineRadarChartDataSet, IRadarChartDataSet
         initialize()
     }
     
-    public required override init(values: [ChartDataEntry]?, label: String?)
+    public required override init(values: [ChartDataEntry], label: String)
     {
         super.init(values: values, label: label)
         initialize()
@@ -40,7 +40,7 @@ open class RadarChartDataSet: LineRadarChartDataSet, IRadarChartDataSet
     /// **default**: false
     open var drawHighlightCircleEnabled: Bool = false
     
-    /// `true` if highlight circle should be drawn, `false` ifnot
+    /// - returns: `true` if highlight circle should be drawn, `false` ifnot
     open var isDrawHighlightCircleEnabled: Bool { return drawHighlightCircleEnabled }
     
     open var highlightCircleFillColor: NSUIColor? = NSUIColor.white
