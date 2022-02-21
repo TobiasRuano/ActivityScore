@@ -11,18 +11,10 @@ import HealthKit
 import GoogleMobileAds
 import Charts
 
-//private class CubicLineSampleFillFormatter: IFillFormatter {
-//    func getFillLinePosition(dataSet: ILineChartDataSet, dataProvider: LineChartDataProvider) -> CGFloat {
-//        return -10
-//    }
-//}
-
 struct Objectives: Codable {
     var calories    = Int()
     //var minutesEx   = Int()
 }
-
-let healthKitStore: HKHealthStore = HKHealthStore()
 
 class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
@@ -47,12 +39,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     var cardCal = 0
     var cardExe = 0
     var cardKm = 0.0
-    
-    //Indexes for array access
-    var indiceSteps = 0
-    var indiceCal = 0
-    var indiceExe = 0
-    var indiceDis = 0
     
     var weeklyScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     var arrayScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] {
@@ -100,6 +86,8 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var cardView: CardView!
     @IBOutlet weak var contentView: UIView!
     
+    let healthManager = HealthKitManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -109,15 +97,58 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         
         checkOnboardingStatus()
         
-        //TODO: borrar
-        print("Hoy es el dia: \(weekDay)")
-        
-        //authorizeHealthKit()
-        self.getLast7daysSteps()
-        self.getLast7daysCalories()
-        self.getLast7daysExercise()
-        self.getLast7daysDistance()
+        authorizeHealthKit()
         styleChart()
+    }
+    
+    func retrieveHealthData() {
+        healthManager.getData(type: .stepCount, unit: .count(), days: 7) { result in
+            switch result {
+            case .success(let steps):
+                self.arraySteps.removeAll()
+                self.arraySteps.append(contentsOf: steps)
+                let todaysSteps = self.arraySteps.last != nil ? self.arraySteps.last! : 0
+                self.cardSteps = todaysSteps
+            case .failure(_):
+                break
+            }
+        }
+        
+        healthManager.getData(type: .activeEnergyBurned, unit: .kilocalorie(), days: 7) { result in
+            switch result {
+            case .success(let calories):
+                self.arrayCalories.removeAll()
+                self.arrayCalories.append(contentsOf: calories)
+                let todaysCalories = self.arrayCalories.last != nil ? self.arrayCalories.last! : 0
+                self.cardCal = todaysCalories
+            case .failure(_):
+                break
+            }
+        }
+        
+        healthManager.getData(type: .appleExerciseTime, unit: .minute(), days: 7) { result in
+            switch result {
+            case .success(let exercice):
+                self.arrayExercise.removeAll()
+                self.arrayExercise.append(contentsOf: exercice)
+                let todaysExercise = self.arrayExercise.last != nil ? self.arrayExercise.last! : 0
+                self.cardExe = todaysExercise
+            case .failure(_):
+                break
+            }
+        }
+        
+        healthManager.getData(type: .distanceWalkingRunning, unit: .meter(), days: 7) { result in
+            switch result {
+            case .success(let distance):
+                self.arrayDistance.removeAll()
+                self.arrayDistance.append(contentsOf: distance)
+                let todaysDistance = self.arrayDistance.last != nil ? self.arrayDistance.last! : 0
+                self.cardKm = Double(todaysDistance)
+            case .failure(_):
+                break
+            }
+        }
     }
     
     func checkOnboardingStatus() {
@@ -142,15 +173,9 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         labelStyle()
         colorStyle()
         
-        /*
-        getLast7daysExercise()
-        getLast7daysDistance()
-        getLast7daysCalories()
-        getLast7daysSteps()*/
-        
         checkPurchaseStatus()
         checkObjectives()
-        obtainScoreNumber()
+        retrieveHealthData()
     }
     
     func colorStyle() {
@@ -167,7 +192,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             let copy = try? PropertyListDecoder().decode(Objectives.self, from: data)
             userData = copy!
         } else {
-            //Default numbers
             userData.calories = 400
             //userData.minutesEx = 30
         }
@@ -177,7 +201,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         if let inAppKeyValue = UserDefaults.standard.value(forKey: "purchase") as? Bool {
             inAppPurchase = inAppKeyValue
         }
-        
         if inAppPurchase == false {
             addAd()
             adBanner.isHidden = false
@@ -189,31 +212,22 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
     //MARK: - Authorize healthKit
     private func authorizeHealthKit() {
-        
-        HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
-            
+        healthManager.authorizeHealthKit { (authorized, error) in
             guard authorized else {
-                
                 let baseMessage = "HealthKit Authorization Failed"
                 self.succesFlag = false
                 UserDefaults.standard.set(self.succesFlag, forKey: "Flag")
-                
                 if let error = error {
                     print("\(baseMessage). Reason: \(error.localizedDescription)")
                 } else {
                     print(baseMessage)
                 }
-                
                 return
             }
-            
             print("HealthKit Successfully Authorized.")
             self.succesFlag = true
             UserDefaults.standard.set(self.succesFlag, forKey: "Flag")
-            self.getLast7daysSteps()
-            self.getLast7daysCalories()
-            self.getLast7daysExercise()
-            self.getLast7daysDistance()
+            self.retrieveHealthData()
         }
     }
     
@@ -222,26 +236,20 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         LineGraphView.setScaleEnabled(false)
         LineGraphView.pinchZoomEnabled = false
         LineGraphView.setViewPortOffsets(left: 0, top: 0, right: 0, bottom: 0)
-        
         LineGraphView.isUserInteractionEnabled = false
-        
         LineGraphView.drawBordersEnabled = false
         LineGraphView.chartDescription.enabled = false
         LineGraphView.legend.enabled = false
-        
         LineGraphView.xAxis.enabled = false
         LineGraphView.leftAxis.enabled = false
         LineGraphView.rightAxis.enabled = false
         LineGraphView.leftAxis.axisMaximum = 110
         LineGraphView.leftAxis.axisMinimum = -10
-        
         LineGraphView.backgroundColor = .white
         //LineGraphView.gridBackgroundColor = .white
         LineGraphView.drawGridBackgroundEnabled = false
-        
         LineGraphView.layer.cornerRadius = 15
         LineGraphView.clipsToBounds = false
-        
     }
     
     func lineChartUpdate () {
@@ -252,7 +260,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         let entry5 = ChartDataEntry(x: 5.0, y: Double(arrayScore[4]))
         let entry6 = ChartDataEntry(x: 6.0, y: Double(arrayScore[5]))
         let entry7 = ChartDataEntry(x: 7.0, y: Double(arrayScore[6]))
-        print(arrayScore[6])
         let dataSet = LineChartDataSet(values: [entry1, entry2, entry3, entry4, entry5, entry6, entry7], label: "Widgets Type")
         
         dataSet.valueTextColor = .clear
@@ -295,236 +302,8 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         LineGraphView.notifyDataSetChanged()
     }
     
-    // Gets last 7 days of steps
-    func getLast7daysSteps() {
-        let calendar = NSCalendar.current
-        let interval = NSDateComponents()
-        interval.day = 1
-        let indicator = 0
-        
-        let stepsCount = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-        
-        var anchorComponents = calendar.dateComponents([.day, .month, .year], from: NSDate() as Date)
-        anchorComponents.hour = 0
-        let anchorDate = calendar.date(from: anchorComponents)
-        
-        // Define 1-day intervals starting from 0:00
-        let stepsQuery = HKStatisticsCollectionQuery(quantityType: stepsCount, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: interval as DateComponents)
-        
-        // Set the results handler
-        stepsQuery.initialResultsHandler = {query, results, error in
-            let endDate = NSDate()
-            let startDate = calendar.date(byAdding: .day, value: -6, to: endDate as Date, wrappingComponents: false)
-            if let myResults = results{
-                myResults.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, stop in
-                    if let quantity = statistics.sumQuantity(){
-                        let date = statistics.startDate
-                        let steps = quantity.doubleValue(for: HKUnit.count())
-                        print("\(date): steps = \(steps)")
-                        self.addToArray(item: steps, indicator: indicator)
-                        
-//                        //NOTE: If you are going to update the UI do it in the main thread
-//                        DispatchQueue.main.async {
-//                            //update UI components
-//                        }
-                        
-                    }
-                }
-            }
-        }
-        healthKitStore.execute(stepsQuery)
-    }
-    
-    // Gets last 7 days of Calories Burned
-    func getLast7daysCalories() {
-        let calendar = NSCalendar.current
-        let interval = NSDateComponents()
-        interval.day = 1
-        let indicator = 1
-        
-        let caloriesCount = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!
-        
-        var anchorComponents = calendar.dateComponents([.day, .month, .year], from: NSDate() as Date)
-        anchorComponents.hour = 0
-        let anchorDate = calendar.date(from: anchorComponents)
-        
-        // Define 1-day intervals starting from 0:00
-        let stepsQuery = HKStatisticsCollectionQuery(quantityType: caloriesCount, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: interval as DateComponents)
-        
-        // Set the results handler
-        stepsQuery.initialResultsHandler = {query, results, error in
-            let endDate = NSDate()
-            let startDate = calendar.date(byAdding: .day, value: -6, to: endDate as Date, wrappingComponents: false)
-            if let myResults = results{
-                myResults.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, stop in
-                    if let quantity = statistics.sumQuantity(){
-                        let date = statistics.startDate
-                        let calories = quantity.doubleValue(for: HKUnit.kilocalorie())
-                        print("\(date): Calories = \(calories)")
-                        self.addToArray(item: calories, indicator: indicator)
-                        
-//                        //NOTE: If you are going to update the UI do it in the main thread
-//                        DispatchQueue.main.async {
-//                            //update UI components
-//                        }
-                        
-                    }
-                } //end block
-            } //end if let
-        }
-        healthKitStore.execute(stepsQuery)
-    }
-    
-    // Gets last 7 days of Exercise Time
-    func getLast7daysExercise() {
-        let calendar = NSCalendar.current
-        let interval = NSDateComponents()
-        interval.day = 1
-        let indicator = 2
-        
-        let ExerciseCount = HKQuantityType.quantityType(forIdentifier: .appleExerciseTime)!
-        
-        var anchorComponents = calendar.dateComponents([.day, .month, .year], from: NSDate() as Date)
-        anchorComponents.hour = 0
-        let anchorDate = calendar.date(from: anchorComponents)
-        
-        // Define 1-day intervals starting from 0:00
-        let stepsQuery = HKStatisticsCollectionQuery(quantityType: ExerciseCount, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: interval as DateComponents)
-        
-        // Set the results handler
-        stepsQuery.initialResultsHandler = {query, results, error in
-            let endDate = NSDate()
-            let startDate = calendar.date(byAdding: .day, value: -6, to: endDate as Date, wrappingComponents: false)
-            if let myResults = results{
-                myResults.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, stop in
-                    if let quantity = statistics.sumQuantity(){
-                        let date = statistics.startDate
-                        let exercise = quantity.doubleValue(for: HKUnit.minute())
-                        print("\(date): Exercise = \(exercise)")
-                        self.addToArray(item: exercise, indicator: indicator)
-                        
-//                        //NOTE: If you are going to update the UI do it in the main thread
-//                        DispatchQueue.main.async {
-//                            //update UI components
-//                        }
-                        
-                    }
-                } //end block
-            } //end if let
-        }
-        healthKitStore.execute(stepsQuery)
-    }
-    
-    // Gets last 7 days of Distance
-    func getLast7daysDistance() {
-        let calendar = NSCalendar.current
-        let interval = NSDateComponents()
-        interval.day = 1
-        let indicator = 3
-        
-        let DistanceCount = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
-        
-        var anchorComponents = calendar.dateComponents([.day, .month, .year], from: NSDate() as Date)
-        anchorComponents.hour = 0
-        let anchorDate = calendar.date(from: anchorComponents)
-        
-        // Define 1-day intervals starting from 0:00
-        let stepsQuery = HKStatisticsCollectionQuery(quantityType: DistanceCount, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: interval as DateComponents)
-        
-        // Set the results handler
-        stepsQuery.initialResultsHandler = {query, results, error in
-            let endDate = NSDate()
-            let startDate = calendar.date(byAdding: .day, value: -6, to: endDate as Date, wrappingComponents: false)
-            if let myResults = results{
-                myResults.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, stop in
-                    if let quantity = statistics.sumQuantity(){
-                        let date = statistics.startDate
-                        let distance = quantity.doubleValue(for: HKUnit.meter())
-                        print("\(date): Distance = \(distance)")
-                        self.addToArray(item: distance, indicator: indicator)
-                        
-//                        //NOTE: If you are going to update the UI do it in the main thread
-//                        DispatchQueue.main.async {
-//                            //update UI components
-//                        }
-                        
-                    }
-                } //end block
-            } //end if let
-        }
-        healthKitStore.execute(stepsQuery)
-    }
-    
-    //TODO: index out of range
-    func addToArray(item: Double, indicator: Int) {
-        switch indicator {
-        case 0:
-            arraySteps[indiceSteps] = Int(item)
-            if indiceSteps == 6 {
-                cardSteps = Int(item)
-            }
-            indiceSteps += 1
-            print("Added to the Step Array")
-        case 1:
-            arrayCalories[indiceCal] = Int(item)
-            if indiceCal == 6 {
-                cardCal = Int(item)
-            }
-            indiceCal += 1
-            print("Added to the Calories Array")
-        case 2:
-            arrayExercise[indiceExe] = Int(item)
-            if indiceExe == 6 {
-                cardExe = Int(item)
-            }
-            indiceExe += 1
-            print("Added to the Exercise Array")
-        case 3:
-            arrayDistance[indiceDis] = Int(item)
-            if indiceDis == 6 {
-                cardKm = item
-            }
-            indiceDis += 1
-            print("Added to the Distance Array")
-        default:
-            break
-        }
-    }
-    
-    
     func obtainScoreNumber() {
-//        for index in (0..<arraySteps.count) {
-//            while arraySteps[index] > 300 {
-//                arraySteps[index] = arraySteps[index] - 300
-//                arrayScore[index] += 0.5
-//            }
-//        }
-//
-//        for index in (0..<arrayCalories.count) {
-//            while arrayCalories[index] > 40 {
-//                arrayCalories[index] = arrayCalories[index] - 40
-//                arrayScore[index] += 1
-//            }
-//        }
-//
-//        for index in (0..<arrayDistance.count) {
-//            while arrayDistance[index] > 400 {
-//                arrayDistance[index] = arrayDistance[index] - 400
-//                arrayScore[index] += 1
-//            }
-//        }
-//
-//        for index in (0..<arrayExercise.count) {
-//            while arrayExercise[index] > 10 {
-//                arrayExercise[index] = arrayExercise[index] - 10
-//                arrayScore[index] += 5
-//            }
-//        }
-        
-        print(arrayCalories)
-        
         for index in (0..<arrayCalories.count) {
-            print(arrayCalories[index])
             if arrayCalories[index] == userData.calories {
                 arrayScore[index] = 70
             } else if arrayCalories[index] < userData.calories {
@@ -544,7 +323,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         DispatchQueue.main.async {
             self.scoreLabel.text = String(Int(self.arrayScore[6]))
             self.lineChartUpdate()
-            
             
             if self.arrayScore[6] < 20 {
                 if self.hour < 10 {
