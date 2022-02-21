@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */; };
 		8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */; };
-		8B16CD6A2261343E00D8D625 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B16CD692261343E00D8D625 /* StoreKit.framework */; };
+		8B29884F27C19C5300DCD5E8 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */; };
 		8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FAF49205D881800A12D89 /* CardView.swift */; };
 		8B849FE72264BAD000B1A3D0 /* TapticEffectsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */; };
 		8B8CC5BA2260F63D00AFB974 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */; };
@@ -20,7 +20,6 @@
 		8B943B1E20584C8600C37639 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B1C20584C8600C37639 /* Main.storyboard */; };
 		8B943B2020584C8600C37639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B1F20584C8600C37639 /* Assets.xcassets */; };
 		8B943B2320584C8600C37639 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B2120584C8600C37639 /* LaunchScreen.storyboard */; };
-		8B943B2D20584CFC00C37639 /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B2C20584CFC00C37639 /* HealthKitSetupAssistant.swift */; };
 		8B943B3120584D3F00C37639 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B943B3020584D3F00C37639 /* HealthKit.framework */; };
 		8B943B3320587C8000C37639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B943B3220587C8000C37639 /* GoogleService-Info.plist */; };
 		8BA3922C222C18C500BA560A /* InAppPurchaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */; };
@@ -33,7 +32,7 @@
 		6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActivityScore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C1B7FCF3BE4E918943DD543 /* Pods-ActivityScore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.release.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.release.xcconfig"; sourceTree = "<group>"; };
 		8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicationManager.swift; sourceTree = "<group>"; };
-		8B16CD692261343E00D8D625 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		8B3FAF49205D881800A12D89 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticEffectsService.swift; sourceTree = "<group>"; };
 		8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
@@ -46,7 +45,6 @@
 		8B943B1F20584C8600C37639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B943B2220584C8600C37639 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B943B2420584C8600C37639 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B943B2C20584CFC00C37639 /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
 		8B943B2E20584D3F00C37639 /* ActivityScore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ActivityScore.entitlements; sourceTree = "<group>"; };
 		8B943B3020584D3F00C37639 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		8B943B3220587C8000C37639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -65,7 +63,6 @@
 			files = (
 				8B943B3120584D3F00C37639 /* HealthKit.framework in Frameworks */,
 				70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */,
-				8B16CD6A2261343E00D8D625 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,8 +106,8 @@
 			children = (
 				8B943B2E20584D3F00C37639 /* ActivityScore.entitlements */,
 				8B943B1620584C8600C37639 /* AppDelegate.swift */,
-				8B943B2C20584CFC00C37639 /* HealthKitSetupAssistant.swift */,
 				8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */,
+				8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */,
 				8B3F67E3205AD7B6007B77B2 /* ViewControllers */,
 				8B3FAF49205D881800A12D89 /* CardView.swift */,
 				8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */,
@@ -127,7 +124,6 @@
 		8B943B2F20584D3F00C37639 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8B16CD692261343E00D8D625 /* StoreKit.framework */,
 				8B943B3420587D0D00C37639 /* GoogleMobileAds.framework */,
 				8B943B3020584D3F00C37639 /* HealthKit.framework */,
 				6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */,
@@ -288,7 +284,7 @@
 				8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */,
 				8B849FE72264BAD000B1A3D0 /* TapticEffectsService.swift in Sources */,
 				8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */,
-				8B943B2D20584CFC00C37639 /* HealthKitSetupAssistant.swift in Sources */,
+				8B29884F27C19C5300DCD5E8 /* HealthKitManager.swift in Sources */,
 				8B8CC5BC2261089400AFB974 /* DailyCalorieTargetTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,7 +430,7 @@
 				CODE_SIGN_ENTITLEMENTS = ActivityScore/ActivityScore.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = 7344G4M3BL;
+				DEVELOPMENT_TEAM = 5W8LCC7ZD3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -443,7 +439,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tobiasruano.ActivityScore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trotos.ActivityScore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -458,7 +454,7 @@
 				CODE_SIGN_ENTITLEMENTS = ActivityScore/ActivityScore.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = 7344G4M3BL;
+				DEVELOPMENT_TEAM = 5W8LCC7ZD3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -467,7 +463,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tobiasruano.ActivityScore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trotos.ActivityScore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
