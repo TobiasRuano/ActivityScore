@@ -11,104 +11,66 @@ import HealthKit
 import GoogleMobileAds
 import Charts
 
-struct Objectives: Codable {
-    var calories    = Int()
-    //var minutesEx   = Int()
-}
-
 class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
-    let hour = Calendar.current.component(.hour, from: Date())
-    let weekDay = Calendar.current.component(.day, from: Date())
-
-    var succesFlag = true
-    
     @IBOutlet weak var LineGraphView: LineChartView!
-    
-    //Card View Items
     @IBOutlet weak var cardViewStepsLabel: UILabel!
     @IBOutlet weak var cardViewCaloriesLabel: UILabel!
     @IBOutlet weak var cardViewExerciseLabel: UILabel!
     @IBOutlet weak var cardViewWalkrunLabel: UILabel!
-    
-    //User objetives variable
-    var userData = Objectives()
-    
-    // Variables para obtener los datos de cardView
-    var cardSteps = 0
-    var cardCal = 0
-    var cardExe = 0
-    var cardKm = 0.0
-    
-    var weeklyScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    var arrayScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] {
-        didSet {
-            for i in 0..<arrayScore.count {
-                UserDefaults.standard.set(Int(arrayScore[i]), forKey: "arrayScore\(i)")
-            }
-            DispatchQueue.main.async {
-                self.lineChartUpdate()
-            }
-        }
-    }
-    var arraySteps = [0, 0, 0, 0, 0, 0, 0] {
-        didSet {
-            DispatchQueue.main.async {
-                self.obtainScoreNumber()
-            }
-        }
-    }
-    var arrayDistance = [0, 0, 0, 0, 0, 0, 0] {
-        didSet{
-            DispatchQueue.main.async {
-                self.obtainScoreNumber()
-            }
-        }
-    }
-    var arrayCalories = [0, 0, 0, 0, 0, 0, 0] {
-        didSet{
-            self.obtainScoreNumber()
-        }
-    }
-    var arrayExercise = [0, 0, 0, 0, 0, 0, 0] {
-        didSet{
-            self.obtainScoreNumber()
-        }
-    }
-    
-    //TODO: change to false
-    var inAppPurchase = false
-    
     @IBOutlet weak var adBanner: GADBannerView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var CheeringLable: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var cardView: CardView!
     @IBOutlet weak var contentView: UIView!
-    
     let healthManager = HealthKitManager.shared
+    let hour = Calendar.current.component(.hour, from: Date())
+    let weekDay = Calendar.current.component(.day, from: Date())
+    var succesFlag = true
+    var inAppPurchase = false
+    var user = UserData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        
         self.navigationItem.title = "Your Daily Score"
-        //self.tabBarItem.title = "Score"
-        
         checkOnboardingStatus()
-        
         authorizeHealthKit()
         styleChart()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        labelStyle()
+        colorStyle()
+        checkPurchaseStatus()
+        checkObjectives()
+        retrieveUserGoals()
+        retrieveHealthData()
+    }
+    
+    func retrieveUserGoals() {
+        healthManager.getUserGoal { result in
+            switch result {
+            case .success(let goals):
+                let exerciseGoal = goals.1
+                let activityGoal = goals.0
+                self.user.setUserGoals(activityGoal: activityGoal, exerciseGoal: exerciseGoal)
+            case .failure(_):
+                break
+            }
+        }
     }
     
     func retrieveHealthData() {
         healthManager.getData(type: .stepCount, unit: .count(), days: 7) { result in
             switch result {
             case .success(let steps):
-                self.arraySteps.removeAll()
-                self.arraySteps.append(contentsOf: steps)
-                let todaysSteps = self.arraySteps.last != nil ? self.arraySteps.last! : 0
-                self.cardSteps = todaysSteps
+                self.user.arraySteps.removeAll()
+                self.user.arraySteps.append(contentsOf: steps)
+                let todaysSteps = self.user.arraySteps.last != nil ? self.user.arraySteps.last! : 0
+                self.user.cardSteps = todaysSteps
+                self.obtainScoreNumber()
             case .failure(_):
                 break
             }
@@ -117,10 +79,11 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         healthManager.getData(type: .activeEnergyBurned, unit: .kilocalorie(), days: 7) { result in
             switch result {
             case .success(let calories):
-                self.arrayCalories.removeAll()
-                self.arrayCalories.append(contentsOf: calories)
-                let todaysCalories = self.arrayCalories.last != nil ? self.arrayCalories.last! : 0
-                self.cardCal = todaysCalories
+                self.user.arrayCalories.removeAll()
+                self.user.arrayCalories.append(contentsOf: calories)
+                let todaysCalories = self.user.arrayCalories.last != nil ? self.user.arrayCalories.last! : 0
+                self.user.cardCal = todaysCalories
+                self.obtainScoreNumber()
             case .failure(_):
                 break
             }
@@ -129,10 +92,11 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         healthManager.getData(type: .appleExerciseTime, unit: .minute(), days: 7) { result in
             switch result {
             case .success(let exercice):
-                self.arrayExercise.removeAll()
-                self.arrayExercise.append(contentsOf: exercice)
-                let todaysExercise = self.arrayExercise.last != nil ? self.arrayExercise.last! : 0
-                self.cardExe = todaysExercise
+                self.user.arrayExercise.removeAll()
+                self.user.arrayExercise.append(contentsOf: exercice)
+                let todaysExercise = self.user.arrayExercise.last != nil ? self.user.arrayExercise.last! : 0
+                self.user.cardExe = todaysExercise
+                self.obtainScoreNumber()
             case .failure(_):
                 break
             }
@@ -141,10 +105,11 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         healthManager.getData(type: .distanceWalkingRunning, unit: .meter(), days: 7) { result in
             switch result {
             case .success(let distance):
-                self.arrayDistance.removeAll()
-                self.arrayDistance.append(contentsOf: distance)
-                let todaysDistance = self.arrayDistance.last != nil ? self.arrayDistance.last! : 0
-                self.cardKm = Double(todaysDistance)
+                self.user.arrayDistance.removeAll()
+                self.user.arrayDistance.append(contentsOf: distance)
+                let todaysDistance = self.user.arrayDistance.last != nil ? self.user.arrayDistance.last! : 0
+                self.user.cardKm = Double(todaysDistance)
+                self.obtainScoreNumber()
             case .failure(_):
                 break
             }
@@ -162,20 +127,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
     func labelStyle() {
         let shadowColor = UIColor.white
-        
         scoreLabel.layer.shadowColor = shadowColor.cgColor
         scoreLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
         scoreLabel.layer.shadowOpacity = 1
         scoreLabel.layer.shadowRadius = 2
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        labelStyle()
-        colorStyle()
-        
-        checkPurchaseStatus()
-        checkObjectives()
-        retrieveHealthData()
     }
     
     func colorStyle() {
@@ -190,10 +145,10 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     func checkObjectives() {
         if let data = UserDefaults.standard.value(forKey: "objectives") as? Data {
             let copy = try? PropertyListDecoder().decode(Objectives.self, from: data)
-            userData = copy!
+            user.userData = copy!
         } else {
-            userData.calories = 400
-            //userData.minutesEx = 30
+            user.userData.calories = 400
+            user.userData.minutesEx = 30
         }
     }
     
@@ -246,20 +201,19 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         LineGraphView.leftAxis.axisMaximum = 110
         LineGraphView.leftAxis.axisMinimum = -10
         LineGraphView.backgroundColor = .white
-        //LineGraphView.gridBackgroundColor = .white
         LineGraphView.drawGridBackgroundEnabled = false
         LineGraphView.layer.cornerRadius = 15
         LineGraphView.clipsToBounds = false
     }
     
     func lineChartUpdate () {
-        let entry1 = ChartDataEntry(x: 1.0, y: Double(arrayScore[0]))
-        let entry2 = ChartDataEntry(x: 2.0, y: Double(arrayScore[1]))
-        let entry3 = ChartDataEntry(x: 3.0, y: Double(arrayScore[2]))
-        let entry4 = ChartDataEntry(x: 4.0, y: Double(arrayScore[3]))
-        let entry5 = ChartDataEntry(x: 5.0, y: Double(arrayScore[4]))
-        let entry6 = ChartDataEntry(x: 6.0, y: Double(arrayScore[5]))
-        let entry7 = ChartDataEntry(x: 7.0, y: Double(arrayScore[6]))
+        let entry1 = ChartDataEntry(x: 1.0, y: Double(user.arrayScore[0]))
+        let entry2 = ChartDataEntry(x: 2.0, y: Double(user.arrayScore[1]))
+        let entry3 = ChartDataEntry(x: 3.0, y: Double(user.arrayScore[2]))
+        let entry4 = ChartDataEntry(x: 4.0, y: Double(user.arrayScore[3]))
+        let entry5 = ChartDataEntry(x: 5.0, y: Double(user.arrayScore[4]))
+        let entry6 = ChartDataEntry(x: 6.0, y: Double(user.arrayScore[5]))
+        let entry7 = ChartDataEntry(x: 7.0, y: Double(user.arrayScore[6]))
         let dataSet = LineChartDataSet(values: [entry1, entry2, entry3, entry4, entry5, entry6, entry7], label: "Widgets Type")
         
         dataSet.valueTextColor = .clear
@@ -275,9 +229,8 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         dataSet.circleRadius = 3
         dataSet.drawFilledEnabled = true
         dataSet.highlightColor = UIColor(named: "pink")!
-//        dataSet.highlightColor = UIColor.blue
         dataSet.drawCircleHoleEnabled = false
-        dataSet.drawHorizontalHighlightIndicatorEnabled = false // change to false
+        dataSet.drawHorizontalHighlightIndicatorEnabled = false
         
         let firstPink = UIColor(red: 247/255, green: 191/255, blue: 190/255, alpha: 1)
         
@@ -303,28 +256,12 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func obtainScoreNumber() {
-        for index in (0..<arrayCalories.count) {
-            if arrayCalories[index] == userData.calories {
-                arrayScore[index] = 70
-            } else if arrayCalories[index] < userData.calories {
-                let valueCopy: Double = Double(arrayCalories[index]) / Double(userData.calories)
-                arrayScore[index] = valueCopy * 70.0
-            } else {
-                let valueCopy = Double(arrayCalories[index] - userData.calories)
-                arrayScore[index] = 70.0 + (0.10 * valueCopy)
-            }
-            
-            if arrayScore[index] > 100 {
-                arrayScore[index] = 100
-            }
-        }
-        
-        
+        user.obtainScoreNumber()
         DispatchQueue.main.async {
-            self.scoreLabel.text = String(Int(self.arrayScore[6]))
+            self.scoreLabel.text = String(Int(self.user.arrayScore[6]))
             self.lineChartUpdate()
             
-            if self.arrayScore[6] < 20 {
+            if self.user.arrayScore[6] < 20 {
                 if self.hour < 10 {
                     self.CheeringLable.text = "Let's own the day! 💪"
                 }else if self.hour < 17 {
@@ -332,7 +269,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                 }else {
                     self.CheeringLable.text = "SO LAZY! 😡"
                 }
-            }else if self.arrayScore[6] > 19 && self.arrayScore[6] < 40 {
+            }else if self.user.arrayScore[6] > 19 && self.user.arrayScore[6] < 40 {
                 if self.hour < 10 {
                     self.CheeringLable.text = "Let's own the day! 💪"
                 }else if self.hour < 17 {
@@ -342,7 +279,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                 }else {
                     self.CheeringLable.text = "You'll do better tomorrow! 😔"
                 }
-            }else if self.arrayScore[6] > 39 && self.arrayScore[6] < 70 {
+            }else if self.user.arrayScore[6] > 39 && self.user.arrayScore[6] < 70 {
                 if self.hour < 10 {
                     self.CheeringLable.text = "What a way to start the day. 👏"
                 }else if self.hour < 17 {
@@ -350,7 +287,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
                 }else {
                     self.CheeringLable.text = "Great Job! 💪"
                 }
-            }else if self.arrayScore[6] > 69 {
+            }else if self.user.arrayScore[6] > 69 {
                 if self.hour < 10 {
                     self.CheeringLable.text = "Excelent way to start the Day! 👍"
                 }else if self.hour < 17 {
@@ -361,12 +298,12 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             }
             
             //Display CardView Data
-            self.cardViewStepsLabel.text = "\(self.cardSteps) Steps"
-            self.cardViewCaloriesLabel.text = "\(self.cardCal) Calories"
-            self.cardViewExerciseLabel.text = "\(self.cardExe) Minutes of Exercise"
-            self.cardViewWalkrunLabel.text = "\(String(format:"%.01f", self.cardKm / 1000)) Km Walk/Run"
+            self.cardViewStepsLabel.text = "\(self.user.cardSteps) Steps"
+            self.cardViewCaloriesLabel.text = "\(self.user.cardCal) Calories"
+            self.cardViewExerciseLabel.text = "\(self.user.cardExe) Minutes of Exercise"
+            self.cardViewWalkrunLabel.text = "\(String(format:"%.01f", self.user.cardKm / 1000)) Km Walk/Run"
             //Check if theres data. If there is, health label should be ENABLED
-            if self.cardCal != 0 {
+            if self.user.cardCal != 0 {
                 UserDefaults.standard.set(true, forKey: "Flag")
             }
         }

@@ -33,17 +33,50 @@ class HealthKitManager {
                 completion(false, HealthkitSetupError.dataTypeNotAvailable)
                 return
         }
+        let activitySummaryType = HKObjectType.activitySummaryType()
         //3. Prepare a list of types you want HealthKit to read and write
         let healthKitTypesToWrite: Set<HKSampleType> = []
         let healthKitTypesToRead: Set<HKObjectType> = [stepCount,
                                                        minutesOfExercise,
                                                        distanceWalkingRunning,
-                                                       activeEnergy]
+                                                       activeEnergy,
+                                                       activitySummaryType]
         //4. Request Authorization
         HKHealthStore().requestAuthorization(toShare: healthKitTypesToWrite,
                                              read: healthKitTypesToRead) { (success, error) in
                                                 completion(success, error)
         }
+    }
+    
+    func getUserGoal(completed: @escaping(Result<(Int, Int), Error>) -> Void) {
+        let calendar = NSCalendar.current
+        let endDate = Date()
+         
+        guard let startDate = calendar.date(byAdding: .day, value: -7, to: endDate) else {
+            fatalError("*** Unable to create the start date ***")
+        }
+
+        let units: Set<Calendar.Component> = [.day, .month, .year, .era]
+
+        var startDateComponents = calendar.dateComponents(units, from: startDate)
+        startDateComponents.calendar = calendar
+
+        var endDateComponents = calendar.dateComponents(units, from: endDate)
+        endDateComponents.calendar = calendar
+
+        // Create the predicate for the query
+        let summariesWithinRange = HKQuery.predicate(forActivitySummariesBetweenStart: startDateComponents,
+                                                     end: endDateComponents)
+        let query = HKActivitySummaryQuery(predicate: summariesWithinRange) { (query, summariesOrNil, errorOrNil) -> Void in
+            guard let summaries = summariesOrNil else {
+                completed(.failure(errorOrNil!))
+                return
+            }
+            let activityGoal = Int((summaries.last?.activeEnergyBurnedGoal.doubleValue(for: .kilocalorie()))!)
+            let exerciseGoal = Int((summaries.last?.appleExerciseTimeGoal.doubleValue(for: .minute()))!)
+            completed(.success((activityGoal, exerciseGoal)))
+        }
+        healthStore.execute(query)
     }
     
     func getData(type: HKQuantityTypeIdentifier, unit: HKUnit, days: Int, completed: @escaping (Result<[Int], Error>) -> Void) {

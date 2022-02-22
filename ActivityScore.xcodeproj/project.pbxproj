@@ -10,6 +10,7 @@
 		70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */; };
 		8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */; };
 		8B29884F27C19C5300DCD5E8 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */; };
+		8B29885227C31CFA00DCD5E8 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29885127C31CFA00DCD5E8 /* UserData.swift */; };
 		8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FAF49205D881800A12D89 /* CardView.swift */; };
 		8B849FE72264BAD000B1A3D0 /* TapticEffectsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */; };
 		8B8CC5BA2260F63D00AFB974 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */; };
@@ -33,6 +34,7 @@
 		7C1B7FCF3BE4E918943DD543 /* Pods-ActivityScore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.release.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.release.xcconfig"; sourceTree = "<group>"; };
 		8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicationManager.swift; sourceTree = "<group>"; };
 		8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		8B29885127C31CFA00DCD5E8 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8B3FAF49205D881800A12D89 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticEffectsService.swift; sourceTree = "<group>"; };
 		8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
@@ -69,6 +71,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B29885027C31CAB00DCD5E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B29885127C31CFA00DCD5E8 /* UserData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8B3F67E3205AD7B6007B77B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +118,7 @@
 				8B943B1620584C8600C37639 /* AppDelegate.swift */,
 				8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */,
 				8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */,
+				8B29885027C31CAB00DCD5E8 /* Model */,
 				8B3F67E3205AD7B6007B77B2 /* ViewControllers */,
 				8B3FAF49205D881800A12D89 /* CardView.swift */,
 				8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */,
@@ -274,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */,
+				8B29885227C31CFA00DCD5E8 /* UserData.swift in Sources */,
 				8BA39232222CC33B00BA560A /* ThirdPageViewController.swift in Sources */,
 				8BA3922C222C18C500BA560A /* InAppPurchaseTableViewController.swift in Sources */,
 				8BA39230222C5C2D00BA560A /* SecondOnboardingViewController.swift in Sources */,
