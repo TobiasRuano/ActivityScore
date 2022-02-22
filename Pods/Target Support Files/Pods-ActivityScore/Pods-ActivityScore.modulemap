@@ -1,6 +1,0 @@
-framework module Pods_ActivityScore {
-  umbrella header "Pods-ActivityScore-umbrella.h"
-
-  export *
-  module * { export * }
-}
