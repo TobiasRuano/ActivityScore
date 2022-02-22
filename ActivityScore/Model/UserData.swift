@@ -10,7 +10,7 @@ import Foundation
 
 struct Objectives: Codable {
     var calories    = Int()
-    //var minutesEx   = Int()
+    var minutesEx   = Int()
 }
 
 class UserData {
@@ -41,6 +41,16 @@ class UserData {
         didSet{
             self.obtainScoreNumber()
         }
+    }
+    
+    func setUserGoals(activityGoal: Int, exerciseGoal: Int) {
+        if activityGoal != userData.calories {
+            userData.calories = activityGoal
+        }
+        if exerciseGoal != userData.minutesEx {
+            userData.minutesEx = exerciseGoal
+        }
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(userData.self), forKey: "objectives")
     }
     
     func obtainScoreNumber() {

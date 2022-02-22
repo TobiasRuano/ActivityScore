@@ -40,6 +40,28 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         styleChart()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        labelStyle()
+        colorStyle()
+        checkPurchaseStatus()
+        checkObjectives()
+        retrieveUserGoals()
+        retrieveHealthData()
+    }
+    
+    func retrieveUserGoals() {
+        healthManager.getUserGoal { result in
+            switch result {
+            case .success(let goals):
+                let exerciseGoal = goals.1
+                let activityGoal = goals.0
+                self.user.setUserGoals(activityGoal: activityGoal, exerciseGoal: exerciseGoal)
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
     func retrieveHealthData() {
         healthManager.getData(type: .stepCount, unit: .count(), days: 7) { result in
             switch result {
@@ -111,14 +133,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         scoreLabel.layer.shadowRadius = 2
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        labelStyle()
-        colorStyle()
-        checkPurchaseStatus()
-        checkObjectives()
-        retrieveHealthData()
-    }
-    
     func colorStyle() {
         view.backgroundColor = UIColor(named: "BackgroundGeneral")
         self.navigationController?.navigationBar.backgroundColor = UIColor(named: "BackgroundGeneral")
@@ -134,7 +148,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             user.userData = copy!
         } else {
             user.userData.calories = 400
-            //userData.minutesEx = 30
+            user.userData.minutesEx = 30
         }
     }
     

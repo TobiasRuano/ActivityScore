@@ -10,7 +10,8 @@ import UIKit
 
 class DailyCalorieTargetTableViewController: UITableViewController {
     
-    @IBOutlet weak var calorieTextLabel: UITextField!
+    @IBOutlet weak var calorieTextField: UITextField!
+    @IBOutlet weak var excerciseTextField: UITextField!
     
     var userData = Objectives()
     
@@ -26,27 +27,28 @@ class DailyCalorieTargetTableViewController: UITableViewController {
         if let data = UserDefaults.standard.value(forKey: "objectives") as? Data {
             let copy = try? PropertyListDecoder().decode(Objectives.self, from: data)
             userData = copy!
-            calorieTextLabel.placeholder = "\(userData.calories)cal"
+            calorieTextField.placeholder = "\(userData.calories)cal"
+            excerciseTextField.placeholder = "\(userData.minutesEx)min"
         }
-        
-//        if let data = UserDefaults.standard.value(forKey: "objectives") as? Data {
-//            let copy = try? PropertyListDecoder().decode(Objectives.self, from: data)
-//            calorieTextLabel.placeholder = "\(copy!)cal"
-//        } else {
-//            calorieTextLabel.placeholder = "400cal"
-//        }
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
-        if calorieTextLabel.text != "" {
-            
-            var value = Int(calorieTextLabel.text!)
-            if value == nil {
-                value = 400
+        if calorieTextField.text != "" {
+            var activityValue = Int(calorieTextField.text!)
+            if activityValue == nil {
+                activityValue = 400
             }
-            userData.calories = value!
-            UserDefaults.standard.set(try? PropertyListEncoder().encode(userData.self), forKey: "objectives")
+            userData.calories = activityValue!
         }
+        
+        if excerciseTextField.hasText {
+            var exerciseValue = Int(excerciseTextField.text!)
+            if exerciseValue == nil {
+                exerciseValue = 400
+            }
+            userData.minutesEx = exerciseValue!
+        }
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(userData.self), forKey: "objectives")
     }
 }

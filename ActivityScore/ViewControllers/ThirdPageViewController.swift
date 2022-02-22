@@ -11,8 +11,10 @@ import UIKit
 class ThirdPageViewController: UIViewController {
 
     @IBOutlet weak var letsGoButton: UIButton!
-    @IBOutlet weak var textLabelView: UIView!
-    @IBOutlet weak var caloriesLabel: UITextField!
+    @IBOutlet weak var caloriesView: UIView!
+    @IBOutlet weak var exerciseView: UIView!
+    @IBOutlet weak var caloriesTextField: UITextField!
+    @IBOutlet weak var exerciseTextField: UITextField!
     
     var userData = Objectives()
     
@@ -26,12 +28,16 @@ class ThirdPageViewController: UIViewController {
     
     @IBAction func ExitToRootViewController(_ sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "OnboardingScreen")
-        var value = Int(caloriesLabel.text!)
-        if value == nil {
-            value = 400
+        var activityValue = Int(caloriesTextField.text!)
+        var exerciseValue = Int(exerciseTextField.text!)
+        if activityValue == nil {
+            activityValue = 400
         }
-        userData.calories = value!
-        print(userData.calories)
+        if exerciseValue == nil {
+            exerciseValue = 30
+        }
+        userData.calories = activityValue!
+        userData.minutesEx = exerciseValue!
         UserDefaults.standard.set(try? PropertyListEncoder().encode(userData.self), forKey: "objectives")
         self.dismiss(animated: true, completion: nil)
     }
@@ -46,11 +52,17 @@ class ThirdPageViewController: UIViewController {
     }
     
     func styleView() {
-        textLabelView.layer.cornerRadius = 10
-        textLabelView.layer.shadowRadius = 10
-        textLabelView.layer.shadowColor = UIColor.lightGray.cgColor
-        textLabelView.layer.masksToBounds = false
-        textLabelView.layer.shadowOpacity = 0.5
+        caloriesView.layer.cornerRadius = 10
+        caloriesView.layer.shadowRadius = 10
+        caloriesView.layer.shadowColor = UIColor.lightGray.cgColor
+        caloriesView.layer.masksToBounds = false
+        caloriesView.layer.shadowOpacity = 0.5
+        
+        exerciseView.layer.cornerRadius = 10
+        exerciseView.layer.shadowRadius = 10
+        exerciseView.layer.shadowColor = UIColor.lightGray.cgColor
+        exerciseView.layer.masksToBounds = false
+        exerciseView.layer.shadowOpacity = 0.5
     }
     
 
