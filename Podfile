@@ -7,7 +7,7 @@ target 'ActivityScore' do
 
   # Pods for ActivityScore
   pod 'Google-Mobile-Ads-SDK'
-  pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :branch => '4.0.0'
+  pod 'Charts'
   pod 'SwiftyStoreKit'
 
 end

@@ -1,7 +1,7 @@
 PODS:
-  - Charts (3.2.1):
-    - Charts/Core (= 3.2.1)
-  - Charts/Core (3.2.1)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - Google-Mobile-Ads-SDK (7.52.0):
     - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.1.6):
@@ -34,36 +34,27 @@ PODS:
   - SwiftyStoreKit (0.15.0)
 
 DEPENDENCIES:
-  - Charts (from `https://github.com/danielgindi/Charts.git`, branch `4.0.0`)
+  - Charts
   - Google-Mobile-Ads-SDK
   - SwiftyStoreKit
 
 SPEC REPOS:
   trunk:
+    - Charts
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
     - nanopb
     - SwiftyStoreKit
 
-EXTERNAL SOURCES:
-  Charts:
-    :branch: 4.0.0
-    :git: https://github.com/danielgindi/Charts.git
-
-CHECKOUT OPTIONS:
-  Charts:
-    :commit: 5689a1c4b99f3f384c912335f4c01b32f81fc181
-    :git: https://github.com/danielgindi/Charts.git
-
 SPEC CHECKSUMS:
-  Charts: 5d168be9c09f00333e0e99475fc02545143e42d3
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   Google-Mobile-Ads-SDK: 62f6244637306cb60a1b4adda067f53224c7a860
   GoogleAppMeasurement: dfe55efa543e899d906309eaaac6ca26d249862f
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: ce911fcec9805c12f2b4036409e68a2ee124a4b7
+PODFILE CHECKSUM: f066250b837a1b07659e10f319a48a1b7bbc99a9
 
 COCOAPODS: 1.9.3
