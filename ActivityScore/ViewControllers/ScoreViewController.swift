@@ -42,7 +42,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         labelStyle()
-        colorStyle()
         checkPurchaseStatus()
         checkObjectives()
         retrieveUserGoals()
@@ -133,14 +132,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         scoreLabel.layer.shadowRadius = 2
     }
     
-    func colorStyle() {
-        view.backgroundColor = UIColor(named: "BackgroundGeneral")
-        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "BackgroundGeneral")
-        cardView.backgroundColor = UIColor(named: "BackgroundGeneral")
-        scrollView.backgroundColor = UIColor(named: "BackgroundGeneral")
-        contentView.backgroundColor = UIColor(named: "BackgroundGeneral")
-    }
-    
     //MARK: - Check initial status
     func checkObjectives() {
         if let data = UserDefaults.standard.value(forKey: "objectives") as? Data {
@@ -187,20 +178,20 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func styleChart() {
+        LineGraphView.backgroundColor = .systemBackground
         LineGraphView.dragEnabled = true
         LineGraphView.setScaleEnabled(false)
         LineGraphView.pinchZoomEnabled = false
         LineGraphView.setViewPortOffsets(left: 0, top: 0, right: 0, bottom: 0)
         LineGraphView.isUserInteractionEnabled = false
         LineGraphView.drawBordersEnabled = false
-        LineGraphView.chartDescription.enabled = false
+        LineGraphView.chartDescription?.enabled = false
         LineGraphView.legend.enabled = false
         LineGraphView.xAxis.enabled = false
         LineGraphView.leftAxis.enabled = false
         LineGraphView.rightAxis.enabled = false
         LineGraphView.leftAxis.axisMaximum = 110
         LineGraphView.leftAxis.axisMinimum = -10
-        LineGraphView.backgroundColor = .white
         LineGraphView.drawGridBackgroundEnabled = false
         LineGraphView.layer.cornerRadius = 15
         LineGraphView.clipsToBounds = false
@@ -214,16 +205,11 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         let entry5 = ChartDataEntry(x: 5.0, y: Double(user.arrayScore[4]))
         let entry6 = ChartDataEntry(x: 6.0, y: Double(user.arrayScore[5]))
         let entry7 = ChartDataEntry(x: 7.0, y: Double(user.arrayScore[6]))
-        let dataSet = LineChartDataSet(values: [entry1, entry2, entry3, entry4, entry5, entry6, entry7], label: "Widgets Type")
+        let dataSet = LineChartDataSet(entries: [entry1, entry2, entry3, entry4, entry5, entry6, entry7], label: "Widgets Type")
         
         dataSet.valueTextColor = .clear
         
         dataSet.mode = .cubicBezier
-        
-        dataSet.setColors(UIColor.init(red: 255/255, green: 192/255, blue: 203/255, alpha: 1), UIColor.init(red: 255/255, green: 45/255, blue: 85/255, alpha: 1))
-        dataSet.isDrawLineWithGradientEnabled = true
-        dataSet.gradientPositions = [0, 100]
-        
         dataSet.drawCirclesEnabled = false
         dataSet.lineWidth = 4
         dataSet.circleRadius = 3
@@ -232,10 +218,11 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         dataSet.drawCircleHoleEnabled = false
         dataSet.drawHorizontalHighlightIndicatorEnabled = false
         
-        let firstPink = UIColor(red: 247/255, green: 191/255, blue: 190/255, alpha: 1)
+        let firstPink = UIColor(red: 247/255, green: 191/255, blue: 190/255, alpha: 0)
+        dataSet.colors = [UIColor(named: "pink")!]
         
-        let gradientColors = [UIColor.white.cgColor,
-                              firstPink.cgColor]
+        let gradientColors = [firstPink.cgColor,
+                              UIColor.systemPink.cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         
         dataSet.fillAlpha = 1

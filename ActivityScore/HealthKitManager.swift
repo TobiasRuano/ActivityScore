@@ -72,8 +72,8 @@ class HealthKitManager {
                 completed(.failure(errorOrNil!))
                 return
             }
-            let activityGoal = Int((summaries.last?.activeEnergyBurnedGoal.doubleValue(for: .kilocalorie()))!)
-            let exerciseGoal = Int((summaries.last?.appleExerciseTimeGoal.doubleValue(for: .minute()))!)
+            let activityGoal = Int((summaries.last?.activeEnergyBurnedGoal.doubleValue(for: .kilocalorie())) ?? 0)
+            let exerciseGoal = Int((summaries.last?.appleExerciseTimeGoal.doubleValue(for: .minute())) ?? 0)
             completed(.success((activityGoal, exerciseGoal)))
         }
         healthStore.execute(query)
