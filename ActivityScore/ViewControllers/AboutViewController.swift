@@ -12,9 +12,13 @@ class AboutViewController: UIViewController {
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "About"
+        navigationItem.largeTitleDisplayMode = .never
+        scrollView.alwaysBounceVertical = true
         styleIconView()
         configureTableView()
     }
