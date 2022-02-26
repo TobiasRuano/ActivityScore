@@ -195,6 +195,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B943B2720584C8600C37639 /* Build configuration list for PBXNativeTarget "ActivityScore" */;
 			buildPhases = (
+				8B85A73127C9E0DD0070757F /* set build number */,
 				E82BE1AEFE3C7B40E22461A8 /* [CP] Check Pods Manifest.lock */,
 				8B943B0F20584C8600C37639 /* Sources */,
 				8B943B1020584C8600C37639 /* Frameworks */,
@@ -271,6 +272,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8B85A73127C9E0DD0070757F /* set build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "set build number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=$(sh /etc/profile; which git)\nnumber_of_commits=$(\"$git\" rev-list HEAD --count)\ngit_release_version=$(\"$git\" describe --tags --always --abbrev=0)\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\nif [ -f \"$plist\" ]; then\n /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $number_of_commits\" \"$plist\"\n /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${git_release_version#*v}\" \"$plist\"\nfi\ndone\n";
+		};
 		C4A730A19F2E8799515A2677 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
