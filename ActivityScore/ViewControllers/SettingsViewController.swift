@@ -45,6 +45,8 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
             support()
         }else if indexPath.section == 3 && indexPath.row == 2 {
             openSafariVC(self)
+        } else if indexPath.section == 3 && indexPath.row == 4 {
+            openAboutVC()
         }
     }
     
@@ -108,6 +110,11 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     
     func safariVCDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true)
+    }
+    
+    func openAboutVC() {
+        let aboutVC = AboutViewController(nibName: "AboutViewController", bundle: nil)
+        navigationController?.pushViewController(aboutVC, animated: true)
     }
     
 }

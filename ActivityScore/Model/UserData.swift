@@ -9,39 +9,29 @@
 import Foundation
 
 struct Objectives: Codable {
-    var calories    = Int()
-    var minutesEx   = Int()
+    var calories = 0
+    var minutesEx = 0
+}
+
+enum DailyDataType {
+    case steps
+    case distance
+    case calories
+    case exercise
+}
+
+struct WeekData {
+    var score: [Int]?
+    var steps: [Int]?
+    var distance: [Int]?
+    var calories: [Int]?
+    var exercise: [Int]?
 }
 
 class UserData {
     let healthManager = HealthKitManager.shared
     var userData = Objectives()
-    var cardSteps = 0
-    var cardCal = 0
-    var cardExe = 0
-    var cardKm = 0.0
-    var weeklyScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    var arrayScore = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    var arraySteps = [0, 0, 0, 0, 0, 0, 0] {
-        didSet {
-            self.obtainScoreNumber()
-        }
-    }
-    var arrayDistance = [0, 0, 0, 0, 0, 0, 0] {
-        didSet{
-            self.obtainScoreNumber()
-        }
-    }
-    var arrayCalories = [0, 0, 0, 0, 0, 0, 0] {
-        didSet{
-            self.obtainScoreNumber()
-        }
-    }
-    var arrayExercise = [0, 0, 0, 0, 0, 0, 0] {
-        didSet{
-            self.obtainScoreNumber()
-        }
-    }
+    var weekData = WeekData()
     
     func setUserGoals(activityGoal: Int, exerciseGoal: Int) {
         if activityGoal != userData.calories {
@@ -53,21 +43,44 @@ class UserData {
         UserDefaults.standard.set(try? PropertyListEncoder().encode(userData.self), forKey: "objectives")
     }
     
+    func setItemInDailyData(amounts: [Int], type: DailyDataType) {
+        switch type {
+        case .steps:
+            weekData.steps?.removeAll()
+            weekData.steps = amounts
+        case .distance:
+            weekData.distance?.removeAll()
+            weekData.distance = amounts
+        case .calories:
+            weekData.calories?.removeAll()
+            weekData.calories = amounts
+        case .exercise:
+            weekData.exercise?.removeAll()
+            weekData.exercise = amounts
+        }
+    }
+    
     func obtainScoreNumber() {
-        for index in (0..<arrayCalories.count) {
-            if arrayCalories[index] == userData.calories {
-                arrayScore[index] = 70
-            } else if arrayCalories[index] < userData.calories {
-                let valueCopy: Double = Double(arrayCalories[index]) / Double(userData.calories)
-                arrayScore[index] = valueCopy * 70.0
+        guard let weeklyCalories = weekData.calories else { return }
+        
+        weekData.score?.removeAll()
+        var scoreArray = [Int]()
+        for index in (0..<weeklyCalories.count) {
+            if weeklyCalories[index] == userData.calories {
+                scoreArray.append(70)
+            } else if weeklyCalories[index] < userData.calories {
+                let valueCopy: Int = weeklyCalories[index] / userData.calories
+                scoreArray.append(valueCopy * 70)
             } else {
-                let valueCopy = Double(arrayCalories[index] - userData.calories)
-                arrayScore[index] = 70.0 + (0.10 * valueCopy)
+                let valueCopy = weeklyCalories[index] - userData.calories
+                scoreArray.append(Int(70.0 + (0.10 * Double(valueCopy))))
             }
             
-            if arrayScore[index] > 100 {
-                arrayScore[index] = 100
+            if scoreArray[index] > 100 {
+                scoreArray.append(100)
             }
         }
+        
+        weekData.score = scoreArray
     }
 }

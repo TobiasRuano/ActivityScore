@@ -91,9 +91,11 @@ class HealthKitManager {
         let anchorDate = calendar.date(from: anchorComponents)
         
         // Define 1-day intervals starting from 0:00
-        let query = HKStatisticsCollectionQuery(quantityType: quantityType, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: interval as DateComponents)
-        
-        // Set the results handler
+        let query = HKStatisticsCollectionQuery(quantityType: quantityType,
+                                                quantitySamplePredicate: nil,
+                                                options: .cumulativeSum,
+                                                anchorDate: anchorDate!,
+                                                intervalComponents: interval as DateComponents)
         query.initialResultsHandler = {query, results, error in
             if let error = error {
                 completed(.failure(error))
