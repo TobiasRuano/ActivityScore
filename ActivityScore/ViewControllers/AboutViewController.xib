@@ -41,16 +41,15 @@
                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tOy-I1-VAF">
+                                <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tOy-I1-VAF">
                                     <rect key="frame" x="0.0" y="320.5" width="414" height="497.5"/>
-                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="WLN-Of-YQ5"/>
                                         <outlet property="delegate" destination="-1" id="LVb-H9-3q3"/>
                                     </connections>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="tOy-I1-VAF" firstAttribute="leading" secondItem="ORL-sU-kbQ" secondAttribute="leading" id="394-kY-M50"/>
                                 <constraint firstAttribute="bottom" secondItem="tOy-I1-VAF" secondAttribute="bottom" id="7RX-la-Zkf"/>
@@ -64,6 +63,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="ORL-sU-kbQ" firstAttribute="leading" secondItem="LZm-au-gOb" secondAttribute="leading" id="CfQ-e3-PBN"/>
                         <constraint firstAttribute="bottom" secondItem="ORL-sU-kbQ" secondAttribute="bottom" id="If3-Wj-CBn"/>
@@ -77,7 +77,7 @@
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
             <constraints>
                 <constraint firstItem="LZm-au-gOb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="2xp-F0-4Mt"/>
                 <constraint firstItem="LZm-au-gOb" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4Jq-T6-QMy"/>
@@ -91,7 +91,7 @@
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="secondarySystemBackgroundColor">
+        <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
