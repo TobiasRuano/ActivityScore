@@ -35,7 +35,7 @@
                                         <constraint firstAttribute="height" constant="200" id="K1W-yo-Axp"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designed and Developed by Tobias Ruano. With ❤️ in Buenos Aires, Argentina." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATg-Jf-RFc">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designed and Developed by Tobias Ruano. With ❤️ from Buenos Aires, Argentina." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATg-Jf-RFc">
                                     <rect key="frame" x="20" y="240" width="374" height="30.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" systemColor="secondaryLabelColor"/>
