@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */; };
 		8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */; };
+		8B1BE56927CB185D008F2934 /* Objectives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56827CB185D008F2934 /* Objectives.swift */; };
 		8B29884F27C19C5300DCD5E8 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */; };
 		8B29885227C31CFA00DCD5E8 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29885127C31CFA00DCD5E8 /* UserData.swift */; };
 		8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FAF49205D881800A12D89 /* CardView.swift */; };
@@ -40,6 +41,7 @@
 		6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActivityScore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C1B7FCF3BE4E918943DD543 /* Pods-ActivityScore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.release.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.release.xcconfig"; sourceTree = "<group>"; };
 		8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicationManager.swift; sourceTree = "<group>"; };
+		8B1BE56827CB185D008F2934 /* Objectives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objectives.swift; sourceTree = "<group>"; };
 		8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		8B29885127C31CFA00DCD5E8 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8B3FAF49205D881800A12D89 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				8B29885127C31CFA00DCD5E8 /* UserData.swift */,
+				8B1BE56827CB185D008F2934 /* Objectives.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				8B849FE72264BAD000B1A3D0 /* TapticEffectsService.swift in Sources */,
 				8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */,
 				8B85A72227C858DE0070757F /* CardViewDataCollectionViewController.swift in Sources */,
+				8B1BE56927CB185D008F2934 /* Objectives.swift in Sources */,
 				8B29884F27C19C5300DCD5E8 /* HealthKitManager.swift in Sources */,
 				8B8CC5BC2261089400AFB974 /* DailyCalorieTargetTableViewController.swift in Sources */,
 			);

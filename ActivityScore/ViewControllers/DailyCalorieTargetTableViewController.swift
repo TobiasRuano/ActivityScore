@@ -27,28 +27,31 @@ class DailyCalorieTargetTableViewController: UITableViewController {
         if let data = UserDefaults.standard.value(forKey: "objectives") as? Data {
             let copy = try? PropertyListDecoder().decode(Objectives.self, from: data)
             userData = copy!
-            calorieTextField.placeholder = "\(userData.calories)cal"
-            excerciseTextField.placeholder = "\(userData.minutesEx)min"
+            calorieTextField.placeholder = "\(userData.getCalories())cal"
+            excerciseTextField.placeholder = "\(userData.getMinutesExe())min"
         }
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
-        if calorieTextField.text != "" {
-            var activityValue = Int(calorieTextField.text!)
-            if activityValue == nil {
-                activityValue = 400
+        handleObjectivesTextFields()
+    }
+    
+    func handleObjectivesTextFields() {
+        var activityValue = userData.getCalories()
+        var exerciseValue = userData.getMinutesExe()
+        
+        if let caloriesText = calorieTextField.text, !caloriesText.isEmpty {
+            if let value = Int(caloriesText) {
+                activityValue = value
             }
-            userData.calories = activityValue!
         }
         
-        if excerciseTextField.hasText {
-            var exerciseValue = Int(excerciseTextField.text!)
-            if exerciseValue == nil {
-                exerciseValue = 400
+        if let exerciseText = excerciseTextField.text, !exerciseText.isEmpty {
+            if let value = Int(exerciseText) {
+                exerciseValue = value
             }
-            userData.minutesEx = exerciseValue!
         }
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(userData.self), forKey: "objectives")
+        userData.setCustomObjectives(newCalories: activityValue, newMinutesExe: exerciseValue)
     }
 }
