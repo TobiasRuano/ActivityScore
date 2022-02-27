@@ -17,7 +17,7 @@ class ThirdPageViewController: UIViewController {
     @IBOutlet weak var exerciseTextField: UITextField!
     @IBOutlet weak var customGoalsSwitch: UISwitch!
     
-    let onboardingViewModel = OnboardingViewModel()
+    let onboardingViewModel = OnboardingViewModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
