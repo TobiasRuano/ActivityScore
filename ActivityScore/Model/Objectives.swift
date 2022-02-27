@@ -47,8 +47,8 @@ class Objectives: Codable {
     
     func getUserDefaultsFlag() {
         if let value = UserDefaults.standard.value(forKey: "customObjectives") {
-            if let booleanValue = value as? Bool {
-                usesCustomObjectives = booleanValue
+            if let value = value as? Objectives {
+                usesCustomObjectives = value.usesCustomObjectives
             } else {
                 usesCustomObjectives = false
             }
@@ -59,7 +59,7 @@ class Objectives: Codable {
     
     func setUserDefaultsFlag(flag: Bool) {
         usesCustomObjectives = flag
-        UserDefaults.standard.set(flag, forKey: "customObjectives")
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(self), forKey: "objectives")
     }
     
 }
