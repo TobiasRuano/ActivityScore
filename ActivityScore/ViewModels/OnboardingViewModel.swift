@@ -10,8 +10,9 @@ import Foundation
 
 class OnboardingViewModel: ObjectivesViewModel {
     
-    let healthManager = HealthKitManager.shared
     var succesFlag = true
+    private var caloriesHealth: Int?
+    private var minuteExe: Int?
     
     static let shared = OnboardingViewModel()
     
@@ -37,22 +38,22 @@ class OnboardingViewModel: ObjectivesViewModel {
         }
     }
     
-    func getUserObjectivesFromFitnessApp(completed: @escaping (Result<(Int, Int), Error>) -> Void) {
-        healthManager.getUserGoal { result in
-            switch result {
-            case .success(let fitnessObjectives):
-                let calories = fitnessObjectives.0
-                let minutesExe = fitnessObjectives.1
-                self.setObjectivesFromHealth(newCalories: calories, newMinutesExe: minutesExe)
-                DispatchQueue.main.async {
-                    completed(.success((calories, minutesExe)))
-                }
-            case .failure(let error):
-                print(error)
-                DispatchQueue.main.async {
-                    completed(.failure(error))
-                }
-            }
-        }
-    }
+//    func getUserObjectivesFromFitnessApp(completed: @escaping (Result<(Int, Int), Error>) -> Void) {
+//        healthManager.getUserGoal { result in
+//            switch result {
+//            case .success(let fitnessObjectives):
+//                self.caloriesHealth = fitnessObjectives.0
+//                self.minuteExe = fitnessObjectives.1
+//                self.setObjectives(newCalories: self.caloriesHealth!, newMinutesExe: self.minuteExe!)
+//                DispatchQueue.main.async {
+//                    completed(.success((self.caloriesHealth!, self.minuteExe!)))
+//                }
+//            case .failure(let error):
+//                self.setObjectives(newCalories: 0, newMinutesExe: 0)
+//                DispatchQueue.main.async {
+//                    completed(.failure(error))
+//                }
+//            }
+//        }
+//    }
 }

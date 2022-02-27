@@ -90,10 +90,29 @@ class ThirdPageViewController: UIViewController {
             caloriesTextField.isEnabled = true
             exerciseTextField.isEnabled = true
         } else {
-            // correjir placeholder con health data
             onboardingViewModel.changeUsesCustomObjectives(value: false)
             caloriesTextField.isEnabled = false
             exerciseTextField.isEnabled = false
+            caloriesTextField.text = nil
+            exerciseTextField.text = nil
+            defaultGoal()
+        }
+    }
+    
+    func defaultGoal() {
+        onboardingViewModel.getUserObjectivesFromFitnessApp { result in
+            switch result {
+            case .success(let values):
+                DispatchQueue.main.async {
+                    self.caloriesTextField.placeholder = "\(values.0) cal"
+                    self.exerciseTextField.placeholder = "\(values.1) min"
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.caloriesTextField.placeholder = "\(0) cal"
+                    self.exerciseTextField.placeholder = "\(1) min"
+                }
+            }
         }
     }
     

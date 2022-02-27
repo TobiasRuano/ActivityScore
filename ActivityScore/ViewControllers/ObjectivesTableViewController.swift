@@ -27,6 +27,7 @@ class ObjectivesTableViewController: UITableViewController {
             customGoalsSwitch.isOn = value
         } else {
             customGoalsSwitch.isOn = false
+            objectivesViewModel.setDefaultFitnessGoals()
         }
         
         if customGoalsSwitch.isOn {
@@ -73,6 +74,26 @@ class ObjectivesTableViewController: UITableViewController {
             objectivesViewModel.changeUsesCustomObjectives(value: false)
             calorieTextField.isEnabled = false
             excerciseTextField.isEnabled = false
+            calorieTextField.text = nil
+            excerciseTextField.text = nil
+            defaultGoal()
+        }
+    }
+    
+    func defaultGoal() {
+        objectivesViewModel.getUserObjectivesFromFitnessApp { result in
+            switch result {
+            case .success(let values):
+                DispatchQueue.main.async {
+                    self.calorieTextField.placeholder = "\(values.0) cal"
+                    self.excerciseTextField.placeholder = "\(values.1) min"
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.calorieTextField.placeholder = "\(0) cal"
+                    self.excerciseTextField.placeholder = "\(1) min"
+                }
+            }
         }
     }
     
