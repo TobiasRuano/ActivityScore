@@ -492,8 +492,8 @@ Slide to Get Started!</string>
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Calorie Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyB-vy-b7O">
-                                                    <rect key="frame" x="16" y="11" width="147.66666666666666" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Goals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyB-vy-b7O">
+                                                    <rect key="frame" x="16" y="11" width="85" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -646,11 +646,11 @@ Slide to Get Started!</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="Pcg-HK-flW">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="Pcg-HK-flW">
                                         <rect key="frame" x="16" y="483.66666412353516" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pcg-HK-flW" id="ahN-8t-BeZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9k-2w-ivR">
@@ -824,7 +824,7 @@ Slide to Get Started!</string>
             </objects>
             <point key="canvasLocation" x="201" y="328"/>
         </scene>
-        <!--Daily Calorie Target-->
+        <!--Daily Goals-->
         <scene sceneID="qoT-pb-X5o">
             <objects>
                 <tableViewController id="rdL-dJ-Fj9" customClass="ObjectivesTableViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
@@ -917,7 +917,7 @@ Slide to Get Started!</string>
                             <outlet property="delegate" destination="rdL-dJ-Fj9" id="zHJ-eV-yTA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Daily Calorie Target" largeTitleDisplayMode="never" id="gqH-UM-L4v"/>
+                    <navigationItem key="navigationItem" title="Daily Goals" largeTitleDisplayMode="never" id="gqH-UM-L4v"/>
                     <connections>
                         <outlet property="calorieTextField" destination="NkP-aP-yWX" id="gT4-EN-o1v"/>
                         <outlet property="customGoalsSwitch" destination="tKb-4Q-hFM" id="mOV-Q8-gHY"/>
