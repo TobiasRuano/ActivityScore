@@ -79,7 +79,7 @@ class HealthKitManager {
         healthStore.execute(query)
     }
     
-    func getData(type: HKQuantityTypeIdentifier, unit: HKUnit, days: Int, completed: @escaping (Result<[Int], Error>) -> Void) {
+    func getData(type: HKQuantityTypeIdentifier, unit: HKUnit, days: Int, completed: @escaping (Result<[Date: Int], Error>) -> Void) {
         let calendar = NSCalendar.current
         let interval = NSDateComponents()
         interval.day = 1
@@ -104,12 +104,13 @@ class HealthKitManager {
             
             let endDate = NSDate()
             let startDate = calendar.date(byAdding: .day, value: -(days - 1), to: endDate as Date, wrappingComponents: false)
-            var completeDataArray: [Int] = []
+            var completeDataArray: [Date: Int] = [:]
             if let myResults = results{
                 myResults.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, stop in
                     if let quantity = statistics.sumQuantity(){
+                        let date = statistics.startDate
                         let dayData = quantity.doubleValue(for: unit)
-                        completeDataArray.append(Int(dayData))
+                        completeDataArray[date] = Int(dayData)
                     }
                 }
             }

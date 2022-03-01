@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cLD-St-MRP">
-    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -16,7 +16,7 @@
                 <pageViewController storyboardIdentifier="OnboardingRoot" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="l4I-rG-Tyt" customClass="OnboardingRootPageViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GwQ-6r-UMj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="993" y="-1108"/>
+            <point key="canvasLocation" x="-1753" y="-290"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qyr-cr-uHL">
@@ -64,7 +64,7 @@ Slide to Get Started!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNm-Lu-2ne" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="729" y="-1774"/>
+            <point key="canvasLocation" x="-2017" y="-955"/>
         </scene>
         <!--Second Onboarding View Controller-->
         <scene sceneID="NYC-Bw-g1x">
@@ -137,7 +137,7 @@ Slide to Get Started!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ao-GX-SIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1360.8" y="-1774.3628185907048"/>
+            <point key="canvasLocation" x="-1385" y="-956"/>
         </scene>
         <!--Third Page View Controller-->
         <scene sceneID="g0U-ec-dEi">
@@ -289,7 +289,7 @@ Slide to Get Started!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOX-Eq-IeR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1992.8" y="-1774.1379310344828"/>
+            <point key="canvasLocation" x="-753" y="-955"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="WYp-sO-vda">
@@ -355,7 +355,7 @@ Slide to Get Started!</string>
                                                     <constraint firstAttribute="width" secondItem="mxM-BI-qix" secondAttribute="height" multiplier="355:310" id="3DB-36-IAB"/>
                                                 </constraints>
                                                 <connections>
-                                                    <segue destination="WEL-IU-prb" kind="embed" id="Yg7-tG-Po0"/>
+                                                    <segue destination="WEL-IU-prb" kind="embed" identifier="cardViewSegue" id="Yg7-tG-Po0"/>
                                                 </connections>
                                             </containerView>
                                         </subviews>
@@ -424,7 +424,7 @@ Slide to Get Started!</string>
         <!--Card View Data Collection View Controller-->
         <scene sceneID="BNx-ab-U7E">
             <objects>
-                <collectionViewController id="WEL-IU-prb" customClass="CardViewDataCollectionViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="CardViewDataCollectionViewController" id="WEL-IU-prb" customClass="CardViewDataCollectionViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="JjH-Zi-ijL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="327.33333333333331"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -437,14 +437,14 @@ Slide to Get Started!</string>
                         </collectionViewFlowLayout>
                         <cells/>
                         <connections>
-                            <outlet property="dataSource" destination="WEL-IU-prb" id="VCE-cn-rCg"/>
-                            <outlet property="delegate" destination="WEL-IU-prb" id="LBK-iq-hUd"/>
+                            <outlet property="dataSource" destination="WEL-IU-prb" id="SD7-77-Pcq"/>
+                            <outlet property="delegate" destination="WEL-IU-prb" id="Rn2-Sp-jAi"/>
                         </connections>
                     </collectionView>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJo-Zk-iKY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="-623"/>
+            <point key="canvasLocation" x="1919" y="-370"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="gE3-L1-olf">
@@ -765,7 +765,7 @@ Slide to Get Started!</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O6v-q3-7Ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1918" y="723"/>
+            <point key="canvasLocation" x="1916" y="743"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ml2-9o-Ynd">
@@ -926,7 +926,7 @@ Slide to Get Started!</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihE-QY-gca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1917.5999999999999" y="50.985221674876847"/>
+            <point key="canvasLocation" x="1918" y="98"/>
         </scene>
     </scenes>
     <resources>
