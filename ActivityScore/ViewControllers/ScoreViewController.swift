@@ -154,7 +154,14 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
 //        cardViewController.weekData = scoreViewModel.user.getFitnessData()
 //        cardViewController.collectionView.reloadData()
 //        self.addChild(cardViewController)
-        
+        let children = self.children
+        for element in children {
+            if element is CardViewDataCollectionViewController {
+                let vc = element as! CardViewDataCollectionViewController
+                vc.weekData = self.scoreViewModel.user.getFitnessData()
+                vc.collectionView.reloadData()
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

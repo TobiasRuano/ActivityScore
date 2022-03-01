@@ -8,20 +8,24 @@
 
 import UIKit
 
-private let reuseIdentifier = "CardViewDataCollectionViewCell"
-
 class CardViewDataCollectionViewController: UICollectionViewController {
     
-    var weekData: WeekData?
+    private let reuseIdentifier = "CardViewDataCollectionViewCell"
+    
+    var weekData: [Date: DailyData]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        let nibName = UINib(nibName: "CardViewDataCollectionViewCell", bundle: nil)
+        self.collectionView.register(nibName, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -44,20 +48,26 @@ class CardViewDataCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if let userData = weekData {
-//            return weekData?.score!count
-//        } else {
-//            return 0
-//        }
-        return 0
+        if let userData = weekData {
+            return userData.count
+        } else {
+            return 0
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CardViewDataCollectionViewCell
-//        if let weekData = weekData {
-//            let dayData = weekData[indexPath.row]
-//            cell.configureCell(steps: dayData.steps, calories: dayData.calories, excercise: dayData.exercise, distance: dayData.distance)
-//        }
+        if let weekData = weekData {
+            let keysArray = Array(weekData.keys)
+            let index = keysArray[indexPath.row]
+            if let dayData = weekData[index] {
+                cell.configureCell(steps: dayData.steps,
+                                   calories: dayData.calories,
+                                   excercise: dayData.exercise,
+                                   distance: dayData.distance,
+                                   date: keysArray[indexPath.row])
+            }
+        }
         return cell
     }
 
@@ -92,4 +102,10 @@ class CardViewDataCollectionViewController: UICollectionViewController {
     }
     */
 
+}
+
+extension CardViewDataCollectionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 355, height: 350)
+    }
 }
