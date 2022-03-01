@@ -25,7 +25,6 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     
     override func viewWillAppear(_ animated: Bool) {
         flag = UserDefaults.standard.bool(forKey: "Flag")
-        print("\(flag)")
         
         if flag == true {
             healthLabel.text = "Enabled"

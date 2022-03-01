@@ -74,7 +74,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         for element in children {
             if element is CardViewDataCollectionViewController {
                 let vc = element as! CardViewDataCollectionViewController
-                vc.weekData = self.scoreViewModel.user.getFitnessData()
+                vc.weekData = self.scoreViewModel.getFitnessDataInOrder().reversed()
                 vc.collectionView.reloadData()
             }
         }
@@ -85,7 +85,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         for element in children {
             if element is LineGraphViewController {
                 let vc = element as! LineGraphViewController
-                vc.data = self.scoreViewModel.user.getFitnessData()
+                vc.data = self.scoreViewModel.getFitnessDataInOrder()
                 vc.lineChartUpdate()
             }
         }
@@ -95,7 +95,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         scoreViewModel.checkPurchaseStatus { status in
             switch status {
             case true:
-                self.addAd()
+                self.setAdBanner()
                 self.adBanner.isHidden = false
             case false:
                 self.adBanner.rootViewController = nil
@@ -104,7 +104,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         }
     }
     
-    func addAd() {
+    func setAdBanner() {
         let request = GADRequest()
         request.testDevices = [(kGADSimulatorID as! String)]
         request.testDevices = [ "21df7f3d09709224a09480ff10d324aa" ]

@@ -11,7 +11,7 @@ import Charts
 
 class LineGraphViewController: UIViewController {
     
-    var data: [Date: DailyData]?
+    var data: [Dictionary<Date, DailyData>.Element]?
     @IBOutlet weak var LineGraphView: LineChartView!
 
     override func viewDidLoad() {

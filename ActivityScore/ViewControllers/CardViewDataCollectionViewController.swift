@@ -12,33 +12,17 @@ class CardViewDataCollectionViewController: UICollectionViewController {
     
     private let reuseIdentifier = "CardViewDataCollectionViewCell"
     
-    var weekData: [Date: DailyData]?
+    var weekData: [Dictionary<Date, DailyData>.Element]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
+        
         let nibName = UINib(nibName: "CardViewDataCollectionViewCell", bundle: nil)
         self.collectionView.register(nibName, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -58,15 +42,8 @@ class CardViewDataCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CardViewDataCollectionViewCell
         if let weekData = weekData {
-            let keysArray = Array(weekData.keys)
-            let index = keysArray[indexPath.row]
-            if let dayData = weekData[index] {
-                cell.configureCell(steps: dayData.steps,
-                                   calories: dayData.calories,
-                                   excercise: dayData.exercise,
-                                   distance: dayData.distance,
-                                   date: keysArray[indexPath.row])
-            }
+            let value = weekData[indexPath.row].value
+            cell.configureCell(steps: value.steps, calories: value.calories, excercise: value.exercise, distance: value.distance, date: weekData[indexPath.row].key)
         }
         return cell
     }
@@ -107,5 +84,6 @@ class CardViewDataCollectionViewController: UICollectionViewController {
 extension CardViewDataCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 355, height: 350)
+        // TODO: chequear bien esto
     }
 }

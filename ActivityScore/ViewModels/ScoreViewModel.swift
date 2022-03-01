@@ -15,11 +15,9 @@ protocol ScoreViewModelProtocol: Any {
 class ScoreViewModel {
     
     let healthManager = HealthKitManager.shared
-    var succesFlag = true
-    var inAppPurchase = false
-    var user = Fitness()
-    //    var fitnessData: Fitness?
-    var userObjectives: Objectives?
+    private var succesFlag = true
+    private var inAppPurchase = false
+    private var user = Fitness()
     var delegate: ScoreViewModelProtocol?
     
     func retrieveHealthData() {
@@ -86,15 +84,6 @@ class ScoreViewModel {
         }
     }
     
-    func checkObjectives() {
-        if let data = UserDefaults.standard.value(forKey: "objectives") as? Data {
-            let copy = try? PropertyListDecoder().decode(Objectives.self, from: data)
-            userObjectives = copy!
-        } else {
-            userObjectives = Objectives()
-        }
-    }
-    
     func checkPurchaseStatus(completed: @escaping(Bool) -> Void) {
         if let inAppKeyValue = UserDefaults.standard.value(forKey: "purchase") as? Bool {
             inAppPurchase = inAppKeyValue
@@ -107,6 +96,10 @@ class ScoreViewModel {
         } else {
             completed(false)
         }
+    }
+    
+    func getFitnessDataInOrder() -> [Dictionary<Date, DailyData>.Element] {
+        return user.getFitnessData().sorted(by: { $0.0 < $1.0 })
     }
     
     //MARK: - Authorize healthKit
