@@ -32,7 +32,8 @@ class CardViewDataCollectionViewCell: UICollectionViewCell {
             excerciseLabel.text = "\(excercise) Excercise Minutes"
         }
         if let distance = distance {
-            distanceLabel.text = "\(String(format:"%.01f", distance / 1000)) KM Walked/Runned"
+            let value = Double(distance) / 1000.0
+            distanceLabel.text = "\(String(format:"%.01f", value)) KM Walked/Runned"
         }
         if let date = date {
             configureDateLabel(date: date)
