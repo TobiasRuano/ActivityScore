@@ -331,24 +331,15 @@ Slide to Get Started!</string>
                                                 <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="day-cG-wQi">
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTx-zg-zEl">
                                                 <rect key="frame" x="0.0" y="254" width="375" height="274"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOF-PU-5vW" customClass="LineChartView" customModule="Charts">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="274"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="XOF-PU-5vW" secondAttribute="height" multiplier="375:274" id="gAh-FJ-vYq"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="XOF-PU-5vW" secondAttribute="bottom" id="WCL-vq-eVs"/>
-                                                    <constraint firstItem="XOF-PU-5vW" firstAttribute="leading" secondItem="day-cG-wQi" secondAttribute="leading" id="jxo-Ui-T1w"/>
-                                                    <constraint firstAttribute="trailing" secondItem="XOF-PU-5vW" secondAttribute="trailing" id="k6o-Kv-EYF"/>
-                                                    <constraint firstItem="XOF-PU-5vW" firstAttribute="top" secondItem="day-cG-wQi" secondAttribute="top" id="u4s-kT-08Z"/>
+                                                    <constraint firstAttribute="width" secondItem="TTx-zg-zEl" secondAttribute="height" multiplier="375:274" id="vcP-eX-Fsg"/>
                                                 </constraints>
-                                            </view>
+                                                <connections>
+                                                    <segue destination="g7l-A9-c77" kind="embed" identifier="LineGraphSegue" id="s6k-jQ-9bI"/>
+                                                </connections>
+                                            </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxM-BI-qix">
                                                 <rect key="frame" x="0.0" y="573" width="375" height="327.33333333333326"/>
                                                 <constraints>
@@ -361,16 +352,16 @@ Slide to Get Started!</string>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="cLi-PR-dDU" firstAttribute="top" secondItem="TXp-ex-yP5" secondAttribute="top" constant="30" id="0uA-PH-tL8"/>
-                                            <constraint firstItem="mxM-BI-qix" firstAttribute="top" secondItem="day-cG-wQi" secondAttribute="bottom" constant="45" id="37t-aj-2q0"/>
+                                            <constraint firstAttribute="trailing" secondItem="TTx-zg-zEl" secondAttribute="trailing" id="2sF-Rg-Ezj"/>
                                             <constraint firstItem="mxM-BI-qix" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" id="6Dm-SV-5fm"/>
                                             <constraint firstAttribute="trailing" secondItem="mxM-BI-qix" secondAttribute="trailing" id="EtK-eL-ZeE"/>
                                             <constraint firstItem="qtU-GM-a4n" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" id="JFb-vx-N8B"/>
                                             <constraint firstItem="qtU-GM-a4n" firstAttribute="top" secondItem="cLi-PR-dDU" secondAttribute="bottom" id="PSk-u6-w01"/>
-                                            <constraint firstItem="day-cG-wQi" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" id="QVC-pV-4Pa"/>
-                                            <constraint firstItem="day-cG-wQi" firstAttribute="top" secondItem="qtU-GM-a4n" secondAttribute="bottom" constant="45" id="ZY1-x6-wns"/>
                                             <constraint firstAttribute="trailing" secondItem="cLi-PR-dDU" secondAttribute="trailing" id="ZZ0-vP-4DB"/>
+                                            <constraint firstItem="TTx-zg-zEl" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" id="cyL-BA-Smj"/>
                                             <constraint firstAttribute="bottom" secondItem="mxM-BI-qix" secondAttribute="bottom" constant="10" id="h1h-Mn-JZp"/>
-                                            <constraint firstAttribute="trailing" secondItem="day-cG-wQi" secondAttribute="trailing" id="sxH-nt-ZrE"/>
+                                            <constraint firstItem="TTx-zg-zEl" firstAttribute="top" secondItem="qtU-GM-a4n" secondAttribute="bottom" constant="45" id="jUQ-39-wVE"/>
+                                            <constraint firstItem="mxM-BI-qix" firstAttribute="top" secondItem="TTx-zg-zEl" secondAttribute="bottom" constant="45" id="nFS-Wz-obc"/>
                                             <constraint firstItem="cLi-PR-dDU" firstAttribute="leading" secondItem="TXp-ex-yP5" secondAttribute="leading" id="tbg-wi-SeE"/>
                                             <constraint firstAttribute="trailing" secondItem="qtU-GM-a4n" secondAttribute="trailing" id="w9U-WW-0MU"/>
                                         </constraints>
@@ -409,9 +400,8 @@ Slide to Get Started!</string>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="3ak-BL-BYH"/>
                     <connections>
-                        <outlet property="CheeringLable" destination="qtU-GM-a4n" id="WK1-1D-55b"/>
-                        <outlet property="LineGraphView" destination="XOF-PU-5vW" id="oza-4s-naC"/>
                         <outlet property="adBanner" destination="afF-gl-cvP" id="TCY-pN-MO9"/>
+                        <outlet property="cheeringLable" destination="qtU-GM-a4n" id="WK1-1D-55b"/>
                         <outlet property="contentView" destination="TXp-ex-yP5" id="0fh-vf-Ldu"/>
                         <outlet property="scoreLabel" destination="cLi-PR-dDU" id="fru-os-RiB"/>
                         <outlet property="scrollView" destination="HPK-ti-XXM" id="UJB-rN-jTr"/>
@@ -426,7 +416,7 @@ Slide to Get Started!</string>
             <objects>
                 <collectionViewController storyboardIdentifier="CardViewDataCollectionViewController" id="WEL-IU-prb" customClass="CardViewDataCollectionViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="JjH-Zi-ijL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="327.33333333333331"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="327"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qt4-YX-OVH">
@@ -927,6 +917,39 @@ Slide to Get Started!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihE-QY-gca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1918" y="98"/>
+        </scene>
+        <!--Line Graph View Controller-->
+        <scene sceneID="aeJ-gg-ZNk">
+            <objects>
+                <viewController id="g7l-A9-c77" customClass="LineGraphViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B6b-fk-27u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="274"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKs-p6-8Lk" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="274"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qKs-p6-8Lk" secondAttribute="height" multiplier="375:274" id="jGs-Dk-sr2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qKs-p6-8Lk" firstAttribute="top" secondItem="B6b-fk-27u" secondAttribute="top" id="FcU-Kd-JQV"/>
+                            <constraint firstAttribute="trailing" secondItem="qKs-p6-8Lk" secondAttribute="trailing" id="JP7-3D-haF"/>
+                            <constraint firstAttribute="bottom" secondItem="qKs-p6-8Lk" secondAttribute="bottom" id="a9b-ki-kwg"/>
+                            <constraint firstItem="qKs-p6-8Lk" firstAttribute="leading" secondItem="B6b-fk-27u" secondAttribute="leading" id="lth-cf-mQA"/>
+                            <constraint firstItem="qKs-p6-8Lk" firstAttribute="width" secondItem="qKs-p6-8Lk" secondAttribute="height" multiplier="375:274" id="wbW-TO-TPq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="LineGraphView" destination="qKs-p6-8Lk" id="ynF-dQ-SYx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oZL-cd-UHt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="-652"/>
         </scene>
     </scenes>
     <resources>
