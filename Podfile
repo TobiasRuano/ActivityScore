@@ -9,5 +9,5 @@ target 'ActivityScore' do
   pod 'Google-Mobile-Ads-SDK'
   pod 'Charts'
   pod 'SwiftyStoreKit'
-
+  pod 'ProgressHUD'
 end

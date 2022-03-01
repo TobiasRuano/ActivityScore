@@ -226,8 +226,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B943B2720584C8600C37639 /* Build configuration list for PBXNativeTarget "ActivityScore" */;
 			buildPhases = (
-				8B85A73127C9E0DD0070757F /* set build number */,
 				E82BE1AEFE3C7B40E22461A8 /* [CP] Check Pods Manifest.lock */,
+				8B85A73127C9E0DD0070757F /* set build number */,
 				8B943B0F20584C8600C37639 /* Sources */,
 				8B943B1020584C8600C37639 /* Frameworks */,
 				8B943B1120584C8600C37639 /* Resources */,
@@ -330,6 +330,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ActivityScore/Pods-ActivityScore-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -337,6 +338,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);

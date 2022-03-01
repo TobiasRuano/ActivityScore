@@ -9,6 +9,7 @@
 import UIKit
 import HealthKit
 import GoogleMobileAds
+import ProgressHUD
 
 class ScoreViewController: UIViewController, GADBannerViewDelegate {
     
@@ -28,6 +29,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        ProgressHUD.show()
         labelStyle()
         configureAdBanner()
         healthData()
@@ -121,6 +123,7 @@ extension ScoreViewController: ScoreViewModelProtocol {
         setLineGraph()
         setScoreText(score: scoreText, description: descriptionText)
         setCardView()
+        ProgressHUD.dismiss()
     }
 }
 
