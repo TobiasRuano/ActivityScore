@@ -15,30 +15,49 @@ class ThirdPageViewController: UIViewController {
     @IBOutlet weak var exerciseView: UIView!
     @IBOutlet weak var caloriesTextField: UITextField!
     @IBOutlet weak var exerciseTextField: UITextField!
+    @IBOutlet weak var customGoalsSwitch: UISwitch!
     
-    var userData = Objectives()
+    let onboardingViewModel = OnboardingViewModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         styleButton()
         styleView()
+        onboardingViewModel.getUserObjectivesFromFitnessApp { result in
+            switch result {
+            case .success(let fitnessObjectives):
+                self.caloriesTextField.placeholder = "\(Int(fitnessObjectives.0)) cal"
+                self.exerciseTextField.placeholder = "\(Int(fitnessObjectives.1)) min"
+            case .failure(_):
+                self.caloriesTextField.placeholder = "0 cal"
+                self.exerciseTextField.placeholder = "0 min"
+            }
+        }
     }
+    
     @IBAction func didEndEditingTextField(_ sender: Any) {
     }
     
     @IBAction func ExitToRootViewController(_ sender: UIButton) {
+        if customGoalsSwitch.isOn {
+            var calories = onboardingViewModel.userObjectives.calories
+            var exercise = onboardingViewModel.userObjectives.minutesEx
+            if let caloriesText = caloriesTextField.text {
+                if let value = Int(caloriesText) {
+                    onboardingViewModel.changeUsesCustomObjectives(value: true)
+                    calories = value
+                }
+            }
+            if let exerciseText = exerciseTextField.text {
+                if let value = Int(exerciseText) {
+                    onboardingViewModel.changeUsesCustomObjectives(value: true)
+                    exercise = value
+                }
+            }
+            onboardingViewModel.setCustomObjectives(newCalories: calories, newMinutesExe: exercise)
+        }
+        
         UserDefaults.standard.set(true, forKey: "OnboardingScreen")
-        var activityValue = Int(caloriesTextField.text!)
-        var exerciseValue = Int(exerciseTextField.text!)
-        if activityValue == nil {
-            activityValue = 400
-        }
-        if exerciseValue == nil {
-            exerciseValue = 30
-        }
-        userData.calories = activityValue!
-        userData.minutesEx = exerciseValue!
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(userData.self), forKey: "objectives")
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -65,5 +84,36 @@ class ThirdPageViewController: UIViewController {
         exerciseView.layer.shadowOpacity = 0.5
     }
     
-
+    @IBAction func selectGoalInput(_ sender: Any) {
+        if customGoalsSwitch.isOn {
+            onboardingViewModel.changeUsesCustomObjectives(value: true)
+            caloriesTextField.isEnabled = true
+            exerciseTextField.isEnabled = true
+        } else {
+            onboardingViewModel.changeUsesCustomObjectives(value: false)
+            caloriesTextField.isEnabled = false
+            exerciseTextField.isEnabled = false
+            caloriesTextField.text = nil
+            exerciseTextField.text = nil
+            defaultGoal()
+        }
+    }
+    
+    func defaultGoal() {
+        onboardingViewModel.getUserObjectivesFromFitnessApp { result in
+            switch result {
+            case .success(let values):
+                DispatchQueue.main.async {
+                    self.caloriesTextField.placeholder = "\(values.0) cal"
+                    self.exerciseTextField.placeholder = "\(values.1) min"
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.caloriesTextField.placeholder = "\(0) cal"
+                    self.exerciseTextField.placeholder = "\(1) min"
+                }
+            }
+        }
+    }
+    
 }

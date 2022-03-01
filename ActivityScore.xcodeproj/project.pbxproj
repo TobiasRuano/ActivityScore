@@ -9,12 +9,24 @@
 /* Begin PBXBuildFile section */
 		70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */; };
 		8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */; };
+		8B1BE56727CB16EE008F2934 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56627CB16EE008F2934 /* ScoreViewModel.swift */; };
+		8B1BE56927CB185D008F2934 /* Objectives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56827CB185D008F2934 /* Objectives.swift */; };
+		8B1BE56B27CBB03B008F2934 /* ObjectivesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56A27CBB03B008F2934 /* ObjectivesViewModel.swift */; };
+		8B1BE56E27CBBCEC008F2934 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56D27CBBCEC008F2934 /* OnboardingViewModel.swift */; };
 		8B29884F27C19C5300DCD5E8 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */; };
-		8B29885227C31CFA00DCD5E8 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29885127C31CFA00DCD5E8 /* UserData.swift */; };
+		8B29885227C31CFA00DCD5E8 /* Fitness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29885127C31CFA00DCD5E8 /* Fitness.swift */; };
 		8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FAF49205D881800A12D89 /* CardView.swift */; };
+		8B42A44C27CE81AC00A7CDF6 /* LineGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42A44B27CE81AC00A7CDF6 /* LineGraphViewController.swift */; };
 		8B849FE72264BAD000B1A3D0 /* TapticEffectsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */; };
+		8B85A72227C858DE0070757F /* CardViewDataCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85A72127C858DE0070757F /* CardViewDataCollectionViewController.swift */; };
+		8B85A72527C859DC0070757F /* CardViewDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85A72327C859DC0070757F /* CardViewDataCollectionViewCell.swift */; };
+		8B85A72627C859DC0070757F /* CardViewDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B85A72427C859DC0070757F /* CardViewDataCollectionViewCell.xib */; };
+		8B85A72927C9C8800070757F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85A72727C9C87F0070757F /* AboutViewController.swift */; };
+		8B85A72A27C9C8800070757F /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B85A72827C9C87F0070757F /* AboutViewController.xib */; };
+		8B85A72D27C9D7D00070757F /* AboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85A72B27C9D7CF0070757F /* AboutTableViewCell.swift */; };
+		8B85A72E27C9D7D00070757F /* AboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B85A72C27C9D7D00070757F /* AboutTableViewCell.xib */; };
 		8B8CC5BA2260F63D00AFB974 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */; };
-		8B8CC5BC2261089400AFB974 /* DailyCalorieTargetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5BB2261089400AFB974 /* DailyCalorieTargetTableViewController.swift */; };
+		8B8CC5BC2261089400AFB974 /* ObjectivesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5BB2261089400AFB974 /* ObjectivesTableViewController.swift */; };
 		8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1620584C8600C37639 /* AppDelegate.swift */; };
 		8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1820584C8600C37639 /* ScoreViewController.swift */; };
 		8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1A20584C8600C37639 /* SettingsViewController.swift */; };
@@ -33,12 +45,24 @@
 		6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActivityScore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C1B7FCF3BE4E918943DD543 /* Pods-ActivityScore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.release.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.release.xcconfig"; sourceTree = "<group>"; };
 		8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicationManager.swift; sourceTree = "<group>"; };
+		8B1BE56627CB16EE008F2934 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
+		8B1BE56827CB185D008F2934 /* Objectives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objectives.swift; sourceTree = "<group>"; };
+		8B1BE56A27CBB03B008F2934 /* ObjectivesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectivesViewModel.swift; sourceTree = "<group>"; };
+		8B1BE56D27CBBCEC008F2934 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
-		8B29885127C31CFA00DCD5E8 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		8B29885127C31CFA00DCD5E8 /* Fitness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fitness.swift; sourceTree = "<group>"; };
 		8B3FAF49205D881800A12D89 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		8B42A44B27CE81AC00A7CDF6 /* LineGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraphViewController.swift; sourceTree = "<group>"; };
 		8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticEffectsService.swift; sourceTree = "<group>"; };
+		8B85A72127C858DE0070757F /* CardViewDataCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewDataCollectionViewController.swift; sourceTree = "<group>"; };
+		8B85A72327C859DC0070757F /* CardViewDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewDataCollectionViewCell.swift; sourceTree = "<group>"; };
+		8B85A72427C859DC0070757F /* CardViewDataCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardViewDataCollectionViewCell.xib; sourceTree = "<group>"; };
+		8B85A72727C9C87F0070757F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		8B85A72827C9C87F0070757F /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		8B85A72B27C9D7CF0070757F /* AboutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewCell.swift; sourceTree = "<group>"; };
+		8B85A72C27C9D7D00070757F /* AboutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutTableViewCell.xib; sourceTree = "<group>"; };
 		8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
-		8B8CC5BB2261089400AFB974 /* DailyCalorieTargetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCalorieTargetTableViewController.swift; sourceTree = "<group>"; };
+		8B8CC5BB2261089400AFB974 /* ObjectivesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectivesTableViewController.swift; sourceTree = "<group>"; };
 		8B943B1320584C8600C37639 /* ActivityScore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivityScore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B943B1620584C8600C37639 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B943B1820584C8600C37639 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -71,10 +95,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B1BE56C27CBBCCA008F2934 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8B1BE56A27CBB03B008F2934 /* ObjectivesViewModel.swift */,
+				8B1BE56627CB16EE008F2934 /* ScoreViewModel.swift */,
+				8B1BE56D27CBBCEC008F2934 /* OnboardingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		8B29885027C31CAB00DCD5E8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8B29885127C31CFA00DCD5E8 /* UserData.swift */,
+				8B29885127C31CFA00DCD5E8 /* Fitness.swift */,
+				8B1BE56827CB185D008F2934 /* Objectives.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -83,14 +118,47 @@
 			isa = PBXGroup;
 			children = (
 				8B943B1820584C8600C37639 /* ScoreViewController.swift */,
-				8B8CC5BB2261089400AFB974 /* DailyCalorieTargetTableViewController.swift */,
+				8B8CC5BB2261089400AFB974 /* ObjectivesTableViewController.swift */,
 				8B943B1A20584C8600C37639 /* SettingsViewController.swift */,
 				8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */,
 				8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */,
 				8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */,
 				8BA39231222CC33B00BA560A /* ThirdPageViewController.swift */,
+				8B42A44B27CE81AC00A7CDF6 /* LineGraphViewController.swift */,
+				8B85A72127C858DE0070757F /* CardViewDataCollectionViewController.swift */,
+				8B85A72727C9C87F0070757F /* AboutViewController.swift */,
+				8B85A72827C9C87F0070757F /* AboutViewController.xib */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8B42A44A27CE68B000A7CDF6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8B85A72F27C9DCCC0070757F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8B85A72327C859DC0070757F /* CardViewDataCollectionViewCell.swift */,
+				8B85A72427C859DC0070757F /* CardViewDataCollectionViewCell.xib */,
+				8B85A72B27C9D7CF0070757F /* AboutTableViewCell.swift */,
+				8B85A72C27C9D7D00070757F /* AboutTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8B85A73027C9DCE20070757F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */,
+				8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */,
+				8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		8B943B0A20584C8600C37639 = {
@@ -116,13 +184,13 @@
 			children = (
 				8B943B2E20584D3F00C37639 /* ActivityScore.entitlements */,
 				8B943B1620584C8600C37639 /* AppDelegate.swift */,
-				8B849FE62264BAD000B1A3D0 /* TapticEffectsService.swift */,
-				8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */,
 				8B29885027C31CAB00DCD5E8 /* Model */,
+				8B1BE56C27CBBCCA008F2934 /* ViewModels */,
+				8B85A73027C9DCE20070757F /* Managers */,
 				8B3F67E3205AD7B6007B77B2 /* ViewControllers */,
+				8B85A72F27C9DCCC0070757F /* Cells */,
+				8B42A44A27CE68B000A7CDF6 /* Extensions */,
 				8B3FAF49205D881800A12D89 /* CardView.swift */,
-				8B16CD67226122F100D8D625 /* NetworkActivityIndicationManager.swift */,
-				8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */,
 				8B943B1C20584C8600C37639 /* Main.storyboard */,
 				8B943B1F20584C8600C37639 /* Assets.xcassets */,
 				8B943B2120584C8600C37639 /* LaunchScreen.storyboard */,
@@ -159,6 +227,7 @@
 			buildConfigurationList = 8B943B2720584C8600C37639 /* Build configuration list for PBXNativeTarget "ActivityScore" */;
 			buildPhases = (
 				E82BE1AEFE3C7B40E22461A8 /* [CP] Check Pods Manifest.lock */,
+				8B85A73127C9E0DD0070757F /* set build number */,
 				8B943B0F20584C8600C37639 /* Sources */,
 				8B943B1020584C8600C37639 /* Frameworks */,
 				8B943B1120584C8600C37639 /* Resources */,
@@ -223,7 +292,10 @@
 			files = (
 				8B943B2320584C8600C37639 /* LaunchScreen.storyboard in Resources */,
 				8B943B3320587C8000C37639 /* GoogleService-Info.plist in Resources */,
+				8B85A72627C859DC0070757F /* CardViewDataCollectionViewCell.xib in Resources */,
 				8B943B2020584C8600C37639 /* Assets.xcassets in Resources */,
+				8B85A72E27C9D7D00070757F /* AboutTableViewCell.xib in Resources */,
+				8B85A72A27C9C8800070757F /* AboutViewController.xib in Resources */,
 				8B943B1E20584C8600C37639 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +303,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8B85A73127C9E0DD0070757F /* set build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "set build number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=$(sh /etc/profile; which git)\nnumber_of_commits=$(\"$git\" rev-list HEAD --count)\ngit_release_version=$(\"$git\" describe --tags --always --abbrev=0)\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\nif [ -f \"$plist\" ]; then\n /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $number_of_commits\" \"$plist\"\n /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${git_release_version#*v}\" \"$plist\"\nfi\ndone\n";
+		};
 		C4A730A19F2E8799515A2677 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +330,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ActivityScore/Pods-ActivityScore-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -247,6 +338,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -285,19 +377,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B3FAF4A205D881800A12D89 /* CardView.swift in Sources */,
-				8B29885227C31CFA00DCD5E8 /* UserData.swift in Sources */,
+				8B29885227C31CFA00DCD5E8 /* Fitness.swift in Sources */,
 				8BA39232222CC33B00BA560A /* ThirdPageViewController.swift in Sources */,
+				8B85A72D27C9D7D00070757F /* AboutTableViewCell.swift in Sources */,
 				8BA3922C222C18C500BA560A /* InAppPurchaseTableViewController.swift in Sources */,
 				8BA39230222C5C2D00BA560A /* SecondOnboardingViewController.swift in Sources */,
+				8B85A72527C859DC0070757F /* CardViewDataCollectionViewCell.swift in Sources */,
 				8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */,
 				8B8CC5BA2260F63D00AFB974 /* UITextFieldExtension.swift in Sources */,
 				8BA3922E222C4F7A00BA560A /* OnboardingRootPageViewController.swift in Sources */,
+				8B42A44C27CE81AC00A7CDF6 /* LineGraphViewController.swift in Sources */,
+				8B85A72927C9C8800070757F /* AboutViewController.swift in Sources */,
 				8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */,
+				8B1BE56B27CBB03B008F2934 /* ObjectivesViewModel.swift in Sources */,
+				8B1BE56727CB16EE008F2934 /* ScoreViewModel.swift in Sources */,
 				8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */,
 				8B849FE72264BAD000B1A3D0 /* TapticEffectsService.swift in Sources */,
 				8B16CD68226122F100D8D625 /* NetworkActivityIndicationManager.swift in Sources */,
+				8B85A72227C858DE0070757F /* CardViewDataCollectionViewController.swift in Sources */,
+				8B1BE56927CB185D008F2934 /* Objectives.swift in Sources */,
+				8B1BE56E27CBBCEC008F2934 /* OnboardingViewModel.swift in Sources */,
 				8B29884F27C19C5300DCD5E8 /* HealthKitManager.swift in Sources */,
-				8B8CC5BC2261089400AFB974 /* DailyCalorieTargetTableViewController.swift in Sources */,
+				8B8CC5BC2261089400AFB974 /* ObjectivesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ActivityScore/ActivityScore.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 5W8LCC7ZD3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,7 +551,7 @@
 				INFOPLIST_FILE = ActivityScore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trotos.ActivityScore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -465,7 +566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ActivityScore/ActivityScore.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 5W8LCC7ZD3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -474,7 +575,7 @@
 				INFOPLIST_FILE = ActivityScore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trotos.ActivityScore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
