@@ -131,7 +131,7 @@ class ScoreViewModel {
         var scoreText = ""
         let hour = Calendar.current.component(.hour, from: Date())
         let weekData = user.getFitnessData().sorted(by: { $0.0 < $1.0 })
-        if let today = weekData.first {
+        if let today = weekData.last {
             scoreText = String(today.value.score)
             
             if today.value.score < 20 {
