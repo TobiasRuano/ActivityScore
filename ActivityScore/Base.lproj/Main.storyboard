@@ -296,7 +296,7 @@ Slide to Get Started!</string>
             <objects>
                 <viewController id="28U-GA-ehb" customClass="ScoreViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3BK-B6-k1U">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPK-ti-XXM">
@@ -416,7 +416,7 @@ Slide to Get Started!</string>
             <objects>
                 <collectionViewController storyboardIdentifier="CardViewDataCollectionViewController" id="WEL-IU-prb" customClass="CardViewDataCollectionViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="JjH-Zi-ijL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="327"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="327.33333333333331"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qt4-YX-OVH">
@@ -441,7 +441,7 @@ Slide to Get Started!</string>
             <objects>
                 <tableViewController id="SGz-gU-7DC" customClass="SettingsViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="static" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="p0L-Bw-psn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -683,7 +683,7 @@ Slide to Get Started!</string>
             <objects>
                 <tableViewController id="pKc-fA-1ay" customClass="InAppPurchaseTableViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="cFU-P6-DQc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection headerTitle="In App Purchase" footerTitle="By purchasing the full version you are supporting the development of future updates" id="Pd2-bF-yZC">
@@ -760,7 +760,8 @@ Slide to Get Started!</string>
         <!--Tab Bar Controller-->
         <scene sceneID="ml2-9o-Ynd">
             <objects>
-                <tabBarController id="cLD-St-MRP" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" id="cLD-St-MRP" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="hVd-i6-mvR"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OVW-tf-wpM">
@@ -783,7 +784,7 @@ Slide to Get Started!</string>
                     <tabBarItem key="tabBarItem" title="Score" image="combo_chart" selectedImage="combo_chart" id="bS7-UX-v32"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="WeP-Fd-Ng5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -802,7 +803,7 @@ Slide to Get Started!</string>
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="UAl-hd-tvh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Hg0-e2-ZiC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -819,7 +820,7 @@ Slide to Get Started!</string>
             <objects>
                 <tableViewController id="rdL-dJ-Fj9" customClass="ObjectivesTableViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="GSX-0Q-ou8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection headerTitle="target" footerTitle="I need this information to make a more personalized score. Try to be as precise as possible. " id="Hpa-0X-6k7">
@@ -934,6 +935,7 @@ Slide to Get Started!</string>
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="MGM-ky-Lxv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qKs-p6-8Lk" firstAttribute="top" secondItem="B6b-fk-27u" secondAttribute="top" id="FcU-Kd-JQV"/>
