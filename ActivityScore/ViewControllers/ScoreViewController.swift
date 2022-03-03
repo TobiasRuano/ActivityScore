@@ -107,13 +107,15 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func setAdBanner() {
-        let request = GADRequest()
-        request.testDevices = [(kGADSimulatorID as! String)]
-        request.testDevices = [ "21df7f3d09709224a09480ff10d324aa" ]
-        adBanner.adUnitID = "ca-app-pub-6561467960639972/8227758207"
-        adBanner.rootViewController = self
-        adBanner.delegate = self
-        adBanner.load(request)
+        if adBanner.adUnitID == nil {
+            let request = GADRequest()
+            request.testDevices = [(kGADSimulatorID as! String)]
+            request.testDevices = [ "21df7f3d09709224a09480ff10d324aa" ]
+            adBanner.adUnitID = "ca-app-pub-6561467960639972/8227758207"
+            adBanner.rootViewController = self
+            adBanner.delegate = self
+            adBanner.load(request)
+        }
     }
     
 }
