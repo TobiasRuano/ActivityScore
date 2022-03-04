@@ -13,13 +13,13 @@ protocol ScoreViewModelProtocol: Any {
 }
 
 class ScoreViewModel {
-    
+
     let healthManager = HealthKitManager.shared
     private var succesFlag = true
     private var inAppPurchase = false
     private var user = Fitness()
     var delegate: ScoreViewModelProtocol?
-    
+
     func retrieveHealthData() {
         user.getGoals()
         var check = 0
@@ -37,7 +37,7 @@ class ScoreViewModel {
                 break
             }
         }
-        
+
         healthManager.getData(type: .activeEnergyBurned, unit: .kilocalorie(), days: 7) { result in
             switch result {
             case .success(let calories):
@@ -52,7 +52,7 @@ class ScoreViewModel {
                 break
             }
         }
-        
+
         healthManager.getData(type: .appleExerciseTime, unit: .minute(), days: 7) { result in
             switch result {
             case .success(let exercice):
@@ -67,7 +67,7 @@ class ScoreViewModel {
                 break
             }
         }
-        
+
         healthManager.getData(type: .distanceWalkingRunning, unit: .meter(), days: 7) { result in
             switch result {
             case .success(let distance):
@@ -83,7 +83,7 @@ class ScoreViewModel {
             }
         }
     }
-    
+
     func checkPurchaseStatus(completed: @escaping(Bool) -> Void) {
         if let inAppKeyValue = UserDefaults.standard.value(forKey: "purchase") as? Bool {
             inAppPurchase = inAppKeyValue
@@ -97,12 +97,12 @@ class ScoreViewModel {
             completed(false)
         }
     }
-    
+
     func getFitnessDataInOrder() -> [Dictionary<Date, DailyData>.Element] {
         return user.getFitnessData().sorted(by: { $0.0 < $1.0 })
     }
-    
-    //MARK: - Authorize healthKit
+
+    // MARK: - Authorize healthKit
     func authorizeHealthKit(completed: @escaping(Bool) -> Void) {
         healthManager.authorizeHealthKit { (authorized, error) in
             guard authorized else {
@@ -123,7 +123,7 @@ class ScoreViewModel {
             completed(true)
         }
     }
-    
+
     func obtainScoreNumber(completed: @escaping((String, String)) -> Void) {
         // TODO: tener en cuenta los objetivos del usuario para el calculo
         user.obtainScoreNumber()
@@ -133,49 +133,49 @@ class ScoreViewModel {
         let weekData = user.getFitnessData().sorted(by: { $0.0 < $1.0 })
         if let today = weekData.last {
             scoreText = String(today.value.score)
-            
+
             if today.value.score < 20 {
                 if hour < 10 {
                     cheeringText = "Let's own the day! 💪"
-                }else if hour < 17 {
+                } else if hour < 17 {
                     cheeringText = "Let's go for a walk! 🚶‍♂️"
-                }else {
+                } else {
                     cheeringText = "SO LAZY! 😡"
                 }
             } else if today.value.score > 19 && today.value.score < 40 {
                 if hour < 10 {
                     cheeringText = "Let's own the day! 💪"
-                }else if hour < 17 {
+                } else if hour < 17 {
                     cheeringText = "Not bad, but you could do better. 🤷‍♂️"
-                }else if hour < 19 {
+                } else if hour < 19 {
                     cheeringText = "Let's get out there and work out! 😃"
-                }else {
+                } else {
                     cheeringText = "You'll do better tomorrow! 😔"
                 }
             } else if today.value.score > 39 && today.value.score < 70 {
                 if hour < 10 {
                     cheeringText = "What a way to start the day. 👏"
-                }else if hour < 17 {
+                } else if hour < 17 {
                     cheeringText = "Great Job! 💪"
-                }else {
+                } else {
                     cheeringText = "Great Job! 💪"
                 }
             } else if today.value.score > 69 {
                 if hour < 10 {
                     cheeringText = "Excelent way to start the Day! 👍"
-                }else if hour < 17 {
+                } else if hour < 17 {
                     cheeringText = "KEEP IT UP! 🏆"
-                }else {
+                } else {
                     cheeringText = "WOW, WHAT A DAY!! 👏"
                 }
             }
         }
-        
-        //Check if theres data. If there is, health label should be ENABLED
+
+        // Check if theres data. If there is, health label should be ENABLED
         if !scoreText.isEmpty {
             UserDefaults.standard.set(true, forKey: "Flag")
         }
-        
+		
         DispatchQueue.main.async {
             completed((cheeringText, scoreText))
         }

@@ -32,12 +32,14 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - ProgressHUD (13.6)
+  - SwiftLint (0.46.3)
   - SwiftyStoreKit (0.15.0)
 
 DEPENDENCIES:
   - Charts
   - Google-Mobile-Ads-SDK
   - ProgressHUD
+  - SwiftLint
   - SwiftyStoreKit
 
 SPEC REPOS:
@@ -48,6 +50,7 @@ SPEC REPOS:
     - GoogleUtilities
     - nanopb
     - ProgressHUD
+    - SwiftLint
     - SwiftyStoreKit
 
 SPEC CHECKSUMS:
@@ -57,8 +60,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
+  SwiftLint: ae76d82f056734f853c8cd0371503252c606c482
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: 752d1d3b7cb70a7e46c858f268a38577b67c74de
+PODFILE CHECKSUM: 8ce5b4030f474bd66ccd5185876c687a326e8608
 
 COCOAPODS: 1.9.3

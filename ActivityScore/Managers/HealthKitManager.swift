@@ -20,12 +20,12 @@ class HealthKitManager {
     let healthStore = HKHealthStore()
     
     func authorizeHealthKit(completion: @escaping (Bool, Error?) -> Void) {
-        //1. Check to see if HealthKit Is Available on this device
+        // 1. Check to see if HealthKit Is Available on this device
         guard HKHealthStore.isHealthDataAvailable() else {
             completion(false, HealthkitSetupError.notAvailableOnDevice)
             return
         }
-        //2. Prepare the data types that will interact with HealthKit
+        // 2. Prepare the data types that will interact with HealthKit
         guard   let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount),
             let minutesOfExercise = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
             let distanceWalkingRunning = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning),
@@ -34,24 +34,24 @@ class HealthKitManager {
                 return
         }
         let activitySummaryType = HKObjectType.activitySummaryType()
-        //3. Prepare a list of types you want HealthKit to read and write
+        // 3. Prepare a list of types you want HealthKit to read and write
         let healthKitTypesToWrite: Set<HKSampleType> = []
         let healthKitTypesToRead: Set<HKObjectType> = [stepCount,
                                                        minutesOfExercise,
                                                        distanceWalkingRunning,
                                                        activeEnergy,
                                                        activitySummaryType]
-        //4. Request Authorization
+        // 4. Request Authorization
         HKHealthStore().requestAuthorization(toShare: healthKitTypesToWrite,
                                              read: healthKitTypesToRead) { (success, error) in
                                                 completion(success, error)
         }
     }
-    
+
     func getUserGoal(completed: @escaping(Result<(Int, Int), Error>) -> Void) {
         let calendar = NSCalendar.current
         let endDate = Date()
-         
+
         guard let startDate = calendar.date(byAdding: .day, value: -7, to: endDate) else {
             fatalError("*** Unable to create the start date ***")
         }
@@ -67,7 +67,9 @@ class HealthKitManager {
         // Create the predicate for the query
         let summariesWithinRange = HKQuery.predicate(forActivitySummariesBetweenStart: startDateComponents,
                                                      end: endDateComponents)
-        let query = HKActivitySummaryQuery(predicate: summariesWithinRange) { (query, summariesOrNil, errorOrNil) -> Void in
+        let query = HKActivitySummaryQuery(predicate: summariesWithinRange) { (_,
+																			   summariesOrNil,
+																			   errorOrNil) -> Void in
             guard let summaries = summariesOrNil else {
                 completed(.failure(errorOrNil!))
                 return
@@ -78,36 +80,40 @@ class HealthKitManager {
         }
         healthStore.execute(query)
     }
-    
-    func getData(type: HKQuantityTypeIdentifier, unit: HKUnit, days: Int, completed: @escaping (Result<[Date: Int], Error>) -> Void) {
+
+    func getData(type: HKQuantityTypeIdentifier, unit: HKUnit, days: Int, completed: @escaping (Result<[Date: Int],
+																								Error>) -> Void) {
         let calendar = NSCalendar.current
         let interval = NSDateComponents()
         interval.day = 1
-        
+
         let quantityType = HKQuantityType.quantityType(forIdentifier: type)!
-        
+
         var anchorComponents = calendar.dateComponents([.day, .month, .year], from: NSDate() as Date)
         anchorComponents.hour = 0
         let anchorDate = calendar.date(from: anchorComponents)
-        
+
         // Define 1-day intervals starting from 0:00
         let query = HKStatisticsCollectionQuery(quantityType: quantityType,
                                                 quantitySamplePredicate: nil,
                                                 options: .cumulativeSum,
                                                 anchorDate: anchorDate!,
                                                 intervalComponents: interval as DateComponents)
-        query.initialResultsHandler = {query, results, error in
+        query.initialResultsHandler = {_, results, error in
             if let error = error {
                 completed(.failure(error))
                 return
             }
-            
+
             let endDate = NSDate()
-            let startDate = calendar.date(byAdding: .day, value: -(days - 1), to: endDate as Date, wrappingComponents: false)
+            let startDate = calendar.date(byAdding: .day,
+										  value: -(days - 1),
+										  to: endDate as Date,
+										  wrappingComponents: false)
             var completeDataArray: [Date: Int] = [:]
-            if let myResults = results{
-                myResults.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, stop in
-                    if let quantity = statistics.sumQuantity(){
+            if let myResults = results {
+                myResults.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, _ in
+                    if let quantity = statistics.sumQuantity() {
                         let date = statistics.startDate
                         let dayData = quantity.doubleValue(for: unit)
                         completeDataArray[date] = Int(dayData)

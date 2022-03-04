@@ -10,4 +10,5 @@ target 'ActivityScore' do
   pod 'Charts'
   pod 'SwiftyStoreKit'
   pod 'ProgressHUD'
+  pod 'SwiftLint'
 end

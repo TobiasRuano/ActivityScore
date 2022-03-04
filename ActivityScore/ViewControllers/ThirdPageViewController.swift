@@ -37,7 +37,7 @@ class ThirdPageViewController: UIViewController {
     
     @IBAction func didEndEditingTextField(_ sender: Any) {
     }
-    
+
     @IBAction func ExitToRootViewController(_ sender: UIButton) {
         if customGoalsSwitch.isOn {
             var calories = onboardingViewModel.userObjectives.calories
@@ -56,11 +56,11 @@ class ThirdPageViewController: UIViewController {
             }
             onboardingViewModel.setCustomObjectives(newCalories: calories, newMinutesExe: exercise)
         }
-        
+
         UserDefaults.standard.set(true, forKey: "OnboardingScreen")
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     func styleButton() {
         letsGoButton.layer.cornerRadius = 15
         letsGoButton.layer.shadowOpacity = 0.5
@@ -83,7 +83,7 @@ class ThirdPageViewController: UIViewController {
         exerciseView.layer.masksToBounds = false
         exerciseView.layer.shadowOpacity = 0.5
     }
-    
+
     @IBAction func selectGoalInput(_ sender: Any) {
         if customGoalsSwitch.isOn {
             onboardingViewModel.changeUsesCustomObjectives(value: true)
@@ -98,7 +98,7 @@ class ThirdPageViewController: UIViewController {
             defaultGoal()
         }
     }
-    
+
     func defaultGoal() {
         onboardingViewModel.getUserObjectivesFromFitnessApp { result in
             switch result {
@@ -115,5 +115,4 @@ class ThirdPageViewController: UIViewController {
             }
         }
     }
-    
 }

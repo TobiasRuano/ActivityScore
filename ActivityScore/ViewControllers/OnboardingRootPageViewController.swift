@@ -8,7 +8,9 @@
 
 import UIKit
 
-class OnboardingRootPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class OnboardingRootPageViewController: UIPageViewController,
+										UIPageViewControllerDataSource,
+										UIPageViewControllerDelegate {
     
     lazy var viewControllerList: [UIViewController] = {
         let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -36,28 +38,27 @@ class OnboardingRootPageViewController: UIPageViewController, UIPageViewControll
         if let firstViewController = viewControllerList.first {
             self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
-        
+
         configureView()
         configurePageControl()
     }
     
     func configureView() {
         pageControllerView.backgroundColor = UIColor(named: "pink")!
-        //pageControllerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 67)
-        
+        // pageControllerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 67)
         self.view.addSubview(pageControllerView)
-        
         pageControllerView.translatesAutoresizingMaskIntoConstraints = false
         // Pin the leading edge of myView to the margin's leading edge
 //        pageControllerView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
         // Pin the trailing edge of myView to the margin's trailing edge
-        //pageControllerView.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        // pageControllerView.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         pageControllerView.heightAnchor.constraint(equalToConstant: 67).isActive = true
 //        pageControllerView.bottomAnchor.constraint(equalToConstant: UIScreen.main.bounds.height).isActive = true
-        pageControllerView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
+        pageControllerView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor,
+												   constant: 0).isActive = true
         pageControllerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
     }
-    
+
     func configurePageControl() {
         self.view.addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +66,7 @@ class OnboardingRootPageViewController: UIPageViewController, UIPageViewControll
         pageControl.centerYAnchor.constraint(equalTo: pageControllerView.centerYAnchor).isActive = true
         pageControl.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
         pageControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+		
         self.pageControl.numberOfPages = viewControllerList.count
         self.pageControl.currentPage = 0
         let pinkColor = UIColor(displayP3Red: 236/255, green: 67/255, blue: 100/255, alpha: 1)
@@ -90,7 +91,7 @@ class OnboardingRootPageViewController: UIPageViewController, UIPageViewControll
         guard viewControllerList.count > nextIndex else {return nil}
         return viewControllerList[nextIndex]
     }
-    
+
     // MARK: Delegate functions
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let pageContentViewController = pageViewController.viewControllers![0]

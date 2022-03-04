@@ -13,7 +13,7 @@ class ObjectivesTableViewController: UITableViewController {
     @IBOutlet weak var calorieTextField: UITextField!
     @IBOutlet weak var customGoalsSwitch: UISwitch!
     @IBOutlet weak var excerciseTextField: UITextField!
-    
+
     var objectivesViewModel = ObjectivesViewModel()
     
     override func viewDidLoad() {
@@ -35,14 +35,13 @@ class ObjectivesTableViewController: UITableViewController {
             excerciseTextField.isEnabled = true
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         calorieTextField.placeholder = "\(objectivesViewModel.userObjectives.calories)cal"
         excerciseTextField.placeholder = "\(objectivesViewModel.userObjectives.minutesEx)min"
         setCustomObjectivesSwitch()
     }
-    
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         handleObjectivesTextFields()
     }
@@ -64,7 +63,7 @@ class ObjectivesTableViewController: UITableViewController {
         }
         objectivesViewModel.setCustomObjectives(newCalories: activityValue, newMinutesExe: exerciseValue)
     }
-    
+
     @IBAction func setCustomGoalInput(_ sender: Any) {
         if customGoalsSwitch.isOn {
             objectivesViewModel.changeUsesCustomObjectives(value: true)
@@ -79,7 +78,7 @@ class ObjectivesTableViewController: UITableViewController {
             defaultGoal()
         }
     }
-    
+
     func defaultGoal() {
         objectivesViewModel.getUserObjectivesFromFitnessApp { result in
             switch result {
@@ -96,5 +95,4 @@ class ObjectivesTableViewController: UITableViewController {
             }
         }
     }
-    
 }

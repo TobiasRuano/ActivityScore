@@ -9,10 +9,10 @@
 import Foundation
 
 class ObjectivesViewModel {
-    
+
     var userObjectives: Objectives!
     let healthManager = HealthKitManager.shared
-    
+
     init() {
         if let data = UserDefaults.standard.data(forKey: "objectives") {
             let decoder = JSONDecoder()
@@ -26,7 +26,7 @@ class ObjectivesViewModel {
             userObjectives = Objectives()
         }
     }
-    
+
     private func saveObjectives() {
         let encoder = JSONEncoder()
         do {
@@ -52,7 +52,7 @@ class ObjectivesViewModel {
             }
         }
     }
-    
+	
     func getUserObjectivesFromFitnessApp(completed: @escaping (Result<(Int, Int), Error>) -> Void) {
         healthManager.getUserGoal { result in
             switch result {

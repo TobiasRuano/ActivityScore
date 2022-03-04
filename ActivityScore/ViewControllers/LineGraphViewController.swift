@@ -42,10 +42,10 @@ class LineGraphViewController: UIViewController {
         LineGraphView.layer.cornerRadius = 15
         LineGraphView.clipsToBounds = false
     }
-    
+
     func lineChartUpdate () {
         guard let fitnessData = data, fitnessData.count > 1 else { return }
-        
+
         var entries: [ChartDataEntry] = []
         var xValue = 0.0
         for element in fitnessData {
@@ -54,7 +54,7 @@ class LineGraphViewController: UIViewController {
             let entrie = ChartDataEntry(x: xValue, y: Double(yValue))
             entries.append(entrie)
         }
-        
+
         let dataSet = LineChartDataSet(entries: entries, label: "Widgets Type")
         dataSet.valueTextColor = .clear
         dataSet.mode = .cubicBezier
@@ -65,19 +65,19 @@ class LineGraphViewController: UIViewController {
         dataSet.highlightColor = UIColor(named: "pink")!
         dataSet.drawCircleHoleEnabled = false
         dataSet.drawHorizontalHighlightIndicatorEnabled = false
-        
+
         let firstPink = UIColor(red: 247/255, green: 191/255, blue: 190/255, alpha: 0)
         dataSet.colors = [UIColor(named: "pink")!]
         let gradientColors = [firstPink.cgColor,
                               UIColor.systemPink.cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
-        
+
         dataSet.fillAlpha = 1
         dataSet.fill = Fill(linearGradient: gradient, angle: 90)
         dataSet.fillFormatter = DefaultFillFormatter { _,_  -> CGFloat in
             return CGFloat(self.LineGraphView.leftAxis.axisMinimum)
         }
-        
+		
         let data = LineChartData(dataSets: [dataSet])
         data.setDrawValues(false)
         LineGraphView.data = data

@@ -31,7 +31,7 @@ class Fitness {
     func setItemInDailyData(amounts: [Date: Int], type: DailyDataType) {
         for element in amounts {
             let key = element.key
-            if let _ = dailyData[key] {
+            if dailyData[key] != nil {
                 switch type {
                 case .steps:
                     dailyData[key]?.steps = element.value
@@ -58,11 +58,11 @@ class Fitness {
             }
         }
     }
-    
+
     func getFitnessData() -> [Date: DailyData] {
         return dailyData
     }
-    
+
     func obtainScoreNumber() {
         for element in dailyData {
             if element.value.calories == userGoals.calories {
@@ -75,7 +75,7 @@ class Fitness {
                 dailyData[element.key]?.score = (Int(70.0 + (0.10 * Double(valueCopy))))
                 
             }
-            
+			
             if element.value.score > 100 {
                 dailyData[element.key]?.score = 100
             }

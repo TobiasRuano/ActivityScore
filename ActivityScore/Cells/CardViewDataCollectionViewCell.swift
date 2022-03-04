@@ -15,12 +15,12 @@ class CardViewDataCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var excerciseLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
+
     func configureCell(steps: Int?, calories: Int?, excercise: Int?, distance: Int?, date: Date?) {
         if let steps = steps {
             stepsLabel.text = "\(steps) Steps"
@@ -33,24 +33,24 @@ class CardViewDataCollectionViewCell: UICollectionViewCell {
         }
         if let distance = distance {
             let value = Double(distance) / 1000.0
-            distanceLabel.text = "\(String(format:"%.01f", value)) KM Walked/Runned"
+            distanceLabel.text = "\(String(format: "%.01f", value)) KM Walked/Runned"
         }
         if let date = date {
             configureDateLabel(date: date)
         }
     }
-    
+
     func configureDateLabel(date: Date) {
         let today = Date()
         let interval = TimeInterval(-86400)
         let yesterday = Date(timeInterval: interval, since: today)
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
-        
+
         let todayText = formatter.string(from: today)
         let yesterdayText = formatter.string(from: yesterday)
         let dateText = formatter.string(from: date)
-        
+
         if dateText == todayText {
             dateLabel.text = "Today"
         } else if dateText == yesterdayText {
@@ -59,5 +59,4 @@ class CardViewDataCollectionViewCell: UICollectionViewCell {
             dateLabel.text = dateText
         }
     }
-
 }

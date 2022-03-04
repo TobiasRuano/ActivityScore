@@ -15,20 +15,15 @@ import UIKit
     @IBInspectable var shadowOffsetWith: CGFloat = 0
     @IBInspectable var shadowColor: UIColor = UIColor.black
     @IBInspectable var shadowOpacity: CGFloat = 0.5
-    
-    
+
     override func layoutSubviews() {
-        
         layer.cornerRadius = cornerRadius
         layer.shadowColor = shadowColor.cgColor
         layer.shadowOffset = CGSize(width: shadowOffsetWith, height: shadowOffsetHeight)
-        
+
         let shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
-        
+
         layer.shadowPath = shadowPath.cgPath
         layer.shadowOpacity = Float(shadowOpacity)
-        
     }
-    
-
 }
