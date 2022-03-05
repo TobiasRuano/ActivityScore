@@ -8,18 +8,17 @@
 
 import UIKit
 
+// swiftlint:disable force_cast line_length
 class CardViewDataCollectionViewController: UICollectionViewController {
-    
+
     private let reuseIdentifier = "CardViewDataCollectionViewCell"
 
     var weekData: [Dictionary<Date, DailyData>.Element]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-
         let nibName = UINib(nibName: "CardViewDataCollectionViewCell", bundle: nil)
         self.collectionView.register(nibName, forCellWithReuseIdentifier: reuseIdentifier)
     }
@@ -29,7 +28,6 @@ class CardViewDataCollectionViewController: UICollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let userData = weekData {
@@ -57,6 +55,5 @@ class CardViewDataCollectionViewController: UICollectionViewController {
 extension CardViewDataCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 355, height: 350)
-        // TODO: chequear bien esto
     }
 }

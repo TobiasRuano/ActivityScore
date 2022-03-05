@@ -24,10 +24,10 @@ struct DailyData {
 }
 
 class Fitness {
-    
+
     private var dailyData: [Date: DailyData] = [:]
     private var userGoals: Objectives!
-    
+
     func setItemInDailyData(amounts: [Date: Int], type: DailyDataType) {
         for element in amounts {
             let key = element.key
@@ -73,15 +73,14 @@ class Fitness {
             } else {
                 let valueCopy = element.value.calories - userGoals.calories
                 dailyData[element.key]?.score = (Int(70.0 + (0.10 * Double(valueCopy))))
-                
             }
-			
+
             if element.value.score > 100 {
                 dailyData[element.key]?.score = 100
             }
         }
     }
-    
+
     func getGoals() {
         if let data = UserDefaults.standard.data(forKey: "objectives") {
             let decoder = JSONDecoder()

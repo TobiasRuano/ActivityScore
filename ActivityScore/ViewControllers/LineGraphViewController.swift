@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 class LineGraphViewController: UIViewController {
-    
+
     var data: [Dictionary<Date, DailyData>.Element]?
     @IBOutlet weak var LineGraphView: LineChartView!
 
@@ -18,11 +18,11 @@ class LineGraphViewController: UIViewController {
         super.viewDidLoad()
         styleChart()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         lineChartUpdate()
     }
-    
+
     func styleChart() {
         LineGraphView.backgroundColor = .systemBackground
         LineGraphView.dragEnabled = true
@@ -74,10 +74,10 @@ class LineGraphViewController: UIViewController {
 
         dataSet.fillAlpha = 1
         dataSet.fill = Fill(linearGradient: gradient, angle: 90)
-        dataSet.fillFormatter = DefaultFillFormatter { _,_  -> CGFloat in
+        dataSet.fillFormatter = DefaultFillFormatter {_, _  -> CGFloat in
             return CGFloat(self.LineGraphView.leftAxis.axisMinimum)
         }
-		
+
         let data = LineChartData(dataSets: [dataSet])
         data.setDrawValues(false)
         LineGraphView.data = data

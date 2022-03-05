@@ -8,23 +8,24 @@
 
 import UIKit
 
+// swiftlint:disable line_length
 class OnboardingRootPageViewController: UIPageViewController,
 										UIPageViewControllerDataSource,
 										UIPageViewControllerDelegate {
-    
+
     lazy var viewControllerList: [UIViewController] = {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        
+
         let vc1 = sb.instantiateViewController(withIdentifier: "FirstVC")
         let vc2 = sb.instantiateViewController(withIdentifier: "SecondVC")
         let vc3 = sb.instantiateViewController(withIdentifier: "ThirdVC")
-        
+
         return [vc1, vc2, vc3]
     }()
-    
+
     var pageControllerView = UIView()
     var pageControl = UIPageControl()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -34,7 +35,7 @@ class OnboardingRootPageViewController: UIPageViewController,
 
         self.dataSource = self
         self.delegate = self
-        
+
         if let firstViewController = viewControllerList.first {
             self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
@@ -42,7 +43,7 @@ class OnboardingRootPageViewController: UIPageViewController,
         configureView()
         configurePageControl()
     }
-    
+
     func configureView() {
         pageControllerView.backgroundColor = UIColor(named: "pink")!
         // pageControllerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 67)
@@ -66,7 +67,7 @@ class OnboardingRootPageViewController: UIPageViewController,
         pageControl.centerYAnchor.constraint(equalTo: pageControllerView.centerYAnchor).isActive = true
         pageControl.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
         pageControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
-		
+
         self.pageControl.numberOfPages = viewControllerList.count
         self.pageControl.currentPage = 0
         let pinkColor = UIColor(displayP3Red: 236/255, green: 67/255, blue: 100/255, alpha: 1)
@@ -75,7 +76,7 @@ class OnboardingRootPageViewController: UIPageViewController,
         self.pageControl.currentPageIndicatorTintColor = .black
         self.pageControl.transform = CGAffineTransform(scaleX: 2, y: 2)
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = viewControllerList.firstIndex(of: viewController) else {return nil}
         let previousIndex = vcIndex - 1
@@ -83,7 +84,7 @@ class OnboardingRootPageViewController: UIPageViewController,
         guard viewControllerList.count > previousIndex else {return nil}
         return viewControllerList[previousIndex]
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = viewControllerList.firstIndex(of: viewController) else {return nil}
         let nextIndex = vcIndex + 1

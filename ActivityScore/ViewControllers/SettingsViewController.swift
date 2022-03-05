@@ -17,7 +17,7 @@ class SettingsViewController: UITableViewController,
 
 	var flag: Bool = false
     @IBOutlet weak var healthLabel: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -32,7 +32,7 @@ class SettingsViewController: UITableViewController,
             healthLabel.text = "Disabled"
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
@@ -75,7 +75,7 @@ class SettingsViewController: UITableViewController,
             mc.mailComposeDelegate = self
             mc.setSubject(emailTitle)
             mc.setToRecipients(toRecipents)
-            
+
             self.present(mc, animated: true)
         } else {
             let alert = UIAlertController(title: "Couldn't Access Mail App",
@@ -86,6 +86,7 @@ class SettingsViewController: UITableViewController,
         }
     }
 
+	// swiftlint:disable line_length
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result {
         case .cancelled:

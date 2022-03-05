@@ -15,10 +15,10 @@ enum HealthkitSetupError: Error {
 }
 
 class HealthKitManager {
-    
+
     static let shared = HealthKitManager()
     let healthStore = HKHealthStore()
-    
+
     func authorizeHealthKit(completion: @escaping (Bool, Error?) -> Void) {
         // 1. Check to see if HealthKit Is Available on this device
         guard HKHealthStore.isHealthDataAvailable() else {
@@ -67,9 +67,7 @@ class HealthKitManager {
         // Create the predicate for the query
         let summariesWithinRange = HKQuery.predicate(forActivitySummariesBetweenStart: startDateComponents,
                                                      end: endDateComponents)
-        let query = HKActivitySummaryQuery(predicate: summariesWithinRange) { (_,
-																			   summariesOrNil,
-																			   errorOrNil) -> Void in
+        let query = HKActivitySummaryQuery(predicate: summariesWithinRange) { (_, summariesOrNil, errorOrNil) -> Void in
             guard let summaries = summariesOrNil else {
                 completed(.failure(errorOrNil!))
                 return

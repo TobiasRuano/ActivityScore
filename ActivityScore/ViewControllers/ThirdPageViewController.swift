@@ -16,9 +16,9 @@ class ThirdPageViewController: UIViewController {
     @IBOutlet weak var caloriesTextField: UITextField!
     @IBOutlet weak var exerciseTextField: UITextField!
     @IBOutlet weak var customGoalsSwitch: UISwitch!
-    
+
     let onboardingViewModel = OnboardingViewModel.shared
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         styleButton()
@@ -28,13 +28,13 @@ class ThirdPageViewController: UIViewController {
             case .success(let fitnessObjectives):
                 self.caloriesTextField.placeholder = "\(Int(fitnessObjectives.0)) cal"
                 self.exerciseTextField.placeholder = "\(Int(fitnessObjectives.1)) min"
-            case .failure(_):
+            case .failure:
                 self.caloriesTextField.placeholder = "0 cal"
                 self.exerciseTextField.placeholder = "0 min"
             }
         }
     }
-    
+
     @IBAction func didEndEditingTextField(_ sender: Any) {
     }
 
@@ -69,14 +69,14 @@ class ThirdPageViewController: UIViewController {
         letsGoButton.layer.shadowOffset = CGSize(width: 0, height: 0)
         letsGoButton.setTitle(" Let's Go! ", for: .normal)
     }
-    
+
     func styleView() {
         caloriesView.layer.cornerRadius = 10
         caloriesView.layer.shadowRadius = 10
         caloriesView.layer.shadowColor = UIColor.lightGray.cgColor
         caloriesView.layer.masksToBounds = false
         caloriesView.layer.shadowOpacity = 0.5
-        
+
         exerciseView.layer.cornerRadius = 10
         exerciseView.layer.shadowRadius = 10
         exerciseView.layer.shadowColor = UIColor.lightGray.cgColor
@@ -107,7 +107,7 @@ class ThirdPageViewController: UIViewController {
                     self.caloriesTextField.placeholder = "\(values.0) cal"
                     self.exerciseTextField.placeholder = "\(values.1) min"
                 }
-            case .failure(_):
+            case .failure:
                 DispatchQueue.main.async {
                     self.caloriesTextField.placeholder = "\(0) cal"
                     self.exerciseTextField.placeholder = "\(1) min"

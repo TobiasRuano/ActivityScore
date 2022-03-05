@@ -10,6 +10,7 @@ import UIKit
 import SwiftyStoreKit
 import StoreKit
 
+// swiftlint:disable line_length cyclomatic_complexity
 class InAppPurchaseTableViewController: UITableViewController {
 
     @IBOutlet weak var priceLabel: UILabel!
@@ -20,18 +21,18 @@ class InAppPurchaseTableViewController: UITableViewController {
     var sharedSecret = "d83163c37d8648de8d98be311b928361"
     var buttonIsEnabled = true
     let inAppPurchaseKey = "purchase"
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         if !checkPurchaseStatus() {
             getInfo()
             verifyRecipt()
         }
     }
-    
+
     func checkPurchaseStatus() -> Bool {
         var status = false
         if let value = UserDefaults.standard.value(forKey: inAppPurchaseKey) as? Bool {
@@ -54,7 +55,7 @@ class InAppPurchaseTableViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-    
+
     func lockCell() {
         fullVersionButton.accessoryType = .checkmark
         fullVersionButton.detailTextLabel?.text = ""
@@ -74,7 +75,7 @@ class InAppPurchaseTableViewController: UITableViewController {
         NetworkActivityIndicationManager.networkOperationStarted()
         SwiftyStoreKit.retrieveProductsInfo([bundleID + "." + removeAdID], completion: { result in
             NetworkActivityIndicationManager.networkOperationFinished()
-            
+
             if let product = result.retrievedProducts.first {
                 let priceString = product.localizedPrice!
                 print("Product: \(product.localizedDescription), price: \(priceString)")

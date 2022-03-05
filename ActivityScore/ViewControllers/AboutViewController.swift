@@ -22,7 +22,7 @@ class AboutViewController: UIViewController {
         styleIconView()
         configureTableView()
     }
-    
+
     func styleIconView() {
         iconImageView.image = UIImage(named: "onboardingLogo")
         iconImageView.layer.cornerRadius = 25
@@ -41,12 +41,13 @@ class AboutViewController: UIViewController {
 }
 
 extension AboutViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		// swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: AboutTableViewCell.cellID) as! AboutTableViewCell
         if indexPath.row == 0 {
             let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String

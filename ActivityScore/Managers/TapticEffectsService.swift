@@ -39,9 +39,9 @@ class TapticEffectsService {
             notificationFeedbackGenerator.notificationOccurred(type)
         }
     }
-    
+
     // MARK: Public type methods - Taptic Engine
-	
+
     /// Performs taptic feedback based on 'TapticEngineFeedbackIdentifier'.
     static func performTapticFeedback(from feedbackIdentifier: TapticEngineFeedbackIdentifier) {
             AudioServicesPlaySystemSound(feedbackIdentifier.rawValue)

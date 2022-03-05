@@ -36,11 +36,11 @@ class ObjectivesViewModel {
             print("No se guardo nada!")
         }
     }
-    
+
     func setDefaultFitnessGoals() {
         getUserObjectivesFromFitnessApp()
     }
-    
+
     private func getUserObjectivesFromFitnessApp() {
         healthManager.getUserGoal { result in
             switch result {
@@ -52,7 +52,7 @@ class ObjectivesViewModel {
             }
         }
     }
-	
+
     func getUserObjectivesFromFitnessApp(completed: @escaping (Result<(Int, Int), Error>) -> Void) {
         healthManager.getUserGoal { result in
             switch result {
@@ -69,20 +69,20 @@ class ObjectivesViewModel {
             }
         }
     }
-    
+
     func changeUsesCustomObjectives(value: Bool) {
         userObjectives.usesCustomObjectives = value
         if !value {
             getUserObjectivesFromFitnessApp()
         }
     }
-    
+
     func setObjectives(newCalories: Int, newMinutesExe: Int) {
         userObjectives.calories = newCalories
         userObjectives.minutesEx = newMinutesExe
         saveObjectives()
     }
-    
+
     func setCustomObjectives(newCalories: Int, newMinutesExe: Int) {
         if let usesCustomObjectives = userObjectives.usesCustomObjectives, usesCustomObjectives {
             setObjectives(newCalories: newCalories, newMinutesExe: newMinutesExe)
@@ -90,5 +90,4 @@ class ObjectivesViewModel {
             getUserObjectivesFromFitnessApp()
         }
     }
-    
 }

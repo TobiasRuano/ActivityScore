@@ -12,29 +12,29 @@ import GoogleMobileAds
 import ProgressHUD
 
 class ScoreViewController: UIViewController, GADBannerViewDelegate {
-    
+
     @IBOutlet weak var adBanner: GADBannerView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var cheeringLable: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
-    
+
     let scoreViewModel = ScoreViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         scoreViewModel.delegate = self
         self.navigationItem.title = "Your Daily Score"
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         ProgressHUD.show()
         labelStyle()
         configureAdBanner()
         healthData()
     }
-    
+
     func healthData() {
         scoreViewModel.authorizeHealthKit { status in
             if status {
@@ -74,7 +74,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     func setCardView() {
         let children = self.children
         for element in children where element is CardViewDataCollectionViewController {
-			let vc = element as! CardViewDataCollectionViewController
+			guard let vc = element as? CardViewDataCollectionViewController else { return }
 			vc.weekData = self.scoreViewModel.getFitnessDataInOrder().reversed()
 			vc.collectionView.reloadData()
         }
@@ -83,7 +83,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     func setLineGraph() {
         let children = self.children
         for element in children where element is LineGraphViewController {
-			let vc = element as! LineGraphViewController
+			guard let vc = element as? LineGraphViewController else { return }
 			vc.data = self.scoreViewModel.getFitnessDataInOrder()
 			vc.lineChartUpdate()
         }

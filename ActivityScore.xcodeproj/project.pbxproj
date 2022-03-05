@@ -226,8 +226,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B943B2720584C8600C37639 /* Build configuration list for PBXNativeTarget "ActivityScore" */;
 			buildPhases = (
-				8B7B6AC227D1947000CACE55 /* ShellScript */,
 				E82BE1AEFE3C7B40E22461A8 /* [CP] Check Pods Manifest.lock */,
+				8B7B6AC227D1947000CACE55 /* ShellScript */,
 				8B85A73127C9E0DD0070757F /* set build number */,
 				8B943B0F20584C8600C37639 /* Sources */,
 				8B943B1020584C8600C37639 /* Frameworks */,
@@ -319,7 +319,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Type a script or drag a script file from your workspace to insert its path.\nif which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n #\"${PODS_ROOT}/SwiftLint/swiftlint\" --fix && \"${PODS_ROOT}/SwiftLint/swiftlint\" lint\n \"${PODS_ROOT}/SwiftLint/swiftlint\" lint --strict | sed \"s/warning:/error:/\"\nelse\n  echo \"warning: SwiftLint not installed, download from #https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Type a script or drag a script file from your workspace to insert its path.\nif which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n \"${PODS_ROOT}/SwiftLint/swiftlint\" --fix && \"${PODS_ROOT}/SwiftLint/swiftlint\" lint --strict | sed \"s/warning:/error:/\"\n #\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --strict | sed \"s/warning:/error:/\"\nelse\n  echo \"warning: SwiftLint not installed, download from #https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		8B85A73127C9E0DD0070757F /* set build number */ = {
 			isa = PBXShellScriptBuildPhase;
