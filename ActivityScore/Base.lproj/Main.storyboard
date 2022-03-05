@@ -291,7 +291,7 @@ Slide to Get Started!</string>
             </objects>
             <point key="canvasLocation" x="-753" y="-955"/>
         </scene>
-        <!--Score View Controller-->
+        <!--Title-->
         <scene sceneID="WYp-sO-vda">
             <objects>
                 <viewController id="28U-GA-ehb" customClass="ScoreViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
@@ -398,7 +398,7 @@ Slide to Get Started!</string>
                             <constraint firstItem="afF-gl-cvP" firstAttribute="bottom" secondItem="3BK-B6-k1U" secondAttribute="bottomMargin" id="oXn-AP-vPk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="3ak-BL-BYH"/>
+                    <navigationItem key="navigationItem" title="Title" id="Z10-EG-rmo"/>
                     <connections>
                         <outlet property="adBanner" destination="afF-gl-cvP" id="TCY-pN-MO9"/>
                         <outlet property="cheeringLable" destination="qtU-GM-a4n" id="WK1-1D-55b"/>

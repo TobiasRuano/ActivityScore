@@ -22,6 +22,11 @@ class ScoreViewModel {
 	var amountDays = 7
 	var delegate: ScoreViewModelProtocol?
 
+	func changeDateAmount(newAmount: Int) {
+		self.amountDays = newAmount
+		retrieveHealthData()
+	}
+
 	func setDataArray() {
 		user.dailyData.removeAll()
 		var date = Date().removeTimeStamp!
