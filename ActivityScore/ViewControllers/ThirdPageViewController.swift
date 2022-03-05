@@ -23,11 +23,11 @@ class ThirdPageViewController: UIViewController {
         super.viewDidLoad()
         styleButton()
         styleView()
-        onboardingViewModel.getUserObjectivesFromFitnessApp { result in
+        onboardingViewModel.getUserGoalsFromFitnessApp { result in
             switch result {
-            case .success(let fitnessObjectives):
-                self.caloriesTextField.placeholder = "\(Int(fitnessObjectives.0)) cal"
-                self.exerciseTextField.placeholder = "\(Int(fitnessObjectives.1)) min"
+            case .success(let fitnessGoals):
+                self.caloriesTextField.placeholder = "\(Int(fitnessGoals.0)) cal"
+                self.exerciseTextField.placeholder = "\(Int(fitnessGoals.1)) min"
             case .failure:
                 self.caloriesTextField.placeholder = "0 cal"
                 self.exerciseTextField.placeholder = "0 min"
@@ -40,21 +40,21 @@ class ThirdPageViewController: UIViewController {
 
     @IBAction func ExitToRootViewController(_ sender: UIButton) {
         if customGoalsSwitch.isOn {
-            var calories = onboardingViewModel.userObjectives.calories
-            var exercise = onboardingViewModel.userObjectives.minutesEx
+            var calories = onboardingViewModel.userGoals.calories
+            var exercise = onboardingViewModel.userGoals.minutesEx
             if let caloriesText = caloriesTextField.text {
                 if let value = Int(caloriesText) {
-                    onboardingViewModel.changeUsesCustomObjectives(value: true)
+                    onboardingViewModel.changeUsesCustomGoals(value: true)
                     calories = value
                 }
             }
             if let exerciseText = exerciseTextField.text {
                 if let value = Int(exerciseText) {
-                    onboardingViewModel.changeUsesCustomObjectives(value: true)
+                    onboardingViewModel.changeUsesCustomGoals(value: true)
                     exercise = value
                 }
             }
-            onboardingViewModel.setCustomObjectives(newCalories: calories, newMinutesExe: exercise)
+            onboardingViewModel.setCustomGoals(newCalories: calories, newMinutesExe: exercise)
         }
 
         UserDefaults.standard.set(true, forKey: "OnboardingScreen")
@@ -86,11 +86,11 @@ class ThirdPageViewController: UIViewController {
 
     @IBAction func selectGoalInput(_ sender: Any) {
         if customGoalsSwitch.isOn {
-            onboardingViewModel.changeUsesCustomObjectives(value: true)
+            onboardingViewModel.changeUsesCustomGoals(value: true)
             caloriesTextField.isEnabled = true
             exerciseTextField.isEnabled = true
         } else {
-            onboardingViewModel.changeUsesCustomObjectives(value: false)
+            onboardingViewModel.changeUsesCustomGoals(value: false)
             caloriesTextField.isEnabled = false
             exerciseTextField.isEnabled = false
             caloriesTextField.text = nil
@@ -100,7 +100,7 @@ class ThirdPageViewController: UIViewController {
     }
 
     func defaultGoal() {
-        onboardingViewModel.getUserObjectivesFromFitnessApp { result in
+        onboardingViewModel.getUserGoalsFromFitnessApp { result in
             switch result {
             case .success(let values):
                 DispatchQueue.main.async {

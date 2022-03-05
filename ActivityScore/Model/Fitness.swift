@@ -26,7 +26,7 @@ struct DailyData {
 class Fitness {
 
     private var dailyData: [Date: DailyData] = [:]
-    private var userGoals: Objectives!
+    private var userGoals: Goals!
 
     func setItemInDailyData(amounts: [Date: Int], type: DailyDataType) {
         for element in amounts {
@@ -85,13 +85,13 @@ class Fitness {
         if let data = UserDefaults.standard.data(forKey: "objectives") {
             let decoder = JSONDecoder()
             do {
-                let object = try decoder.decode(Objectives.self, from: data)
+                let object = try decoder.decode(Goals.self, from: data)
                 userGoals = object
             } catch {
-                userGoals = Objectives()
+                userGoals = Goals()
             }
         } else {
-            userGoals = Objectives()
+            userGoals = Goals()
         }
     }
 }

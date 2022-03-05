@@ -1,5 +1,5 @@
 //
-//  ObjectivesTableViewController.swift
+//  GoalsTableViewController.swift
 //  ActivityScore
 //
 //  Created by Tobias Ruano on 12/04/2019.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ObjectivesTableViewController: UITableViewController {
+class GoalsTableViewController: UITableViewController {
 
     @IBOutlet weak var calorieTextField: UITextField!
     @IBOutlet weak var customGoalsSwitch: UISwitch!
     @IBOutlet weak var excerciseTextField: UITextField!
 
-    var objectivesViewModel = ObjectivesViewModel()
+    var objectivesViewModel = GoalsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +22,8 @@ class ObjectivesTableViewController: UITableViewController {
         // Do any additional setup after loading the view.
     }
 
-    func setCustomObjectivesSwitch() {
-        if let value = objectivesViewModel.userObjectives.usesCustomObjectives {
+    func setCustomGoalsSwitch() {
+        if let value = objectivesViewModel.userGoals.usesCustomGoals {
             customGoalsSwitch.isOn = value
         } else {
             customGoalsSwitch.isOn = false
@@ -37,18 +37,18 @@ class ObjectivesTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        calorieTextField.placeholder = "\(objectivesViewModel.userObjectives.calories)cal"
-        excerciseTextField.placeholder = "\(objectivesViewModel.userObjectives.minutesEx)min"
-        setCustomObjectivesSwitch()
+        calorieTextField.placeholder = "\(objectivesViewModel.userGoals.calories)cal"
+        excerciseTextField.placeholder = "\(objectivesViewModel.userGoals.minutesEx)min"
+        setCustomGoalsSwitch()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        handleObjectivesTextFields()
+        handleGoalsTextFields()
     }
 
-    func handleObjectivesTextFields() {
-        var activityValue = objectivesViewModel.userObjectives.calories
-        var exerciseValue = objectivesViewModel.userObjectives.minutesEx
+    func handleGoalsTextFields() {
+        var activityValue = objectivesViewModel.userGoals.calories
+        var exerciseValue = objectivesViewModel.userGoals.minutesEx
 
         if let caloriesText = calorieTextField.text, !caloriesText.isEmpty {
             if let value = Int(caloriesText) {
@@ -61,16 +61,16 @@ class ObjectivesTableViewController: UITableViewController {
                 exerciseValue = value
             }
         }
-        objectivesViewModel.setCustomObjectives(newCalories: activityValue, newMinutesExe: exerciseValue)
+        objectivesViewModel.setCustomGoals(newCalories: activityValue, newMinutesExe: exerciseValue)
     }
 
     @IBAction func setCustomGoalInput(_ sender: Any) {
         if customGoalsSwitch.isOn {
-            objectivesViewModel.changeUsesCustomObjectives(value: true)
+            objectivesViewModel.changeUsesCustomGoals(value: true)
             calorieTextField.isEnabled = true
             excerciseTextField.isEnabled = true
         } else {
-            objectivesViewModel.changeUsesCustomObjectives(value: false)
+            objectivesViewModel.changeUsesCustomGoals(value: false)
             calorieTextField.isEnabled = false
             excerciseTextField.isEnabled = false
             calorieTextField.text = nil
@@ -80,7 +80,7 @@ class ObjectivesTableViewController: UITableViewController {
     }
 
     func defaultGoal() {
-        objectivesViewModel.getUserObjectivesFromFitnessApp { result in
+        objectivesViewModel.getUserGoalsFromFitnessApp { result in
             switch result {
             case .success(let values):
                 DispatchQueue.main.async {

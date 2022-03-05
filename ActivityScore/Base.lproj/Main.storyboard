@@ -818,7 +818,7 @@ Slide to Get Started!</string>
         <!--Daily Goals-->
         <scene sceneID="qoT-pb-X5o">
             <objects>
-                <tableViewController id="rdL-dJ-Fj9" customClass="ObjectivesTableViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="rdL-dJ-Fj9" customClass="GoalsTableViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="GSX-0Q-ou8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
