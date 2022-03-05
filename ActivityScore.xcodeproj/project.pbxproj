@@ -38,6 +38,7 @@
 		8BA3922E222C4F7A00BA560A /* OnboardingRootPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */; };
 		8BA39230222C5C2D00BA560A /* SecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */; };
 		8BA39232222CC33B00BA560A /* ThirdPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA39231222CC33B00BA560A /* ThirdPageViewController.swift */; };
+		8BD3C71627D402BE007C49A2 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3C71527D402BD007C49A2 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootPageViewController.swift; sourceTree = "<group>"; };
 		8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewController.swift; sourceTree = "<group>"; };
 		8BA39231222CC33B00BA560A /* ThirdPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageViewController.swift; sourceTree = "<group>"; };
+		8BD3C71527D402BD007C49A2 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		EFA031F1425B247741A186A6 /* Pods-ActivityScore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.debug.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */,
+				8BD3C71527D402BD007C49A2 /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				8B85A72927C9C8800070757F /* AboutViewController.swift in Sources */,
 				8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */,
 				8B1BE56B27CBB03B008F2934 /* GoalsViewModel.swift in Sources */,
+				8BD3C71627D402BE007C49A2 /* DateExtension.swift in Sources */,
 				8B1BE56727CB16EE008F2934 /* ScoreViewModel.swift in Sources */,
 				8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */,
 				8B849FE72264BAD000B1A3D0 /* TapticEffectsService.swift in Sources */,

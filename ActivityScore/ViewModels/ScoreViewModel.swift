@@ -19,15 +19,44 @@ class ScoreViewModel {
 	private var succesFlag = true
 	private var inAppPurchase = false
 	private var user = Fitness()
+	var amountDays = 7
 	var delegate: ScoreViewModelProtocol?
 
+	func setDataArray() {
+		user.dailyData.removeAll()
+		var date = Date().removeTimeStamp!
+		for _ in 0..<amountDays {
+			let entry = DailyData(score: 0, steps: 0, distance: 0, calories: 0, exercise: 0)
+			user.dailyData[date] = entry
+			let interval = TimeInterval(-86400)
+			date = Date(timeInterval: interval, since: date)
+		}
+	}
+
+	func setItemInDailyData(amounts: [Date: Int], type: DailyDataType) {
+		for element in amounts {
+			let key = element.key
+			switch type {
+			case .steps:
+				user.dailyData[key]?.steps = element.value
+			case .distance:
+				user.dailyData[key]?.distance = element.value
+			case .calories:
+				user.dailyData[key]?.calories = element.value
+			case .exercise:
+				user.dailyData[key]?.exercise = element.value
+			}
+		}
+	}
+
 	func retrieveHealthData() {
+		setDataArray()
 		user.getGoals()
 		var check = 0
-		healthManager.getData(type: .stepCount, unit: .count(), days: 7) { result in
+		healthManager.getData(type: .stepCount, unit: .count(), days: amountDays) { result in
 			switch result {
 			case .success(let steps):
-				self.user.setItemInDailyData(amounts: steps, type: .steps)
+				self.setItemInDailyData(amounts: steps, type: .steps)
 				check += 1
 				if check == 4 {
 					self.obtainScoreNumber { values in
@@ -39,10 +68,10 @@ class ScoreViewModel {
 			}
 		}
 
-		healthManager.getData(type: .activeEnergyBurned, unit: .kilocalorie(), days: 7) { result in
+		healthManager.getData(type: .activeEnergyBurned, unit: .kilocalorie(), days: amountDays) { result in
 			switch result {
 			case .success(let calories):
-				self.user.setItemInDailyData(amounts: calories, type: .calories)
+				self.setItemInDailyData(amounts: calories, type: .calories)
 				check += 1
 				if check == 4 {
 					self.obtainScoreNumber { values in
@@ -54,10 +83,10 @@ class ScoreViewModel {
 			}
 		}
 
-		healthManager.getData(type: .appleExerciseTime, unit: .minute(), days: 7) { result in
+		healthManager.getData(type: .appleExerciseTime, unit: .minute(), days: amountDays) { result in
 			switch result {
 			case .success(let exercice):
-				self.user.setItemInDailyData(amounts: exercice, type: .exercise)
+				self.setItemInDailyData(amounts: exercice, type: .exercise)
 				check += 1
 				if check == 4 {
 					self.obtainScoreNumber { values in
@@ -69,10 +98,10 @@ class ScoreViewModel {
 			}
 		}
 
-		healthManager.getData(type: .distanceWalkingRunning, unit: .meter(), days: 7) { result in
+		healthManager.getData(type: .distanceWalkingRunning, unit: .meter(), days: amountDays) { result in
 			switch result {
 			case .success(let distance):
-				self.user.setItemInDailyData(amounts: distance, type: .distance)
+				self.setItemInDailyData(amounts: distance, type: .distance)
 				check += 1
 				if check == 4 {
 					self.obtainScoreNumber { values in
