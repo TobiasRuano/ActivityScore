@@ -12,29 +12,29 @@ import GoogleMobileAds
 import ProgressHUD
 
 class ScoreViewController: UIViewController, GADBannerViewDelegate {
-    
+
     @IBOutlet weak var adBanner: GADBannerView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var cheeringLable: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
-    
+
     let scoreViewModel = ScoreViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         scoreViewModel.delegate = self
         self.navigationItem.title = "Your Daily Score"
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         ProgressHUD.show()
         labelStyle()
         configureAdBanner()
         healthData()
     }
-    
+
     func healthData() {
         scoreViewModel.authorizeHealthKit { status in
             if status {
@@ -44,20 +44,20 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             }
         }
     }
-    
+
     func retrieveData() {
         scoreViewModel.retrieveHealthData()
     }
-    
+
     func checkOnboardingStatus() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         var vc: UIViewController
-        if (UserDefaults.standard.value(forKey: "OnboardingScreen") as? Bool) == nil  {
+        if (UserDefaults.standard.value(forKey: "OnboardingScreen") as? Bool) == nil {
             vc = storyBoard.instantiateViewController(withIdentifier: "OnboardingRoot")
             present(vc, animated: true, completion: nil)
         }
     }
-    
+
     func labelStyle() {
         let shadowColor = UIColor.white
         scoreLabel.layer.shadowColor = shadowColor.cgColor
@@ -65,34 +65,30 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         scoreLabel.layer.shadowOpacity = 1
         scoreLabel.layer.shadowRadius = 2
     }
-    
+
     func setScoreText(score: String, description: String) {
         self.scoreLabel.text = score
         self.cheeringLable.text = description
     }
-    
+
     func setCardView() {
         let children = self.children
-        for element in children {
-            if element is CardViewDataCollectionViewController {
-                let vc = element as! CardViewDataCollectionViewController
-                vc.weekData = self.scoreViewModel.getFitnessDataInOrder().reversed()
-                vc.collectionView.reloadData()
-            }
+        for element in children where element is CardViewDataCollectionViewController {
+			guard let vc = element as? CardViewDataCollectionViewController else { return }
+			vc.weekData = self.scoreViewModel.getFitnessDataInOrder().reversed()
+			vc.collectionView.reloadData()
         }
     }
-    
+
     func setLineGraph() {
         let children = self.children
-        for element in children {
-            if element is LineGraphViewController {
-                let vc = element as! LineGraphViewController
-                vc.data = self.scoreViewModel.getFitnessDataInOrder()
-                vc.lineChartUpdate()
-            }
+        for element in children where element is LineGraphViewController {
+			guard let vc = element as? LineGraphViewController else { return }
+			vc.data = self.scoreViewModel.getFitnessDataInOrder()
+			vc.lineChartUpdate()
         }
     }
-    
+
     func configureAdBanner() {
         scoreViewModel.checkPurchaseStatus { status in
             switch status {
@@ -105,19 +101,15 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             }
         }
     }
-    
+
     func setAdBanner() {
         if adBanner.adUnitID == nil {
-            let request = GADRequest()
-            request.testDevices = [(kGADSimulatorID as! String)]
-            request.testDevices = [ "21df7f3d09709224a09480ff10d324aa" ]
             adBanner.adUnitID = "ca-app-pub-6561467960639972/8227758207"
             adBanner.rootViewController = self
             adBanner.delegate = self
-            adBanner.load(request)
+            adBanner.load(GADRequest())
         }
     }
-    
 }
 
 extension ScoreViewController: ScoreViewModelProtocol {
@@ -128,4 +120,3 @@ extension ScoreViewController: ScoreViewModelProtocol {
         ProgressHUD.dismiss()
     }
 }
-

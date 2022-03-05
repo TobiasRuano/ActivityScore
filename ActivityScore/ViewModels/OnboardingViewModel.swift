@@ -9,22 +9,20 @@
 import Foundation
 
 class OnboardingViewModel: ObjectivesViewModel {
-    
+
     var succesFlag = true
     private var caloriesHealth: Int?
     private var minuteExe: Int?
-    
     static let shared = OnboardingViewModel()
-    
+
     private override init() { }
-    
+
     func authorizeHealthKit() {
         healthManager.authorizeHealthKit { authorized, error in
             guard authorized else {
                 let baseMessage = "HealthKit Authorization Failed"
                 self.succesFlag = false
                 UserDefaults.standard.set(self.succesFlag, forKey: "Flag")
-                
                 if let error = error {
                     print("\(baseMessage). Reason: \(error.localizedDescription)")
                 } else {
@@ -37,7 +35,7 @@ class OnboardingViewModel: ObjectivesViewModel {
             UserDefaults.standard.set(self.succesFlag, forKey: "Flag")
         }
     }
-    
+
 //    func getUserObjectivesFromFitnessApp(completed: @escaping (Result<(Int, Int), Error>) -> Void) {
 //        healthManager.getUserGoal { result in
 //            switch result {

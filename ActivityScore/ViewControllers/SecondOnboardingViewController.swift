@@ -9,19 +9,19 @@
 import UIKit
 
 class SecondOnboardingViewController: UIViewController {
-    
+
     let onboardingViewModel = OnboardingViewModel.shared
     @IBOutlet weak var authorizeHealthButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         styleButton()
     }
-    
+
     @IBAction func authorizeHealthButton(_ sender: UIButton) {
         onboardingViewModel.authorizeHealthKit()
     }
-    
+
     func styleButton() {
         authorizeHealthButton.layer.cornerRadius = 15
         authorizeHealthButton.layer.shadowOpacity = 0.5

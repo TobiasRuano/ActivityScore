@@ -9,9 +9,9 @@
 import Foundation
 
 struct Objectives: Codable {
-    
+
     var calories = 0
     var minutesEx = 0
     var usesCustomObjectives: Bool? = false
-    
+
 }
