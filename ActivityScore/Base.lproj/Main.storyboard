@@ -823,7 +823,8 @@ Slide to Get Started!</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
-                            <tableViewSection headerTitle="target" footerTitle="I need this information to make a more personalized score. Try to be as precise as possible. " id="Hpa-0X-6k7">
+                            <tableViewSection headerTitle="target" id="Hpa-0X-6k7">
+                                <string key="footerTitle">I need this information to make a more personalized score. If you wish you can use the same goals you'd set in the Activity app. </string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="64" id="63W-Rz-L19">
                                         <rect key="frame" x="16" y="49" width="343" height="64"/>

@@ -69,14 +69,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
 			ProgressHUD.show()
 			self.scoreViewModel.changeDateAmount(newAmount: 60)
 		}))
-		alert.addAction(UIAlertAction(title: "180 days", style: .default, handler: { (_) in
-			ProgressHUD.show()
-			self.scoreViewModel.changeDateAmount(newAmount: 180)
-		}))
-		alert.addAction(UIAlertAction(title: "365 days", style: .default, handler: { (_) in
-			ProgressHUD.show()
-			self.scoreViewModel.changeDateAmount(newAmount: 365)
-		}))
 		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 		self.present(alert, animated: true)
 	}
@@ -123,6 +115,9 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
 			guard let vc = element as? CardViewDataCollectionViewController else { return }
 			vc.weekData = self.scoreViewModel.getFitnessDataInOrder().reversed()
 			vc.collectionView.reloadData()
+			vc.collectionView.selectItem(at: IndexPath(item: 0, section: 0),
+										 animated: true,
+										 scrollPosition: .centeredHorizontally)
         }
     }
 
@@ -160,9 +155,9 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
 
 extension ScoreViewController: ScoreViewModelProtocol {
     func setView(scoreText: String, descriptionText: String) {
-        setLineGraph()
+		ProgressHUD.dismiss()
+		setLineGraph()
         setScoreText(score: scoreText, description: descriptionText)
         setCardView()
-        ProgressHUD.dismiss()
     }
 }
