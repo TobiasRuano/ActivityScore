@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyStoreKit
 import StoreKit
+import ProgressHUD
 
 // swiftlint:disable line_length cyclomatic_complexity
 class InAppPurchaseTableViewController: UITableViewController {
@@ -32,6 +33,11 @@ class InAppPurchaseTableViewController: UITableViewController {
             verifyRecipt()
         }
     }
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		ProgressHUD.dismiss()
+	}
 
     func checkPurchaseStatus() -> Bool {
         var status = false
@@ -72,9 +78,9 @@ class InAppPurchaseTableViewController: UITableViewController {
     }
 
     func getInfo() {
-        NetworkActivityIndicationManager.networkOperationStarted()
+        ProgressHUD.show()
         SwiftyStoreKit.retrieveProductsInfo([bundleID + "." + removeAdID], completion: { result in
-            NetworkActivityIndicationManager.networkOperationFinished()
+            ProgressHUD.dismiss()
 
             if let product = result.retrievedProducts.first {
                 let priceString = product.localizedPrice!
@@ -89,7 +95,7 @@ class InAppPurchaseTableViewController: UITableViewController {
     }
 
     func purchase() {
-        NetworkActivityIndicationManager.networkOperationStarted()
+        ProgressHUD.show()
         SwiftyStoreKit.retrieveProductsInfo([bundleID + "." + removeAdID]) { result in
             if let product = result.retrievedProducts.first {
                 SwiftyStoreKit.purchaseProduct(product, quantity: 1, atomically: true) { result in
@@ -134,12 +140,12 @@ class InAppPurchaseTableViewController: UITableViewController {
                     }
                 }
             }
-            NetworkActivityIndicationManager.networkOperationFinished()
+            ProgressHUD.dismiss()
         }
     }
 
     func restorePurchase() {
-        NetworkActivityIndicationManager.networkOperationStarted()
+        ProgressHUD.show()
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if !results.restoreFailedPurchases.isEmpty {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
@@ -159,12 +165,12 @@ class InAppPurchaseTableViewController: UITableViewController {
                 self.alert(title: "Opps!", message: "It seems there's nothing to restore", buttonText: "Ok")
                 TapticEffectsService.performFeedbackNotification(type: .error)
             }
-            NetworkActivityIndicationManager.networkOperationFinished()
+            ProgressHUD.dismiss()
         }
     }
 
     func verifyRecipt() {
-        NetworkActivityIndicationManager.networkOperationStarted()
+        ProgressHUD.show()
         let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: sharedSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
             switch result {
@@ -187,6 +193,6 @@ class InAppPurchaseTableViewController: UITableViewController {
                            buttonText: "Ok")
             }
         }
-        NetworkActivityIndicationManager.networkOperationFinished()
+        ProgressHUD.dismiss()
     }
 }
