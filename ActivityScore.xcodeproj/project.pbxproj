@@ -10,7 +10,7 @@
 		70D79A0BF7AB93FAD3737B70 /* Pods_ActivityScore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */; };
 		8B1BE56727CB16EE008F2934 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56627CB16EE008F2934 /* ScoreViewModel.swift */; };
 		8B1BE56927CB185D008F2934 /* Objectives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56827CB185D008F2934 /* Objectives.swift */; };
-		8B1BE56B27CBB03B008F2934 /* ObjectivesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56A27CBB03B008F2934 /* ObjectivesViewModel.swift */; };
+		8B1BE56B27CBB03B008F2934 /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56A27CBB03B008F2934 /* GoalsViewModel.swift */; };
 		8B1BE56E27CBBCEC008F2934 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BE56D27CBBCEC008F2934 /* OnboardingViewModel.swift */; };
 		8B29884F27C19C5300DCD5E8 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */; };
 		8B29885227C31CFA00DCD5E8 /* Fitness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29885127C31CFA00DCD5E8 /* Fitness.swift */; };
@@ -25,7 +25,7 @@
 		8B85A72D27C9D7D00070757F /* AboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85A72B27C9D7CF0070757F /* AboutTableViewCell.swift */; };
 		8B85A72E27C9D7D00070757F /* AboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B85A72C27C9D7D00070757F /* AboutTableViewCell.xib */; };
 		8B8CC5BA2260F63D00AFB974 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */; };
-		8B8CC5BC2261089400AFB974 /* ObjectivesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5BB2261089400AFB974 /* ObjectivesTableViewController.swift */; };
+		8B8CC5BC2261089400AFB974 /* GoalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CC5BB2261089400AFB974 /* GoalsTableViewController.swift */; };
 		8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1620584C8600C37639 /* AppDelegate.swift */; };
 		8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1820584C8600C37639 /* ScoreViewController.swift */; };
 		8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943B1A20584C8600C37639 /* SettingsViewController.swift */; };
@@ -38,6 +38,7 @@
 		8BA3922E222C4F7A00BA560A /* OnboardingRootPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */; };
 		8BA39230222C5C2D00BA560A /* SecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */; };
 		8BA39232222CC33B00BA560A /* ThirdPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA39231222CC33B00BA560A /* ThirdPageViewController.swift */; };
+		8BD3C71627D402BE007C49A2 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3C71527D402BD007C49A2 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +46,7 @@
 		7C1B7FCF3BE4E918943DD543 /* Pods-ActivityScore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.release.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.release.xcconfig"; sourceTree = "<group>"; };
 		8B1BE56627CB16EE008F2934 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
 		8B1BE56827CB185D008F2934 /* Objectives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objectives.swift; sourceTree = "<group>"; };
-		8B1BE56A27CBB03B008F2934 /* ObjectivesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectivesViewModel.swift; sourceTree = "<group>"; };
+		8B1BE56A27CBB03B008F2934 /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
 		8B1BE56D27CBBCEC008F2934 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		8B29884E27C19C5300DCD5E8 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		8B29885127C31CFA00DCD5E8 /* Fitness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fitness.swift; sourceTree = "<group>"; };
@@ -60,7 +61,7 @@
 		8B85A72B27C9D7CF0070757F /* AboutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewCell.swift; sourceTree = "<group>"; };
 		8B85A72C27C9D7D00070757F /* AboutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutTableViewCell.xib; sourceTree = "<group>"; };
 		8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
-		8B8CC5BB2261089400AFB974 /* ObjectivesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectivesTableViewController.swift; sourceTree = "<group>"; };
+		8B8CC5BB2261089400AFB974 /* GoalsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsTableViewController.swift; sourceTree = "<group>"; };
 		8B943B1320584C8600C37639 /* ActivityScore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivityScore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B943B1620584C8600C37639 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B943B1820584C8600C37639 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootPageViewController.swift; sourceTree = "<group>"; };
 		8BA3922F222C5C2D00BA560A /* SecondOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewController.swift; sourceTree = "<group>"; };
 		8BA39231222CC33B00BA560A /* ThirdPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageViewController.swift; sourceTree = "<group>"; };
+		8BD3C71527D402BD007C49A2 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		EFA031F1425B247741A186A6 /* Pods-ActivityScore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.debug.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,7 +98,7 @@
 		8B1BE56C27CBBCCA008F2934 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				8B1BE56A27CBB03B008F2934 /* ObjectivesViewModel.swift */,
+				8B1BE56A27CBB03B008F2934 /* GoalsViewModel.swift */,
 				8B1BE56627CB16EE008F2934 /* ScoreViewModel.swift */,
 				8B1BE56D27CBBCEC008F2934 /* OnboardingViewModel.swift */,
 			);
@@ -116,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				8B943B1820584C8600C37639 /* ScoreViewController.swift */,
-				8B8CC5BB2261089400AFB974 /* ObjectivesTableViewController.swift */,
+				8B8CC5BB2261089400AFB974 /* GoalsTableViewController.swift */,
 				8B943B1A20584C8600C37639 /* SettingsViewController.swift */,
 				8BA3922B222C18C500BA560A /* InAppPurchaseTableViewController.swift */,
 				8BA3922D222C4F7A00BA560A /* OnboardingRootPageViewController.swift */,
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */,
+				8BD3C71527D402BD007C49A2 /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -182,12 +185,12 @@
 				8B943B2E20584D3F00C37639 /* ActivityScore.entitlements */,
 				8B943B1620584C8600C37639 /* AppDelegate.swift */,
 				8B29885027C31CAB00DCD5E8 /* Model */,
+				8BD3C71427D3FAAF007C49A2 /* Views */,
 				8B1BE56C27CBBCCA008F2934 /* ViewModels */,
 				8B85A73027C9DCE20070757F /* Managers */,
 				8B3F67E3205AD7B6007B77B2 /* ViewControllers */,
 				8B85A72F27C9DCCC0070757F /* Cells */,
 				8B42A44A27CE68B000A7CDF6 /* Extensions */,
-				8B3FAF49205D881800A12D89 /* CardView.swift */,
 				8B943B1C20584C8600C37639 /* Main.storyboard */,
 				8B943B1F20584C8600C37639 /* Assets.xcassets */,
 				8B943B2120584C8600C37639 /* LaunchScreen.storyboard */,
@@ -205,6 +208,14 @@
 				6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8BD3C71427D3FAAF007C49A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B3FAF49205D881800A12D89 /* CardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E3E4BF933BD5C91D4DBBFADF /* Pods */ = {
@@ -406,7 +417,8 @@
 				8B42A44C27CE81AC00A7CDF6 /* LineGraphViewController.swift in Sources */,
 				8B85A72927C9C8800070757F /* AboutViewController.swift in Sources */,
 				8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */,
-				8B1BE56B27CBB03B008F2934 /* ObjectivesViewModel.swift in Sources */,
+				8B1BE56B27CBB03B008F2934 /* GoalsViewModel.swift in Sources */,
+				8BD3C71627D402BE007C49A2 /* DateExtension.swift in Sources */,
 				8B1BE56727CB16EE008F2934 /* ScoreViewModel.swift in Sources */,
 				8B943B1920584C8600C37639 /* ScoreViewController.swift in Sources */,
 				8B849FE72264BAD000B1A3D0 /* TapticEffectsService.swift in Sources */,
@@ -414,7 +426,7 @@
 				8B1BE56927CB185D008F2934 /* Objectives.swift in Sources */,
 				8B1BE56E27CBBCEC008F2934 /* OnboardingViewModel.swift in Sources */,
 				8B29884F27C19C5300DCD5E8 /* HealthKitManager.swift in Sources */,
-				8B8CC5BC2261089400AFB974 /* ObjectivesTableViewController.swift in Sources */,
+				8B8CC5BC2261089400AFB974 /* GoalsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

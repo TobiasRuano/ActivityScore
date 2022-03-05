@@ -113,8 +113,10 @@ class HealthKitManager {
                 myResults.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, _ in
                     if let quantity = statistics.sumQuantity() {
                         let date = statistics.startDate
-                        let dayData = quantity.doubleValue(for: unit)
-                        completeDataArray[date] = Int(dayData)
+						if let dateFormatted = date.removeTimeStamp {
+							let dayData = quantity.doubleValue(for: unit)
+							completeDataArray[dateFormatted] = Int(dayData)
+						}
                     }
                 }
             }
