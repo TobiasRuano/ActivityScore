@@ -182,12 +182,12 @@
 				8B943B2E20584D3F00C37639 /* ActivityScore.entitlements */,
 				8B943B1620584C8600C37639 /* AppDelegate.swift */,
 				8B29885027C31CAB00DCD5E8 /* Model */,
+				8BD3C71427D3FAAF007C49A2 /* Views */,
 				8B1BE56C27CBBCCA008F2934 /* ViewModels */,
 				8B85A73027C9DCE20070757F /* Managers */,
 				8B3F67E3205AD7B6007B77B2 /* ViewControllers */,
 				8B85A72F27C9DCCC0070757F /* Cells */,
 				8B42A44A27CE68B000A7CDF6 /* Extensions */,
-				8B3FAF49205D881800A12D89 /* CardView.swift */,
 				8B943B1C20584C8600C37639 /* Main.storyboard */,
 				8B943B1F20584C8600C37639 /* Assets.xcassets */,
 				8B943B2120584C8600C37639 /* LaunchScreen.storyboard */,
@@ -205,6 +205,14 @@
 				6DA441F1555CB51A170F819E /* Pods_ActivityScore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8BD3C71427D3FAAF007C49A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B3FAF49205D881800A12D89 /* CardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E3E4BF933BD5C91D4DBBFADF /* Pods */ = {
