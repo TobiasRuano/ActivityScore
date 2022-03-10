@@ -34,7 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        UITabBar.appearance().tintColor = UIColor(displayP3Red: 245/255, green: 81/255, blue: 95/255, alpha: 1.0)
+		window?.tintColor = .systemPink
+
+//        UITabBar.appearance().tintColor = UIColor(displayP3Red: 245/255, green: 81/255, blue: 95/255, alpha: 1.0)
 
         let gadMobileAds = GADMobileAds.sharedInstance()
         gadMobileAds.start(completionHandler: nil)
