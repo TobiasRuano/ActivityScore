@@ -23,8 +23,7 @@ class ScoreLineGraphView: LineChartView {
 		self.autoScaleMinMaxEnabled = false
 		self.setScaleEnabled(false)
 
-//		self.setViewPortOffsets(left: 40, top: 10, right: 0, bottom: 30)
-		self.setExtraOffsets(left: 0, top: 10, right: 20, bottom: 10)
+		self.setExtraOffsets(left: 10, top: 10, right: 20, bottom: 20)
 		self.drawBordersEnabled = false
 		self.chartDescription?.enabled = false
 		self.legend.enabled = false
