@@ -14,13 +14,20 @@ extension UILabel {
 		if startValue != endValue {
 			let duration: Double = seconds
 			var startNumber = 0
-			var endNumber = endValue
+			let endNumber = endValue
 			if startValue < endValue {
 				startNumber = startValue
 
 				DispatchQueue.global().async {
 					for i in startNumber ..< (endNumber + 1) {
-						let sleepTime = UInt32(duration/Double(endNumber) * 1000000.0)
+						var sleepNum: Double = Double(endNumber - i)
+						if sleepNum == 0 {
+							sleepNum = Double(endNumber - i + 1) * 0.9
+						} else if sleepNum < 10 {
+							sleepNum = Double(endNumber - i) * 0.9
+						}
+
+						let sleepTime = UInt32(duration/Double(sleepNum) * 200000.0)
 						usleep(sleepTime)
 						DispatchQueue.main.async {
 							self.text = "\(i)"
@@ -28,15 +35,21 @@ extension UILabel {
 					}
 				}
 			} else {
-				startNumber = endValue
-				endNumber = startValue
+				startNumber = startValue
 
 				DispatchQueue.global().async {
-					for i in (startNumber ..< (endNumber)).reversed() {
-						let sleepTime = UInt32(duration/Double(endNumber) * 1000000.0)
+					for i in endNumber ..< (startNumber + 1) {
+						var sleepNum: Double = Double(startNumber - i)
+						if sleepNum == 0 {
+							sleepNum = Double(startNumber - i + 1) * 0.9
+						} else if sleepNum < 10 {
+							sleepNum = Double(startNumber - i) * 0.9
+						}
+
+						let sleepTime = UInt32(duration/Double(sleepNum) * 200000.0)
 						usleep(sleepTime)
 						DispatchQueue.main.async {
-							self.text = "\(i)"
+							self.text = "\(startNumber - i)"
 						}
 					}
 				}
