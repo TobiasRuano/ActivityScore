@@ -31,13 +31,13 @@ class LineGraphViewController: UIViewController {
 		let df = DateFormatter()
 		df.dateFormat = "d/M"
         for element in fitnessData {
-            xValue += 1
             let yValue = element.value.score
 			let now = df.string(from: element.key)
 			xLabels.append(now)
 			let entrie = ChartDataEntry(x: xValue, y: Double(yValue))
             entries.append(entrie)
 			totalScore += yValue
+			xValue += 1
         }
 
 		let avg: Double = Double(totalScore) / Double(fitnessData.count)
