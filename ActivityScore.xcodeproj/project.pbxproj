@@ -41,6 +41,7 @@
 		8BD3C71627D402BE007C49A2 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3C71527D402BD007C49A2 /* DateExtension.swift */; };
 		8BF7FE4027D95B4200CFB014 /* ScoreLineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FE3F27D95B4200CFB014 /* ScoreLineGraphView.swift */; };
 		8BF7FE4227D95CA600CFB014 /* ScoreLineGraphDataSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FE4127D95CA600CFB014 /* ScoreLineGraphDataSetView.swift */; };
+		8BF7FE4627DAC9A200CFB014 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FE4527DAC9A200CFB014 /* UILabelExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		8BD3C71527D402BD007C49A2 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		8BF7FE3F27D95B4200CFB014 /* ScoreLineGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLineGraphView.swift; sourceTree = "<group>"; };
 		8BF7FE4127D95CA600CFB014 /* ScoreLineGraphDataSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLineGraphDataSetView.swift; sourceTree = "<group>"; };
+		8BF7FE4527DAC9A200CFB014 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		EFA031F1425B247741A186A6 /* Pods-ActivityScore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityScore.debug.xcconfig"; path = "Target Support Files/Pods-ActivityScore/Pods-ActivityScore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				8B8CC5B92260F63D00AFB974 /* UITextFieldExtension.swift */,
+				8BF7FE4527DAC9A200CFB014 /* UILabelExtension.swift */,
 				8BD3C71527D402BD007C49A2 /* DateExtension.swift */,
 			);
 			path = Extensions;
@@ -422,6 +425,7 @@
 				8B943B1B20584C8600C37639 /* SettingsViewController.swift in Sources */,
 				8B8CC5BA2260F63D00AFB974 /* UITextFieldExtension.swift in Sources */,
 				8BA3922E222C4F7A00BA560A /* OnboardingRootPageViewController.swift in Sources */,
+				8BF7FE4627DAC9A200CFB014 /* UILabelExtension.swift in Sources */,
 				8B42A44C27CE81AC00A7CDF6 /* LineGraphViewController.swift in Sources */,
 				8B85A72927C9C8800070757F /* AboutViewController.swift in Sources */,
 				8B943B1720584C8600C37639 /* AppDelegate.swift in Sources */,

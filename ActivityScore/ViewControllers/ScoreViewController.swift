@@ -122,7 +122,13 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
 
     func setScoreText(score: String, description: String) {
-        self.scoreLabel.text = score
+		if let score = Int(score) {
+			var startNumber = 0
+			if let labelText = self.scoreLabel.text, let currentScoreInLabel = Int(labelText) {
+				startNumber = currentScoreInLabel
+			}
+			self.scoreLabel.incrementLabel(from: startNumber, to: score, in: 1.5)
+		}
         self.cheeringLable.text = description
     }
 
