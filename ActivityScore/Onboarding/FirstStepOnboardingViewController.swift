@@ -12,7 +12,6 @@ class FirstStepOnboardingViewController: UIViewController {
 
 	@IBOutlet weak var firstIcon: UIImageView!
 	@IBOutlet weak var secondIcon: UIImageView!
-	@IBOutlet weak var appIconImageView: UIImageView!
 	@IBOutlet weak var thirdIcon: UIImageView!
 
 	override func viewDidLoad() {
@@ -21,18 +20,22 @@ class FirstStepOnboardingViewController: UIViewController {
     }
 
 	func configureIcons() {
-		self.appIconImageView.image = UIImage(named: "AppIcon60x60")
-		self.appIconImageView.layer.cornerRadius = 15
-		self.appIconImageView.layer.shadowColor = UIColor.black.cgColor
-		self.appIconImageView.layer.shadowOpacity = 0.5
 
 		self.firstIcon.image = UIImage(systemName: "flame.fill")
-		self.secondIcon.image = UIImage(systemName: "figure.walk")
-		self.thirdIcon.image = UIImage(named: "combo_chart")
+//		self.secondIcon.image = UIImage(systemName: "figure.walk")
+		let gymImage = UIImage(named: "gym")!
+		let trophyImage = UIImage(named: "award")!
 
 		self.firstIcon.tintColor = .systemRed
 		self.secondIcon.tintColor = .systemGreen
-		self.thirdIcon.tintColor = .systemPink
+
+		let gymTintedImage = gymImage.withRenderingMode(.alwaysTemplate)
+		self.secondIcon.image = gymTintedImage
+		self.secondIcon.tintColor = .systemGreen
+
+		let tintedImage = trophyImage.withRenderingMode(.alwaysTemplate)
+		self.thirdIcon.image = tintedImage
+		self.thirdIcon.tintColor = UIColor(red: 255/255, green: 215/255, blue: 0, alpha: 1.0)
 	}
 
 	// MARK: - Actions
@@ -41,15 +44,4 @@ class FirstStepOnboardingViewController: UIViewController {
 			pageController.pushNext()
 		}
 	}
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
