@@ -41,22 +41,6 @@ class CardViewDataCollectionViewCell: UICollectionViewCell {
     }
 
     func configureDateLabel(date: Date) {
-        let today = Date()
-        let interval = TimeInterval(-86400)
-        let yesterday = Date(timeInterval: interval, since: today)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
-
-        let todayText = formatter.string(from: today)
-        let yesterdayText = formatter.string(from: yesterday)
-        let dateText = formatter.string(from: date)
-
-        if dateText == todayText {
-            dateLabel.text = "Today"
-        } else if dateText == yesterdayText {
-            dateLabel.text = "Yesterday"
-        } else {
-            dateLabel.text = dateText
-        }
+		dateLabel.text = date.getDayOfWeekName()
     }
 }
