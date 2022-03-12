@@ -34,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
+		self.window = UIWindow(frame: UIScreen.main.bounds)
+		window?.rootViewController = getViewControllerToPresent()
+		window?.makeKeyAndVisible()
+
         UITabBar.appearance().tintColor = UIColor(displayP3Red: 245/255, green: 81/255, blue: 95/255, alpha: 1.0)
 
         let gadMobileAds = GADMobileAds.sharedInstance()
@@ -41,6 +45,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         gadMobileAds.requestConfiguration.testDeviceIdentifiers = ["ca-app-pub-6561467960639972~9751628834"]
         return true
     }
+
+	func getViewControllerToPresent() -> UIViewController {
+		if let value = UserDefaults.standard.value(forKey: "OnboardingScreen"),
+		   let booleanValue = value as? Bool, booleanValue {
+			let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+			let tabBarController = storyBoard.instantiateViewController(withIdentifier: "tabBarController")
+			return tabBarController
+		} else {
+			let storyBoard = UIStoryboard(name: "Onboarding", bundle: nil)
+			let OnboardingPageViewController = storyBoard.instantiateViewController(withIdentifier: "welcome")
+			return OnboardingPageViewController
+		}
+	}
 
     func applicationWillResignActive(_ application: UIApplication) { }
 

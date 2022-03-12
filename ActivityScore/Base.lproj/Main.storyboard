@@ -760,7 +760,7 @@ Slide to Get Started!</string>
         <!--Tab Bar Controller-->
         <scene sceneID="ml2-9o-Ynd">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="cLD-St-MRP" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" modalPresentationStyle="fullScreen" id="cLD-St-MRP" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="hVd-i6-mvR"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
