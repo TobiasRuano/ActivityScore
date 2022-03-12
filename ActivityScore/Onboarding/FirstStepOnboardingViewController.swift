@@ -26,7 +26,7 @@ class FirstStepOnboardingViewController: UIViewController {
 		let gymImage = UIImage(named: "gym")!
 		let trophyImage = UIImage(named: "award")!
 
-		self.firstIcon.tintColor = .systemRed
+		self.firstIcon.tintColor = .orange
 		self.secondIcon.tintColor = .systemGreen
 
 		let gymTintedImage = gymImage.withRenderingMode(.alwaysTemplate)

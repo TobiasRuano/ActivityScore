@@ -15,7 +15,7 @@
                 <pageViewController storyboardIdentifier="welcome" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="p12-qw-p4H" customClass="MainPageOnboardingViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNm-j9-jdq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-749" y="132"/>
+            <point key="canvasLocation" x="-610" y="132"/>
         </scene>
         <!--First Step Onboarding View Controller-->
         <scene sceneID="Jvi-OV-oeW">
@@ -232,7 +232,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afr-LR-8JV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="657" y="613"/>
+            <point key="canvasLocation" x="2096" y="132"/>
         </scene>
         <!--Second Step Onboarding View Controller-->
         <scene sceneID="8LQ-Ro-lRj">
@@ -258,25 +258,97 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Health App Access" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpD-YD-lsU">
-                                <rect key="frame" x="24" y="164" width="366" height="48"/>
+                                <rect key="frame" x="30" y="164" width="354" height="95.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Goq-g9-58i">
+                                <rect key="frame" x="57" y="782" width="300" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sync with Apple health" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Li-CL-5V7">
+                                        <rect key="frame" x="75" y="16.5" width="215" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="healthAppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3ul-Zk-foS">
+                                        <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="KY8-b6-Eth"/>
+                                            <constraint firstAttribute="width" constant="40" id="TQC-zb-feO"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="7Li-CL-5V7" firstAttribute="leading" secondItem="3ul-Zk-foS" secondAttribute="trailing" constant="30" id="6dT-ks-IN4"/>
+                                    <constraint firstAttribute="height" constant="50" id="C5V-NX-qM1"/>
+                                    <constraint firstItem="3ul-Zk-foS" firstAttribute="centerY" secondItem="Goq-g9-58i" secondAttribute="centerY" id="O86-gs-8jD"/>
+                                    <constraint firstItem="3ul-Zk-foS" firstAttribute="leading" secondItem="Goq-g9-58i" secondAttribute="leading" constant="5" id="b8d-7z-8Ft"/>
+                                    <constraint firstItem="7Li-CL-5V7" firstAttribute="centerY" secondItem="Goq-g9-58i" secondAttribute="centerY" id="oi2-1U-55o"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Li-CL-5V7" secondAttribute="trailing" constant="10" id="sEP-21-Rs4"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iw5-cJ-imM">
+                                <rect key="frame" x="57" y="782" width="300" height="50"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="healthAuthorizationButtonTapped:" destination="sS9-u7-q36" eventType="touchDown" id="iiB-L1-yNI"/>
+                                    <action selector="healthAutorizationButtonDragged:" destination="sS9-u7-q36" eventType="touchDragOutside" id="k7b-z0-VUp"/>
+                                    <action selector="healthauthorizationButtonFinishedTapping:" destination="sS9-u7-q36" eventType="touchUpInside" id="Cre-u2-kmc"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HealthMockup" translatesAutoresizingMaskIntoConstraints="NO" id="ixp-1z-bT5">
+                                <rect key="frame" x="57" y="289.5" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Yq8-he-xbW"/>
+                                    <constraint firstAttribute="width" secondItem="ixp-1z-bT5" secondAttribute="height" multiplier="1:1" id="cGa-zl-2Mt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app needs access to health data to function properly" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cZ-aC-cdg">
+                                <rect key="frame" x="57" y="629.5" width="300" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KdX-rV-aYj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Goq-g9-58i" firstAttribute="trailing" secondItem="3vX-uM-IOI" secondAttribute="trailing" id="D39-iD-3WC"/>
                             <constraint firstItem="KdX-rV-aYj" firstAttribute="bottom" secondItem="3vX-uM-IOI" secondAttribute="bottom" constant="30" id="HBH-TL-oRR"/>
+                            <constraint firstItem="5cZ-aC-cdg" firstAttribute="leading" secondItem="ixp-1z-bT5" secondAttribute="leading" id="Ngn-5r-G9b"/>
+                            <constraint firstItem="5cZ-aC-cdg" firstAttribute="centerX" secondItem="4ag-zg-sVP" secondAttribute="centerX" id="ORG-yf-Wc2"/>
+                            <constraint firstItem="5cZ-aC-cdg" firstAttribute="top" secondItem="ixp-1z-bT5" secondAttribute="bottom" constant="40" id="Omk-T4-v7n"/>
                             <constraint firstItem="UpD-YD-lsU" firstAttribute="centerX" secondItem="4ag-zg-sVP" secondAttribute="centerX" id="SGt-LC-q5w"/>
                             <constraint firstItem="3vX-uM-IOI" firstAttribute="centerX" secondItem="4ag-zg-sVP" secondAttribute="centerX" id="TyJ-xb-8uL"/>
+                            <constraint firstItem="KdX-rV-aYj" firstAttribute="trailing" secondItem="UpD-YD-lsU" secondAttribute="trailing" constant="30" id="U7J-db-3Uy"/>
+                            <constraint firstItem="UpD-YD-lsU" firstAttribute="leading" secondItem="KdX-rV-aYj" secondAttribute="leading" constant="30" id="Ug9-tF-WZ7"/>
+                            <constraint firstItem="Goq-g9-58i" firstAttribute="bottom" secondItem="3vX-uM-IOI" secondAttribute="bottom" id="bDV-Sn-81Y"/>
+                            <constraint firstItem="Goq-g9-58i" firstAttribute="leading" secondItem="3vX-uM-IOI" secondAttribute="leading" id="cwc-Hf-CnI"/>
                             <constraint firstItem="UpD-YD-lsU" firstAttribute="top" secondItem="KdX-rV-aYj" secondAttribute="top" constant="120" id="dGA-QL-IlQ"/>
+                            <constraint firstItem="iw5-cJ-imM" firstAttribute="trailing" secondItem="Goq-g9-58i" secondAttribute="trailing" id="gzj-nk-SdG"/>
+                            <constraint firstItem="iw5-cJ-imM" firstAttribute="top" secondItem="Goq-g9-58i" secondAttribute="top" id="j96-23-2fC"/>
+                            <constraint firstItem="Goq-g9-58i" firstAttribute="top" secondItem="3vX-uM-IOI" secondAttribute="top" id="kvk-cJ-gZY"/>
+                            <constraint firstItem="5cZ-aC-cdg" firstAttribute="trailing" secondItem="ixp-1z-bT5" secondAttribute="trailing" id="kw9-Cj-dNB"/>
+                            <constraint firstItem="iw5-cJ-imM" firstAttribute="leading" secondItem="Goq-g9-58i" secondAttribute="leading" id="mKh-8d-EnS"/>
+                            <constraint firstItem="iw5-cJ-imM" firstAttribute="bottom" secondItem="Goq-g9-58i" secondAttribute="bottom" id="rJY-3f-gHO"/>
+                            <constraint firstItem="ixp-1z-bT5" firstAttribute="centerX" secondItem="4ag-zg-sVP" secondAttribute="centerX" id="tnf-Hf-BzA"/>
+                            <constraint firstItem="ixp-1z-bT5" firstAttribute="top" secondItem="UpD-YD-lsU" secondAttribute="bottom" constant="30" id="zv6-M0-w6P"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="Goq-g9-58i" id="8au-XX-98b"/>
+                        <outlet property="healthAppIconImageView" destination="3ul-Zk-foS" id="7ox-uw-Mts"/>
+                        <outlet property="healthAuthorizeButton" destination="iw5-cJ-imM" id="v5T-Rf-oEp"/>
+                        <outlet property="nextButton" destination="3vX-uM-IOI" id="4R5-UQ-Fjp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rf9-o5-IhW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="754" y="132"/>
+            <point key="canvasLocation" x="728" y="132"/>
         </scene>
         <!--Third Step Onboarding View Controller-->
         <scene sceneID="5ri-IX-UC2">
@@ -301,14 +373,49 @@
                                     <segue destination="Ux0-Pi-GaW" kind="show" identifier="toHome" id="Mgg-GB-gVQ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One More Thing..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xm3-mF-Tuz">
+                                <rect key="frame" x="30" y="164" width="354" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="S58-d5-w3l">
+                                <rect key="frame" x="20" y="387.5" width="374" height="344.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bT3-vs-Hdv" id="Ib8-pi-1dj"/>
+                                    <outlet property="delegate" destination="bT3-vs-Hdv" id="54F-GT-VmT"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHT-9T-EC7">
+                                <rect key="frame" x="30" y="242" width="354" height="95.5"/>
+                                <string key="text">To personalise the app we need you to set a few goals you want to achieve daily. Or, if you want, you can use the same ones from the Activity App.</string>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wWX-Dw-2kp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="y78-8s-X3b" firstAttribute="top" secondItem="S58-d5-w3l" secondAttribute="bottom" constant="50" id="2bP-TT-wec"/>
                             <constraint firstItem="y78-8s-X3b" firstAttribute="centerX" secondItem="9DN-d4-n1U" secondAttribute="centerX" id="347-xe-6Uc"/>
+                            <constraint firstItem="cHT-9T-EC7" firstAttribute="top" secondItem="Xm3-mF-Tuz" secondAttribute="bottom" constant="30" id="BCJ-6O-UiX"/>
+                            <constraint firstItem="S58-d5-w3l" firstAttribute="leading" secondItem="wWX-Dw-2kp" secondAttribute="leading" constant="20" id="Bju-Ck-1TW"/>
+                            <constraint firstItem="wWX-Dw-2kp" firstAttribute="trailing" secondItem="Xm3-mF-Tuz" secondAttribute="trailing" constant="30" id="Egd-Gx-NYC"/>
                             <constraint firstItem="wWX-Dw-2kp" firstAttribute="bottom" secondItem="y78-8s-X3b" secondAttribute="bottom" constant="30" id="QRQ-q1-gpn"/>
+                            <constraint firstItem="wWX-Dw-2kp" firstAttribute="trailing" secondItem="S58-d5-w3l" secondAttribute="trailing" constant="20" id="S4v-HE-peE"/>
+                            <constraint firstItem="wWX-Dw-2kp" firstAttribute="trailing" secondItem="cHT-9T-EC7" secondAttribute="trailing" constant="30" id="Udr-0x-cEC"/>
+                            <constraint firstItem="S58-d5-w3l" firstAttribute="top" secondItem="cHT-9T-EC7" secondAttribute="bottom" constant="50" id="gc9-br-8mP"/>
+                            <constraint firstItem="Xm3-mF-Tuz" firstAttribute="top" secondItem="wWX-Dw-2kp" secondAttribute="top" constant="120" id="h93-Ja-ug9"/>
+                            <constraint firstItem="Xm3-mF-Tuz" firstAttribute="leading" secondItem="wWX-Dw-2kp" secondAttribute="leading" constant="30" id="jsj-iK-hBk"/>
+                            <constraint firstItem="cHT-9T-EC7" firstAttribute="leading" secondItem="wWX-Dw-2kp" secondAttribute="leading" constant="30" id="qMe-IX-41A"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="S58-d5-w3l" id="gXk-y6-khh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="noz-hA-ell" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -316,6 +423,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="HealthMockup" width="345" height="344"/>
+        <image name="healthAppIcon" width="512" height="512"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

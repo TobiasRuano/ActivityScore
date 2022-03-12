@@ -38,6 +38,16 @@ class MainPageOnboardingViewController: UIPageViewController {
 		}
 	}
 
+	func pushBack() {
+		if currentIndex > 0 {
+			self.setViewControllers([self.viewControllerList[self.currentIndex - 1]],
+									direction: .reverse,
+									animated: true,
+									completion: nil)
+			currentIndex -= 1
+		}
+	}
+
     /*
     // MARK: - Navigation
 

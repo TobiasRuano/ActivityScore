@@ -19,7 +19,7 @@ class SecondOnboardingViewController: UIViewController {
     }
 
     @IBAction func authorizeHealthButton(_ sender: UIButton) {
-        onboardingViewModel.authorizeHealthKit()
+//        onboardingViewModel.authorizeHealthKit()
     }
 
     func styleButton() {
