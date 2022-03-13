@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import ProgressHUD
+
+protocol SecondStepOnboardingViewControllerProtocol {
+	func setDefaultGoals(activity: Int, exercise: Int)
+}
 
 class SecondStepOnboardingViewController: UIViewController {
 
@@ -17,6 +22,7 @@ class SecondStepOnboardingViewController: UIViewController {
 
 	let healthManager = HealthKitManager.shared
 	let viewModel = OnboardingViewModel.shared
+	var delegate: SecondStepOnboardingViewControllerProtocol?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +34,12 @@ class SecondStepOnboardingViewController: UIViewController {
 
 	func styleHealthButtonView() {
 		containerView.layer.cornerRadius = 15
-		containerView.backgroundColor = .systemGroupedBackground
+		containerView.backgroundColor = .secondarySystemBackground
 	}
 
 	@IBAction func actionButtonTapped(_ sender: Any) {
 		if let pageController = parent as? MainPageOnboardingViewController {
 			pageController.pushNext()
-//			pageController.pushBack()
 		}
 	}
 
@@ -55,9 +60,8 @@ class SecondStepOnboardingViewController: UIViewController {
 	}
 
 	@IBAction func healthauthorizationButtonFinishedTapping(_ sender: Any) {
-		animateContainerBackgroundColor(with: .systemGroupedBackground)
+		animateContainerBackgroundColor(with: .secondarySystemBackground)
 		viewModel.authorizeHealthKit {
-
 			self.viewModel.getUserGoalsFromFitnessApp { result in
 				switch result {
 				case .success(let goals):
@@ -65,17 +69,24 @@ class SecondStepOnboardingViewController: UIViewController {
 						self.nextButton.isEnabled = true
 						self.containerView.isHidden = true
 						self.healthAuthorizeButton.isHidden = true
+						ProgressHUD.showSucceed()
+						TapticEffectsService.performFeedbackNotification(type: .success)
+						self.delegate?.setDefaultGoals(activity: goals.0, exercise: goals.1)
 					}
 				case .failure(let error):
-					// TODO: Presentar error
-					break
+					let alert = UIAlertController(title: "Uppss, we encounter an issue",
+												  message: "While trying to get your activity goals from the Activity App this happened: \(error)",
+												  preferredStyle: .alert)
+					let action = UIAlertAction(title: "OK", style: .default)
+					alert.addAction(action)
+					self.present(alert, animated: true)
 				}
 			}
 		}
 	}
 
 	@IBAction func healthAutorizationButtonDragged(_ sender: Any) {
-		animateContainerBackgroundColor(with: .systemGroupedBackground)
+		animateContainerBackgroundColor(with: .secondarySystemBackground)
 	}
 
 	@IBAction func healthAuthorizationButtonTapped(_ sender: Any) {
