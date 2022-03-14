@@ -133,6 +133,7 @@
 		8B3F67E3205AD7B6007B77B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8BF7FE4927DC273300CFB014 /* Onboarding */,
 				8B943B1820584C8600C37639 /* ScoreViewController.swift */,
 				8B8CC5BB2261089400AFB974 /* GoalsTableViewController.swift */,
 				8B943B1A20584C8600C37639 /* SettingsViewController.swift */,
@@ -208,7 +209,6 @@
 		8B943B1520584C8600C37639 /* ActivityScore */ = {
 			isa = PBXGroup;
 			children = (
-				8BF7FE4927DC273300CFB014 /* Onboarding */,
 				8B943B2E20584D3F00C37639 /* ActivityScore.entitlements */,
 				8B943B1620584C8600C37639 /* AppDelegate.swift */,
 				8B29885027C31CAB00DCD5E8 /* Model */,
