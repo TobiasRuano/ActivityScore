@@ -24,7 +24,6 @@ class CardViewDataCollectionViewController: UICollectionViewController {
     }
 
     // MARK: UICollectionViewDataSource
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -54,6 +53,7 @@ class CardViewDataCollectionViewController: UICollectionViewController {
 
 extension CardViewDataCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 355, height: 350)
+		let value = collectionView.frame.height - 30
+		return CGSize(width: value, height: value)
     }
 }

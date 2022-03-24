@@ -15,25 +15,47 @@ class CardViewDataCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var excerciseLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+	@IBOutlet weak var stepsImageView: UIImageView!
+	@IBOutlet weak var caloriesImageView: UIImageView!
+	@IBOutlet weak var exerciseImageView: UIImageView!
+	@IBOutlet weak var distanceImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setUpImageViews()
     }
+
+	func setUpImageViews() {
+		if let stepsImage = UIImage(systemName: "figure.walk") {
+			stepsImageView.image = stepsImage
+		}
+
+		if let caloriesImage = UIImage(systemName: "flame.fill") {
+			caloriesImageView.image = caloriesImage
+		}
+
+		if let exerciseImage = UIImage(named: "figure.walk") {
+			exerciseImageView.image = exerciseImage
+		}
+
+		if let distanceImage = UIImage(named: "distance") {
+			distanceImageView.image = distanceImage
+		}
+	}
 
     func configureCell(steps: Int?, calories: Int?, excercise: Int?, distance: Int?, date: Date?) {
         if let steps = steps {
-            stepsLabel.text = "\(steps) Steps"
+            stepsLabel.text = "\(steps)"
         }
         if let calories = calories {
-            caloriesLabel.text = "\(calories) Calories"
+            caloriesLabel.text = "\(calories)"
         }
         if let excercise = excercise {
-            excerciseLabel.text = "\(excercise) Excercise Minutes"
+			excerciseLabel.text = "\(excercise)"
         }
         if let distance = distance {
             let value = Double(distance) / 1000.0
-            distanceLabel.text = "\(String(format: "%.01f", value)) KM Walked/Runned"
+			distanceLabel.text = "\(String(format: "%.01f", value)) KM"
         }
         if let date = date {
             configureDateLabel(date: date)
