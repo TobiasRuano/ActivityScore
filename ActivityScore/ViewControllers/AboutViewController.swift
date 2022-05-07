@@ -13,7 +13,7 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "About"
@@ -22,7 +22,7 @@ class AboutViewController: UIViewController {
         styleIconView()
         configureTableView()
     }
-    
+
     func styleIconView() {
         iconImageView.image = UIImage(named: "onboardingLogo")
         iconImageView.layer.cornerRadius = 25
@@ -30,21 +30,24 @@ class AboutViewController: UIViewController {
         iconImageView.layer.shadowRadius = 25
         iconImageView.layer.shadowOpacity = 10
     }
-    
+
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "AboutTableViewCell", bundle: nil), forCellReuseIdentifier: AboutTableViewCell.cellID)
+        tableView.register(UINib(nibName: "AboutTableViewCell",
+								 bundle: nil),
+						   forCellReuseIdentifier: AboutTableViewCell.cellID)
     }
 }
 
 extension AboutViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		// swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: AboutTableViewCell.cellID) as! AboutTableViewCell
         if indexPath.row == 0 {
             let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
@@ -57,5 +60,4 @@ extension AboutViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-    
 }

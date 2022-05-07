@@ -1,5 +1,5 @@
 //
-//  Objectives.swift
+//  Goals.swift
 //  ActivityScore
 //
 //  Created by Tobias Ruano on 26/02/2022.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Objectives: Codable {
-    
+struct Goals: Codable {
+
     var calories = 0
     var minutesEx = 0
-    var usesCustomObjectives: Bool? = false
-    
+    var usesCustomGoals: Bool? = false
+
 }

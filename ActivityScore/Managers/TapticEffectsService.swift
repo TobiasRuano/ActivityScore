@@ -10,9 +10,9 @@ import UIKit
 import AudioToolbox.AudioServices
 
 class TapticEffectsService {
-    
+
     // MARK: Public type methods - Haptic Feedback
-    
+
     /// Performs haptic feedback - selection.
     static func performFeedbackSelection() {
         if #available(iOS 10.0, *) {
@@ -21,7 +21,7 @@ class TapticEffectsService {
             selectionFeedbackGenerator.selectionChanged()
         }
     }
-    
+
     /// Performs haptic feedback - impact.
     static func performFeedbackImpact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
         if #available(iOS 10.0, *) {
@@ -30,7 +30,7 @@ class TapticEffectsService {
             mediumImpactFeedbackGenerator.impactOccurred()
         }
     }
-    
+
     /// Performs haptic feedback - notification.
     static func performFeedbackNotification(type: UINotificationFeedbackGenerator.FeedbackType) {
         if #available(iOS 10.0, *) {
@@ -39,9 +39,9 @@ class TapticEffectsService {
             notificationFeedbackGenerator.notificationOccurred(type)
         }
     }
-    
+
     // MARK: Public type methods - Taptic Engine
-    
+
     /// Performs taptic feedback based on 'TapticEngineFeedbackIdentifier'.
     static func performTapticFeedback(from feedbackIdentifier: TapticEngineFeedbackIdentifier) {
             AudioServicesPlaySystemSound(feedbackIdentifier.rawValue)

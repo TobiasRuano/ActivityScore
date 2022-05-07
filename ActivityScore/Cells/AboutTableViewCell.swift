@@ -9,12 +9,12 @@
 import UIKit
 
 class AboutTableViewCell: UITableViewCell {
-    
+
     static let cellID = "AboutCell"
 
     @IBOutlet weak var cellPrimaryText: UILabel!
     @IBOutlet weak var cellSecondaryText: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,5 +25,4 @@ class AboutTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

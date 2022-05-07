@@ -12,29 +12,84 @@ import GoogleMobileAds
 import ProgressHUD
 
 class ScoreViewController: UIViewController, GADBannerViewDelegate {
-    
+
     @IBOutlet weak var adBanner: GADBannerView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var cheeringLable: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
-    
+
     let scoreViewModel = ScoreViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         scoreViewModel.delegate = self
         self.navigationItem.title = "Your Daily Score"
+		setRightNavigationButton()
+		configurePullToRefresh()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
-        ProgressHUD.show()
+		ProgressHUD.animationType = .multipleCirclePulse
+		ProgressHUD.colorAnimation = .systemPink
+		ProgressHUD.show()
         labelStyle()
         configureAdBanner()
         healthData()
     }
-    
+
+	func configurePullToRefresh() {
+		scrollView.refreshControl = UIRefreshControl()
+		scrollView.refreshControl?.addTarget(self, action: #selector(refreshHealthData), for: .valueChanged)
+	}
+
+	@objc func refreshHealthData() {
+		ProgressHUD.show()
+		DispatchQueue.main.async {
+			self.scrollView.refreshControl?.endRefreshing()
+		}
+		healthData()
+	}
+
+	func setRightNavigationButton() {
+		let buttonImage = UIImage(systemName: "calendar")
+		let action = #selector(changeAmountDays(sender:))
+		let navigationBarButton = UIBarButtonItem(image: buttonImage,
+												  style: .done,
+												  target: self,
+												  action: action)
+		self.navigationItem.rightBarButtonItem = navigationBarButton
+	}
+
+	@objc func changeAmountDays(sender: UIBarButtonItem) {
+//		let alert = UIAlertController(title: titleString, message: "View Last...", preferredStyle: .actionSheet)
+		let alert = UIAlertController()
+
+		if let popoverController = alert.popoverPresentationController {
+			popoverController.barButtonItem = sender as UIBarButtonItem
+		}
+
+		alert.addAction(UIAlertAction(title: "Last 7 days", style: .default, handler: { (_) in
+			ProgressHUD.show()
+			self.scoreViewModel.changeDateAmount(newAmount: 7)
+		}))
+		alert.addAction(UIAlertAction(title: "Last 14 days", style: .default, handler: { (_) in
+			ProgressHUD.show()
+			self.scoreViewModel.changeDateAmount(newAmount: 14)
+		}))
+		alert.addAction(UIAlertAction(title: "Last 30 days", style: .default, handler: { (_) in
+			ProgressHUD.show()
+			self.scoreViewModel.changeDateAmount(newAmount: 30)
+		}))
+		alert.addAction(UIAlertAction(title: "Last 60 days", style: .default, handler: { (_) in
+			ProgressHUD.show()
+			self.scoreViewModel.changeDateAmount(newAmount: 60)
+		}))
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+		self.present(alert, animated: true)
+	}
+
     func healthData() {
         scoreViewModel.authorizeHealthKit { status in
             if status {
@@ -44,55 +99,51 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             }
         }
     }
-    
+
     func retrieveData() {
         scoreViewModel.retrieveHealthData()
     }
-    
-    func checkOnboardingStatus() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        var vc: UIViewController
-        if (UserDefaults.standard.value(forKey: "OnboardingScreen") as? Bool) == nil  {
-            vc = storyBoard.instantiateViewController(withIdentifier: "OnboardingRoot")
-            present(vc, animated: true, completion: nil)
-        }
-    }
-    
+
     func labelStyle() {
-        let shadowColor = UIColor.white
+        let shadowColor = UIColor.systemPink
         scoreLabel.layer.shadowColor = shadowColor.cgColor
         scoreLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
-        scoreLabel.layer.shadowOpacity = 1
-        scoreLabel.layer.shadowRadius = 2
+		scoreLabel.layer.shadowOpacity = 0.7
+        scoreLabel.layer.shadowRadius = 5
     }
-    
+
     func setScoreText(score: String, description: String) {
-        self.scoreLabel.text = score
+		if let score = Int(score) {
+			var startNumber = 0
+			if let labelText = self.scoreLabel.text, let currentScoreInLabel = Int(labelText) {
+				startNumber = currentScoreInLabel
+			}
+			self.scoreLabel.incrementLabel(from: startNumber, to: score, in: 1.5)
+		}
         self.cheeringLable.text = description
     }
-    
+
     func setCardView() {
         let children = self.children
-        for element in children {
-            if element is CardViewDataCollectionViewController {
-                let vc = element as! CardViewDataCollectionViewController
-                vc.weekData = self.scoreViewModel.getFitnessDataInOrder().reversed()
-                vc.collectionView.reloadData()
-            }
+        for element in children where element is CardViewDataCollectionViewController {
+			guard let vc = element as? CardViewDataCollectionViewController else { return }
+			vc.weekData = self.scoreViewModel.getFitnessDataInOrder().reversed()
+			vc.collectionView.reloadData()
+			vc.collectionView.selectItem(at: IndexPath(item: 0, section: 0),
+										 animated: true,
+										 scrollPosition: .centeredHorizontally)
         }
     }
-    
+
     func setLineGraph() {
         let children = self.children
-        for element in children {
-            if element is LineGraphViewController {
-                let vc = element as! LineGraphViewController
-                vc.data = self.scoreViewModel.getFitnessDataInOrder()
-                vc.lineChartUpdate()
-            }
+        for element in children where element is LineGraphViewController {
+			guard let vc = element as? LineGraphViewController else { return }
+			vc.data = self.scoreViewModel.getFitnessDataInOrder()
+			vc.lineChartUpdate()
         }
     }
-    
+
     func configureAdBanner() {
         scoreViewModel.checkPurchaseStatus { status in
             switch status {
@@ -105,25 +156,22 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
             }
         }
     }
-    
+
     func setAdBanner() {
-        let request = GADRequest()
-        request.testDevices = [(kGADSimulatorID as! String)]
-        request.testDevices = [ "21df7f3d09709224a09480ff10d324aa" ]
-        adBanner.adUnitID = "ca-app-pub-6561467960639972/8227758207"
-        adBanner.rootViewController = self
-        adBanner.delegate = self
-        adBanner.load(request)
+        if adBanner.adUnitID == nil {
+            adBanner.adUnitID = "ca-app-pub-6561467960639972/8227758207"
+            adBanner.rootViewController = self
+            adBanner.delegate = self
+            adBanner.load(GADRequest())
+        }
     }
-    
 }
 
 extension ScoreViewController: ScoreViewModelProtocol {
     func setView(scoreText: String, descriptionText: String) {
-        setLineGraph()
+		ProgressHUD.dismiss()
+		setLineGraph()
         setScoreText(score: scoreText, description: descriptionText)
         setCardView()
-        ProgressHUD.dismiss()
     }
 }
-
