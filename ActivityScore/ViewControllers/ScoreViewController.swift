@@ -27,14 +27,30 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         scoreViewModel.delegate = self
         self.navigationItem.title = "Your Daily Score"
 		setRightNavigationButton()
+		configurePullToRefresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        ProgressHUD.show()
+		ProgressHUD.animationType = .multipleCirclePulse
+		ProgressHUD.colorAnimation = .systemPink
+		ProgressHUD.show()
         labelStyle()
         configureAdBanner()
         healthData()
     }
+
+	func configurePullToRefresh() {
+		scrollView.refreshControl = UIRefreshControl()
+		scrollView.refreshControl?.addTarget(self, action: #selector(refreshHealthData), for: .valueChanged)
+	}
+
+	@objc func refreshHealthData() {
+		ProgressHUD.show()
+		DispatchQueue.main.async {
+			self.scrollView.refreshControl?.endRefreshing()
+		}
+		healthData()
+	}
 
 	func setRightNavigationButton() {
 		let buttonImage = UIImage(systemName: "calendar")
@@ -47,25 +63,26 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
 	}
 
 	@objc func changeAmountDays(sender: UIBarButtonItem) {
-		let alert = UIAlertController(title: "Choose an option:", message: "", preferredStyle: .actionSheet)
+//		let alert = UIAlertController(title: titleString, message: "View Last...", preferredStyle: .actionSheet)
+		let alert = UIAlertController()
 
 		if let popoverController = alert.popoverPresentationController {
 			popoverController.barButtonItem = sender as UIBarButtonItem
 		}
 
-		alert.addAction(UIAlertAction(title: "7 days", style: .default, handler: { (_) in
+		alert.addAction(UIAlertAction(title: "Last 7 days", style: .default, handler: { (_) in
 			ProgressHUD.show()
 			self.scoreViewModel.changeDateAmount(newAmount: 7)
 		}))
-		alert.addAction(UIAlertAction(title: "14 days", style: .default, handler: { (_) in
+		alert.addAction(UIAlertAction(title: "Last 14 days", style: .default, handler: { (_) in
 			ProgressHUD.show()
 			self.scoreViewModel.changeDateAmount(newAmount: 14)
 		}))
-		alert.addAction(UIAlertAction(title: "30 days", style: .default, handler: { (_) in
+		alert.addAction(UIAlertAction(title: "Last 30 days", style: .default, handler: { (_) in
 			ProgressHUD.show()
 			self.scoreViewModel.changeDateAmount(newAmount: 30)
 		}))
-		alert.addAction(UIAlertAction(title: "60 days", style: .default, handler: { (_) in
+		alert.addAction(UIAlertAction(title: "Last 60 days", style: .default, handler: { (_) in
 			ProgressHUD.show()
 			self.scoreViewModel.changeDateAmount(newAmount: 60)
 		}))
@@ -88,15 +105,21 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     }
 
     func labelStyle() {
-        let shadowColor = UIColor.white
+        let shadowColor = UIColor.systemPink
         scoreLabel.layer.shadowColor = shadowColor.cgColor
         scoreLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
-        scoreLabel.layer.shadowOpacity = 1
-        scoreLabel.layer.shadowRadius = 2
+		scoreLabel.layer.shadowOpacity = 0.7
+        scoreLabel.layer.shadowRadius = 5
     }
 
     func setScoreText(score: String, description: String) {
-        self.scoreLabel.text = score
+		if let score = Int(score) {
+			var startNumber = 0
+			if let labelText = self.scoreLabel.text, let currentScoreInLabel = Int(labelText) {
+				startNumber = currentScoreInLabel
+			}
+			self.scoreLabel.incrementLabel(from: startNumber, to: score, in: 1.5)
+		}
         self.cheeringLable.text = description
     }
 

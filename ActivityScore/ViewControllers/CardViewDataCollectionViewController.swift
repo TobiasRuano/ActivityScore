@@ -23,7 +23,7 @@ class CardViewDataCollectionViewController: UICollectionViewController {
         let nibName = UINib(nibName: "CardViewDataCollectionViewCell", bundle: nil)
         self.collectionView.register(nibName, forCellWithReuseIdentifier: reuseIdentifier)
     }
-
+  
 	// MARK: ScrollViewDelegate
 	override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 		let layout = collectionViewLayout as! UICollectionViewFlowLayout
@@ -52,7 +52,7 @@ class CardViewDataCollectionViewController: UICollectionViewController {
 			targetContentOffset.pointee.x = max(x, 0)
 		}
 	}
-
+  
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -83,6 +83,8 @@ class CardViewDataCollectionViewController: UICollectionViewController {
 
 extension CardViewDataCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 355, height: 350)
+		let value = collectionView.frame.height
+		let width = collectionView.frame.width
+		return CGSize(width: width, height: value)
     }
 }

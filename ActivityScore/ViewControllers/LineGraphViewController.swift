@@ -12,35 +12,13 @@ import Charts
 class LineGraphViewController: UIViewController {
 
     var data: [Dictionary<Date, DailyData>.Element]?
-    @IBOutlet weak var LineGraphView: LineChartView!
+    @IBOutlet weak var lineGraphView: ScoreLineGraphView!
+	@IBOutlet weak var averageScoreLabel: UILabel!
+	@IBOutlet weak var cardView: CardView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        styleChart()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        lineChartUpdate()
-    }
-
-    func styleChart() {
-        LineGraphView.backgroundColor = .systemBackground
-        LineGraphView.dragEnabled = true
-        LineGraphView.setScaleEnabled(false)
-        LineGraphView.pinchZoomEnabled = false
-        LineGraphView.setViewPortOffsets(left: 0, top: 0, right: 0, bottom: 0)
-        LineGraphView.isUserInteractionEnabled = false
-        LineGraphView.drawBordersEnabled = false
-        LineGraphView.chartDescription?.enabled = false
-        LineGraphView.legend.enabled = false
-        LineGraphView.xAxis.enabled = false
-        LineGraphView.leftAxis.enabled = false
-        LineGraphView.rightAxis.enabled = false
-        LineGraphView.leftAxis.axisMaximum = 110
-        LineGraphView.leftAxis.axisMinimum = -10
-        LineGraphView.drawGridBackgroundEnabled = false
-        LineGraphView.layer.cornerRadius = 15
-        LineGraphView.clipsToBounds = false
+		averageScoreLabel.text = "0"
     }
 
     func lineChartUpdate () {
@@ -48,40 +26,38 @@ class LineGraphViewController: UIViewController {
 
         var entries: [ChartDataEntry] = []
         var xValue = 0.0
+		var totalScore = 0
+		var xLabels: [String] = []
+		let df = DateFormatter()
+		df.dateFormat = "d/M"
         for element in fitnessData {
-            xValue += 1
             let yValue = element.value.score
-            let entrie = ChartDataEntry(x: xValue, y: Double(yValue))
+			let now = df.string(from: element.key)
+			xLabels.append(now)
+			let entrie = ChartDataEntry(x: xValue, y: Double(yValue))
             entries.append(entrie)
+			totalScore += yValue
+			xValue += 1
         }
 
-        let dataSet = LineChartDataSet(entries: entries, label: "Widgets Type")
-        dataSet.valueTextColor = .clear
-        dataSet.mode = .cubicBezier
-        dataSet.drawCirclesEnabled = false
-        dataSet.lineWidth = 4
-        dataSet.circleRadius = 3
-        dataSet.drawFilledEnabled = true
-        dataSet.highlightColor = UIColor(named: "pink")!
-        dataSet.drawCircleHoleEnabled = false
-        dataSet.drawHorizontalHighlightIndicatorEnabled = false
+		let avg: Double = Double(totalScore) / Double(fitnessData.count)
+		averageScoreLabel.text = String(format: "%.1f", avg)
 
-        let firstPink = UIColor(red: 247/255, green: 191/255, blue: 190/255, alpha: 0)
-        dataSet.colors = [UIColor(named: "pink")!]
-        let gradientColors = [firstPink.cgColor,
-                              UIColor.systemPink.cgColor]
-        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
+        let dataSet = ScoreLineGraphDataSetView(entries: entries, label: "Score")
 
-        dataSet.fillAlpha = 1
-        dataSet.fill = Fill(linearGradient: gradient, angle: 90)
-        dataSet.fillFormatter = DefaultFillFormatter {_, _  -> CGFloat in
-            return CGFloat(self.LineGraphView.leftAxis.axisMinimum)
-        }
+		lineGraphView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xLabels)
+		lineGraphView.xAxis.granularity = 1
 
+		dataSet.fillFormatter = DefaultFillFormatter {_, _  -> CGFloat in
+			return CGFloat(self.lineGraphView.leftAxis.axisMinimum)
+		}
         let data = LineChartData(dataSets: [dataSet])
         data.setDrawValues(false)
-        LineGraphView.data = data
-        LineGraphView.notifyDataSetChanged()
+
+		lineGraphView.animate(xAxisDuration: 0, yAxisDuration: 1.5, easingOption: .easeOutQuart)
+
+        lineGraphView.data = data
+        lineGraphView.notifyDataSetChanged()
     }
 
 }
