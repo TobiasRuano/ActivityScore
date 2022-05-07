@@ -19,15 +19,27 @@ class CardViewDataCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var caloriesImageView: UIImageView!
 	@IBOutlet weak var exerciseImageView: UIImageView!
 	@IBOutlet weak var distanceImageView: UIImageView!
+	@IBOutlet weak var caloriesImageCircularView: UIView!
+	@IBOutlet weak var exerciseImageCircularView: UIView!
+	@IBOutlet weak var stepsImageCircularView: UIView!
+	@IBOutlet weak var distanceImageCircularView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpImageViews()
+		configCircularViews()
     }
 
-	func setUpImageViews() {
+	private func configCircularViews() {
+		caloriesImageCircularView.layer.cornerRadius = caloriesImageCircularView.frame.width / 2
+		exerciseImageCircularView.layer.cornerRadius = exerciseImageCircularView.frame.width / 2
+		stepsImageCircularView.layer.cornerRadius = stepsImageCircularView.frame.width / 2
+		distanceImageCircularView.layer.cornerRadius = distanceImageCircularView.frame.width / 2
+	}
+
+	private func setUpImageViews() {
 		if let stepsImage = UIImage(systemName: "figure.walk") {
-			stepsImage.withTintColor(.systemPink, renderingMode: .alwaysTemplate)
+			stepsImage.withTintColor(.systemYellow, renderingMode: .alwaysTemplate)
 			stepsImageView.image = stepsImage
 		}
 
@@ -36,13 +48,13 @@ class CardViewDataCollectionViewCell: UICollectionViewCell {
 			caloriesImageView.image = caloriesImage
 		}
 
-		if let exerciseImage = UIImage(named: "figure.walk") {
-			exerciseImage.withTintColor(.systemPink, renderingMode: .alwaysTemplate)
+		if let exerciseImage = UIImage(systemName: "clock.fill") {
+			exerciseImage.withTintColor(.systemGreen, renderingMode: .alwaysTemplate)
 			exerciseImageView.image = exerciseImage
 		}
 
-		if let distanceImage = UIImage(named: "distance") {
-			distanceImage.withTintColor(.systemPink, renderingMode: .alwaysTemplate)
+		if let distanceImage = UIImage(systemName: "figure.stand.line.dotted.figure.stand") {
+			distanceImage.withTintColor(.systemTeal, renderingMode: .alwaysTemplate)
 			distanceImageView.image = distanceImage
 		}
 	}
