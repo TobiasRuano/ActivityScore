@@ -17,7 +17,7 @@ class OnboardingViewModel: GoalsViewModel {
 
     private override init() { }
 
-    func authorizeHealthKit() {
+	func authorizeHealthKit(completed: @escaping (() -> Void)) {
         healthManager.authorizeHealthKit { authorized, error in
             guard authorized else {
                 let baseMessage = "HealthKit Authorization Failed"
@@ -33,6 +33,7 @@ class OnboardingViewModel: GoalsViewModel {
             print("HealthKit Successfully Authorized.")
             self.succesFlag = true
             UserDefaults.standard.set(self.succesFlag, forKey: "Flag")
+			completed()
         }
     }
 

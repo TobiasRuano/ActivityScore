@@ -104,15 +104,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
         scoreViewModel.retrieveHealthData()
     }
 
-    func checkOnboardingStatus() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        var vc: UIViewController
-        if (UserDefaults.standard.value(forKey: "OnboardingScreen") as? Bool) == nil {
-            vc = storyBoard.instantiateViewController(withIdentifier: "OnboardingRoot")
-            present(vc, animated: true, completion: nil)
-        }
-    }
-
     func labelStyle() {
         let shadowColor = UIColor.systemPink
         scoreLabel.layer.shadowColor = shadowColor.cgColor
