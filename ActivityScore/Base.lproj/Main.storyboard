@@ -303,7 +303,7 @@ Slide to Get Started!</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TXp-ex-yP5" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="918.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="763.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLi-PR-dDU">
                                                 <rect key="frame" x="0.0" y="30" width="375" height="155"/>
@@ -341,9 +341,9 @@ Slide to Get Started!</string>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxM-BI-qix">
-                                                <rect key="frame" x="0.0" y="558.33333333333337" width="375" height="350"/>
+                                                <rect key="frame" x="0.0" y="558.33333333333337" width="375" height="195"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="350" id="A5X-37-agz"/>
+                                                    <constraint firstAttribute="height" constant="195" id="A5X-37-agz"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="WEL-IU-prb" kind="embed" identifier="cardViewSegue" id="Yg7-tG-Po0"/>
@@ -416,7 +416,7 @@ Slide to Get Started!</string>
             <objects>
                 <collectionViewController storyboardIdentifier="CardViewDataCollectionViewController" id="WEL-IU-prb" customClass="CardViewDataCollectionViewController" customModule="ActivityScore" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="JjH-Zi-ijL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="195"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qt4-YX-OVH">

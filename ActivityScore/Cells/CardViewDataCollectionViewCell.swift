@@ -27,35 +27,40 @@ class CardViewDataCollectionViewCell: UICollectionViewCell {
 
 	func setUpImageViews() {
 		if let stepsImage = UIImage(systemName: "figure.walk") {
+			stepsImage.withTintColor(.systemPink, renderingMode: .alwaysTemplate)
 			stepsImageView.image = stepsImage
 		}
 
 		if let caloriesImage = UIImage(systemName: "flame.fill") {
+			caloriesImage.withTintColor(.systemPink, renderingMode: .alwaysTemplate)
 			caloriesImageView.image = caloriesImage
 		}
 
 		if let exerciseImage = UIImage(named: "figure.walk") {
+			exerciseImage.withTintColor(.systemPink, renderingMode: .alwaysTemplate)
 			exerciseImageView.image = exerciseImage
 		}
 
 		if let distanceImage = UIImage(named: "distance") {
+			distanceImage.withTintColor(.systemPink, renderingMode: .alwaysTemplate)
 			distanceImageView.image = distanceImage
 		}
 	}
 
     func configureCell(steps: Int?, calories: Int?, excercise: Int?, distance: Int?, date: Date?) {
+		// TODO: tener en cuenta las unidades
         if let steps = steps {
             stepsLabel.text = "\(steps)"
         }
         if let calories = calories {
-            caloriesLabel.text = "\(calories)"
+            caloriesLabel.text = "\(calories) cal"
         }
         if let excercise = excercise {
-			excerciseLabel.text = "\(excercise)"
+			excerciseLabel.text = "\(excercise) min"
         }
         if let distance = distance {
             let value = Double(distance) / 1000.0
-			distanceLabel.text = "\(String(format: "%.01f", value)) KM"
+			distanceLabel.text = "\(String(format: "%.01f", value)) Km"
         }
         if let date = date {
             configureDateLabel(date: date)

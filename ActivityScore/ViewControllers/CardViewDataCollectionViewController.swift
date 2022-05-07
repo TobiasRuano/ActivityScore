@@ -53,7 +53,8 @@ class CardViewDataCollectionViewController: UICollectionViewController {
 
 extension CardViewDataCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		let value = collectionView.frame.height - 30
-		return CGSize(width: value, height: value)
+		let value = collectionView.frame.height
+		let width = collectionView.frame.width
+		return CGSize(width: width, height: value)
     }
 }
