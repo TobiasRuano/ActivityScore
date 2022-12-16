@@ -78,7 +78,7 @@ class InAppPurchaseTableViewController: UITableViewController {
     }
 
     func getInfo() {
-        ProgressHUD.show()
+        ProgressHUD.show(interaction: false)
         SwiftyStoreKit.retrieveProductsInfo([bundleID + "." + removeAdID], completion: { result in
             ProgressHUD.dismiss()
 
@@ -95,7 +95,7 @@ class InAppPurchaseTableViewController: UITableViewController {
     }
 
     func purchase() {
-        ProgressHUD.show()
+        ProgressHUD.show(interaction: false)
         SwiftyStoreKit.retrieveProductsInfo([bundleID + "." + removeAdID]) { result in
             if let product = result.retrievedProducts.first {
                 SwiftyStoreKit.purchaseProduct(product, quantity: 1, atomically: true) { result in
@@ -145,7 +145,7 @@ class InAppPurchaseTableViewController: UITableViewController {
     }
 
     func restorePurchase() {
-        ProgressHUD.show()
+        ProgressHUD.show(interaction: false)
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if !results.restoreFailedPurchases.isEmpty {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
@@ -170,7 +170,7 @@ class InAppPurchaseTableViewController: UITableViewController {
     }
 
     func verifyRecipt() {
-        ProgressHUD.show()
+        ProgressHUD.show(interaction: false)
         let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: sharedSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
             switch result {
