@@ -10,6 +10,10 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
+    let descriptionString: String = "Designed and Developed by Tobias Ruano. With ❤️ from Buenos Aires, Argentina."
+    let myNameString: String = "Tobias Ruano"
+
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -21,9 +25,10 @@ class AboutViewController: UIViewController {
         scrollView.alwaysBounceVertical = true
         styleIconView()
         configureTableView()
+        configDescriptionText()
     }
 
-    func styleIconView() {
+    private func styleIconView() {
         iconImageView.image = UIImage(named: "onboardingLogo")
         iconImageView.layer.cornerRadius = 25
         iconImageView.layer.shadowColor = UIColor.gray.cgColor
@@ -31,12 +36,39 @@ class AboutViewController: UIViewController {
         iconImageView.layer.shadowOpacity = 10
     }
 
-    func configureTableView() {
+    private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "AboutTableViewCell",
 								 bundle: nil),
 						   forCellReuseIdentifier: AboutTableViewCell.cellID)
+    }
+
+    private func configDescriptionText() {
+        let mainAttributes = [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel,
+                               NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)]
+        let attributedString = NSMutableAttributedString(string: descriptionString, attributes: mainAttributes)
+
+        let range = (descriptionString as NSString).range(of: myNameString)
+        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.link,
+                                        NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue],
+                                       range: range)
+
+        descriptionLabel.attributedText = attributedString
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(descriptionLabelTapped))
+        descriptionLabel.isUserInteractionEnabled = true
+        descriptionLabel.addGestureRecognizer(gesture)
+    }
+
+    @objc private func descriptionLabelTapped(sender: UITapGestureRecognizer) {
+        guard let url = URL(string: "http://www.tobiasruano.com") else { return }
+
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
 }
 

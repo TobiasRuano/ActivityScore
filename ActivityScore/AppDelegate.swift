@@ -37,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window?.rootViewController = getViewControllerToPresent()
 		window?.makeKeyAndVisible()
 
-        UITabBar.appearance().tintColor = UIColor(displayP3Red: 245/255, green: 81/255, blue: 95/255, alpha: 1.0)
+        let appPrimaryColor = UIColor(displayP3Red: 245/255, green: 81/255, blue: 95/255, alpha: 1.0)
+        window?.tintColor = appPrimaryColor
 
         let gadMobileAds = GADMobileAds.sharedInstance()
         gadMobileAds.start(completionHandler: nil)
