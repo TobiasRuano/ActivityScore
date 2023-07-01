@@ -33,7 +33,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
 		ProgressHUD.animationType = .multipleCirclePulse
 		ProgressHUD.colorAnimation = .systemPink
-		ProgressHUD.show()
+        ProgressHUD.show(interaction: false)
         labelStyle()
         configureAdBanner()
         healthData()
@@ -45,7 +45,7 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
 	}
 
 	@objc func refreshHealthData() {
-		ProgressHUD.show()
+		ProgressHUD.show(interaction: false)
 		DispatchQueue.main.async {
 			self.scrollView.refreshControl?.endRefreshing()
 		}
@@ -63,7 +63,6 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
 	}
 
 	@objc func changeAmountDays(sender: UIBarButtonItem) {
-//		let alert = UIAlertController(title: titleString, message: "View Last...", preferredStyle: .actionSheet)
 		let alert = UIAlertController()
 
 		if let popoverController = alert.popoverPresentationController {
@@ -71,19 +70,19 @@ class ScoreViewController: UIViewController, GADBannerViewDelegate {
 		}
 
 		alert.addAction(UIAlertAction(title: "Last 7 days", style: .default, handler: { (_) in
-			ProgressHUD.show()
+			ProgressHUD.show(interaction: false)
 			self.scoreViewModel.changeDateAmount(newAmount: 7)
 		}))
 		alert.addAction(UIAlertAction(title: "Last 14 days", style: .default, handler: { (_) in
-			ProgressHUD.show()
+			ProgressHUD.show(interaction: false)
 			self.scoreViewModel.changeDateAmount(newAmount: 14)
 		}))
 		alert.addAction(UIAlertAction(title: "Last 30 days", style: .default, handler: { (_) in
-			ProgressHUD.show()
+			ProgressHUD.show(interaction: false)
 			self.scoreViewModel.changeDateAmount(newAmount: 30)
 		}))
 		alert.addAction(UIAlertAction(title: "Last 60 days", style: .default, handler: { (_) in
-			ProgressHUD.show()
+			ProgressHUD.show(interaction: false)
 			self.scoreViewModel.changeDateAmount(newAmount: 60)
 		}))
 		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))

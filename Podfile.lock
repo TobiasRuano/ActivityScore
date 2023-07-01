@@ -1,7 +1,8 @@
 PODS:
-  - Charts (3.6.0):
-    - Charts/Core (= 3.6.0)
-  - Charts/Core (3.6.0)
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - Google-Mobile-Ads-SDK (9.1.0):
     - GoogleAppMeasurement (< 9.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
@@ -50,11 +51,12 @@ PODS:
   - nanopb/encode (2.30908.0)
   - ProgressHUD (13.6)
   - PromisesObjC (2.0.0)
+  - SwiftAlgorithms (1.0.0)
   - SwiftLint (0.46.3)
   - SwiftyStoreKit (0.16.1)
 
 DEPENDENCIES:
-  - Charts
+  - Charts (from `https://github.com/danielgindi/Charts.git`, branch `master`)
   - Google-Mobile-Ads-SDK
   - ProgressHUD
   - SwiftLint
@@ -62,7 +64,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Charts
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUserMessagingPlatform
@@ -70,11 +71,22 @@ SPEC REPOS:
     - nanopb
     - ProgressHUD
     - PromisesObjC
+    - SwiftAlgorithms
     - SwiftLint
     - SwiftyStoreKit
 
+EXTERNAL SOURCES:
+  Charts:
+    :branch: master
+    :git: https://github.com/danielgindi/Charts.git
+
+CHECKOUT OPTIONS:
+  Charts:
+    :commit: 203700608a6e956e591e7387d77423fa3fea6947
+    :git: https://github.com/danielgindi/Charts.git
+
 SPEC CHECKSUMS:
-  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   Google-Mobile-Ads-SDK: d6ebb0e05cc38f4fad82d77a6655552213ed5e38
   GoogleAppMeasurement: ae033c3aad67e68294369373056b4d74cc8ae0d6
   GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
@@ -82,9 +94,10 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftLint: ae76d82f056734f853c8cd0371503252c606c482
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
 
-PODFILE CHECKSUM: 1999142ff20162f10615bbd28f9e2bbbb8549381
+PODFILE CHECKSUM: 51d54d78026ef5f8414240cb7e27225fbc410d5e
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

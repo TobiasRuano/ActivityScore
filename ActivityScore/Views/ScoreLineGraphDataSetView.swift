@@ -11,7 +11,7 @@ import Charts
 
 class ScoreLineGraphDataSetView: LineChartDataSet {
 
-	override init(entries: [ChartDataEntry]?, label: String?) {
+	override init(entries: [ChartDataEntry], label: String) {
 		super.init(entries: entries, label: label)
 		styleDataSet()
 	}
@@ -44,6 +44,6 @@ class ScoreLineGraphDataSetView: LineChartDataSet {
 		let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
 
 		self.fillAlpha = 1
-		self.fill = Fill(linearGradient: gradient, angle: 90)
+        self.fill = LinearGradientFill(gradient: gradient, angle: 90)
 	}
 }
